@@ -25,8 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>color = c_green;
+            <string>event_inherited();
 
+color = c_green;
+
+resource["pop"] = 5;
 //resource = 
 </string>
           </argument>

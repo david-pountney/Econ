@@ -27,7 +27,10 @@
             <kind>1</kind>
             <string>color = c_green;
 
-//resource = 
+
+resource["pop"] = 0;
+
+maxResourceAmount = 400;
 </string>
           </argument>
         </arguments>
