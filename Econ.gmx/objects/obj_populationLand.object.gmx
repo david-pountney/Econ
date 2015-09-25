@@ -25,12 +25,43 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>///Initialize object
+event_inherited();
 
 color = c_green;
+resource = ds_map_create();
+ds_map_add(resource,"pop", 0);
+//resource["pop"] = 5;
 
-resource["pop"] = 5;
+
+
 //resource = 
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Spread resource
+script_execute(scr_influenceMap,id, "pop", 400);
 </string>
           </argument>
         </arguments>

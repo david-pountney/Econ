@@ -28,7 +28,10 @@
             <string>color = c_green;
 
 
-resource["pop"] = 0;
+//resource["pop"] = 0;
+
+resource = ds_map_create();
+ds_map_add(resource,"pop", 0);
 
 maxResourceAmount = 400;
 </string>
