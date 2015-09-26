@@ -2,12 +2,12 @@ array = argument0;
 instruct = argument1;
 searchedValue = argument2;
 
-show_message(array_length_1d(array));
+//show_message(array_length_1d(array));
 
 if(instruct == "add"){
     for(var i = 0; i < array_length_1d(array); i += 1){
         if(array[i] == searchedValue){
-            show_message("dup is + " + string(array[i]));
+            //show_message("dup is + " + string(array[i]));
             return array;
         }
     }

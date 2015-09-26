@@ -60,6 +60,7 @@ mask_index = spr_rect;
 
 //Land
 land = noone;
+land = instance_position(floor(x/32)*32, floor(y/32)*32, obj_normalLand);
 
 //Product
 productProduced = noone;
@@ -223,9 +224,7 @@ if(pstType == "secondary"){
 }
 
 if(pstType == "tertiary"){
-    if(resourceStock &gt;= 0){
-        resourceStock -= 1;
-    }
+    script_execute(scr_sellToCustomers,id,land);
 }
 </string>
           </argument>
