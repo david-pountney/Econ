@@ -20,7 +20,12 @@
     <script>scripts\scr_buyFromSupplier.gml</script>
     <script>scripts\scr_sellToCustomers.gml</script>
     <script>scripts\scr_influenceMap.gml</script>
-    <script>scripts\scr_colorMap.gml</script>
+    <script>scripts\scr_setGovernment.gml</script>
+    <scripts name="colorScripts">
+      <script>scripts\scr_colorResource.gml</script>
+      <script>scripts\scr_resetMapColor.gml</script>
+      <script>scripts\scr_colorGovernments.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug</font>
@@ -45,6 +50,9 @@
       <object>objects\obj_pub</object>
     </objects>
     <object>objects\obj_init</object>
+    <objects name="governments">
+      <object>objects\obj_gov</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

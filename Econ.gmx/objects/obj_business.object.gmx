@@ -58,9 +58,8 @@ pstType = "";
 //Set mask
 mask_index = spr_rect;
 
-//Land
-land = noone;
-land = instance_position(floor(x/32)*32, floor(y/32)*32, obj_normalLand);
+//Gov
+government = global.playerGov;
 
 //Product
 productProduced = noone;
@@ -88,7 +87,10 @@ supplierDoneOnce = false;
 
 supplyingFullFlag = false;
 
-//show_message("fdfddfd");
+//Land
+land = instance_position(floor(x/32)*32, floor(y/32)*32, obj_normalLand);
+if(land == noone)   instance_destroy();
+
 </string>
           </argument>
         </arguments>
@@ -119,33 +121,6 @@ supplyingFullFlag = false;
 supplying[0] = noone;
 supplying[1] = noone;
 supplying[2] = noone;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//Business main loop
-//if(global.gamerTimer &gt; global.gameFrameCount){
-//    event_perform(ev_other,ev_user0);
-//    supplierDoneOnce = false;
-//}
 </string>
           </argument>
         </arguments>
@@ -250,6 +225,56 @@ if(pstType == "tertiary"){
 if(global.day % 30 == 0){
      script_execute(scr_buyFromSupplier,supplier,id);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Pay monthly expenses
+if(global.day % 30 == 0){
+     cash -= global.monthlyExpenses;
+     
+     government.cash += cash * government.corpTax;
+     cash -= cash * government.corpTax;
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check if bankrupt
+if(cash &lt; 0)    instance_destroy();
 </string>
           </argument>
         </arguments>

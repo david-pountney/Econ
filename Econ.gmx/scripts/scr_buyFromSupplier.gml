@@ -27,6 +27,12 @@ if(supplier.productStock > 0){
     //Transaction
     buyer.resourceStock += amountToBuy;
     buyer.cash -= (productCost * amountToBuy);
+    
+    //Make buyer pay import tax
+    if(buyer.government != supplier.government){
+        
+    }
+    
     //show_message("Supplier product stock " + string(supplier.productStock));
     supplier.productStock -= amountToBuy;
     supplier.cash += (productCost * amountToBuy);

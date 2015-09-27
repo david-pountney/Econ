@@ -28,7 +28,6 @@
             <string>///Initialize object
 event_inherited();
 
-color = c_green;
 resource = ds_map_create();
 ds_map_add(resource,"pop", 0);
 //resource["pop"] = 5;
@@ -62,31 +61,6 @@ ds_map_add(resource,"pop", 0);
             <kind>1</kind>
             <string>///Spread resource
 script_execute(scr_influenceMap,id, "pop", 400);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//draw_self();
-draw_rectangle_colour(x,y, x + sprite_get_width(spr_rect),y + sprite_get_height(spr_rect),color,color,color,color,false);
-//draw_circle_colour(x + 16,y + 16,12,color,color,false);
 </string>
           </argument>
         </arguments>
