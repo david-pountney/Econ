@@ -32,7 +32,7 @@ color = c_red;
 productProduced = instance_find(obj_wheat,0);
 //show_message(productProduced);
 producePerDay = 1;
-productMaxAmount = 20;
+productMaxAmount = 40;
 
 pstType = "primary";
 

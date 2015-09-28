@@ -32,6 +32,7 @@ global.day = 0;
 global.monthlyExpenses = 100;
 
 global.playerGov = instance_find(obj_gov,0);
+global.aiGov = instance_find(obj_gov,1);
 
 global.defaultLandColor = make_colour_hsv(88,100,200);
 
@@ -103,6 +104,9 @@ if(global.gamerTimer &gt; global.gameFrameCount){
     draw_text_colour(5,25,"Day: " + string(global.day),c_red,c_red,c_red,c_red,255);
     draw_text_colour(5,50,"InsBus: " + string(instance_number(obj_business)),c_red,c_red,c_red,c_red,255);
     draw_text_colour(5,75,"Gov Cash: " + string(global.playerGov.cash),c_red,c_red,c_red,c_red,255);
+    
+    draw_text_colour(5,100,"Gov Cash: " + string(global.aiGov.cash),c_red,c_red,c_red,c_red,255);
+    
     draw_set_font(fnt_normal);
 }
 </string>

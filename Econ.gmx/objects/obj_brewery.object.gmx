@@ -36,7 +36,7 @@ producePerDay = 1;
 
 productProduced = instance_find(obj_beer,0);
 
-resourceMaxAmount = 20;
+resourceMaxAmount = 10;
 </string>
           </argument>
         </arguments>
