@@ -1,4 +1,4 @@
-# econ
+# Econ
 Small project to create a grid-based real time strategy game (RTS) with a focus on micro and macro management of a complex realistic economy.
 
 Features implemented;
