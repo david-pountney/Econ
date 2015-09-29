@@ -27,16 +27,6 @@
             <kind>1</kind>
             <string>///Initialize object
 event_inherited();
-
-resource = ds_map_create();
-ds_map_add(resource,"pop", 0);
-//resource["pop"] = 5;
-
-
-
-//resource = 
-
-
 </string>
           </argument>
         </arguments>

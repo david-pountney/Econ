@@ -8,6 +8,7 @@
   <sprites name="sprites">
     <sprite>sprites\spr_rect</sprite>
     <sprite>sprites\spr_landPop</sprite>
+    <sprite>sprites\spr_wheatLand</sprite>
     <sprite>sprites\sprite2</sprite>
   </sprites>
   <backgrounds name="background"/>
@@ -38,11 +39,13 @@
     <objects name="tiles">
       <object>objects\obj_normalLand</object>
       <object>objects\obj_populationLand</object>
+      <object>objects\obj_wheatLand</object>
     </objects>
     <objects name="goods">
       <object>objects\obj_good</object>
       <object>objects\obj_wheat</object>
       <object>objects\obj_beer</object>
+      <object>objects\obj_population</object>
     </objects>
     <objects name="businesses">
       <object>objects\obj_business</object>

@@ -28,6 +28,7 @@
             <string>event_inherited();
 
 value = 5;
+name = "wheat";
 </string>
           </argument>
         </arguments>

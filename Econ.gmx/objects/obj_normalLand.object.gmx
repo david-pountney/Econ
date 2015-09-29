@@ -31,6 +31,7 @@
 
 resource = ds_map_create();
 ds_map_add(resource,"pop", 0);
+ds_map_add(resource,"wheat", 0);
 
 maxResourceAmount = 400;
 

@@ -38,6 +38,11 @@ global.defaultLandColor = make_colour_hsv(88,100,200);
 
 global.govColors[0] = make_colour_hsv(88,100,200);
 global.govColors[1] = make_colour_hsv(130,100,200);
+
+//Global resources
+global.wheat = instance_find(obj_wheat,0);
+global.beer = instance_find(obj_beer,0);
+global.population = instance_find(obj_population,0);
 </string>
           </argument>
         </arguments>
