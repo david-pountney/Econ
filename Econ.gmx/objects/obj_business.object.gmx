@@ -84,6 +84,8 @@ supplierDoneOnce = false;
 
 supplyingFullFlag = false;
 
+monthlyCost = 0;
+
 //Land
 land = instance_position(floor(x/32)*32, floor(y/32)*32, obj_normalLand);
 if(land == noone)   instance_destroy();
@@ -252,7 +254,7 @@ if(global.day % 30 == 0){
             <string>///Pay monthly expenses
 if(global.day % 30 == 0){
     //Monthly expenses
-     cash -= global.monthlyExpenses;
+     cash -= monthlyCost;
      //Corporation tax
      government.cash += cash * government.corpTax;
      cash -= cash * government.corpTax;

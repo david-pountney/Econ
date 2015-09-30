@@ -31,12 +31,16 @@ color = c_blue;
 
 pstType = "secondary";
 
+monthlyCost = 100;
+
 resourceRequired = instance_find(obj_wheat,0);
 producePerDay = 1;
 
 productProduced = instance_find(obj_beer,0);
 
 resourceMaxAmount = 10;
+
+
 </string>
           </argument>
         </arguments>

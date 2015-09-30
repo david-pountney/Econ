@@ -35,9 +35,16 @@ global.playerGov = instance_find(obj_gov,0);
 global.aiGov = instance_find(obj_gov,1);
 
 global.defaultLandColor = make_colour_hsv(88,100,200);
+global.clearColor = c_white;
 
 global.govColors[0] = make_colour_hsv(88,100,200);
 global.govColors[1] = make_colour_hsv(130,100,200);
+
+//Modes
+global.mode = "buyLand";
+
+//Map modes
+global.mapMode = "landMapMode";
 
 //Global resources
 global.wheat = instance_find(obj_wheat,0);
