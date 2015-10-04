@@ -52,6 +52,7 @@ y=floor(y/32)*32;
 startingCash = 1000;
 cash = startingCash;
 name = "";
+monthlyStartingCash = cash;
 
 pstType = "";
 
@@ -93,6 +94,8 @@ if(land == noone)   instance_destroy();
 //Gov
 government = land.government;
 
+//Cash symbol
+cashSymbol = noone;
 </string>
           </argument>
         </arguments>
@@ -173,8 +176,10 @@ if(pstType == "primary"){
 
 if(pstType == "secondary"){
     if(resourceStock &gt;= resourceConsumedPerDay){
-        productStock += producePerDay;
-        resourceStock -= resourceConsumedPerDay;
+        if(productStock &lt;= productMaxAmount - producePerDay){
+            productStock += producePerDay;
+            resourceStock -= resourceConsumedPerDay;
+        }
     }
 }
 
@@ -255,6 +260,7 @@ if(global.day % 30 == 0){
 if(global.day % 30 == 0){
     //Monthly expenses
      cash -= monthlyCost;
+     
      //Corporation tax
      government.cash += cash * government.corpTax;
      cash -= cash * government.corpTax;

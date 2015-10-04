@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-999</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,46 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Global init variables
-global.gamerTimer = 0;
-global.gameFrameCount = 10;
-global.day = 0;
-global.monthlyExpenses = 100;
+            <string>spriteToDraw = spr_redDollar;
+startY = y;
 
-//Server
-global.server = noone;
-
-//Client
-global.client = noone;
-
-//Governments
-global.playerGov = instance_find(obj_gov,0);
-global.aiGov = instance_find(obj_gov,1);
-
-//Colors
-global.defaultLandColor = make_colour_hsv(88,100,200);
-global.clearColor = c_white;
-
-//Gov colors
-global.govColors[0] = make_colour_hsv(88,100,200);
-global.govColors[1] = make_colour_hsv(130,100,200);
-
-//Modes
-global.mode = "buyLand";
-
-//Map modes
-global.mapMode = "landMapMode";
-
-//Global resources
-global.wheat = instance_find(obj_wheat,0);
-global.beer = instance_find(obj_beer,0);
-global.population = instance_find(obj_population,0);
+business = noone;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="2">
+    <event eventtype="1" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -81,28 +51,8 @@ global.population = instance_find(obj_population,0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Calculate each business profit
-if(global.day % 30 == 0){
-    for (var i = 0; i &lt; instance_number(obj_business); i += 1)
-    {
-        business[i] = instance_find(obj_business,i);
-        if(business[i].cashSymbol == noone){
-            //Made money
-            if(business[i].monthlyStartingCash &lt; business[i].cash){
-                symbol = instance_create(business[i].x,business[i].y - 64,obj_cashSymbol);
-                symbol.spriteToDraw = spr_greenDollar; 
-                symbol.business = business[i];
-            }
-            //Lost money
-            else{
-                symbol = instance_create(business[i].x,business[i].y - 64,obj_cashSymbol,);
-                symbol.spriteToDraw = spr_redDollar; 
-                symbol.business = business[i];
-            }
-            business[i].monthlyStartingCash = business[i].cash;
-            business[i].cashSymbol = symbol;
-        }
-    }
+            <string>if(business != noone &amp;&amp; instance_exists(business)){
+    business.cashSymbol = noone;
 }
 </string>
           </argument>
@@ -126,28 +76,14 @@ if(global.day % 30 == 0){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Main loop
-global.gamerTimer += 1;
-if(global.gamerTimer &gt; global.gameFrameCount){
-    global.gamerTimer = 0;
-    
-    for (var i = 0; i &lt; instance_number(obj_business); i += 1)
-    {
-        business[i] = instance_find(obj_business,i);
-        with(business[i]){
-            event_perform(ev_other,ev_user0);
-            supplierDoneOnce = false;
-        }
-    }
-
-    global.day += 1;
-}
+            <string>y -= 1;
+if(y &lt; startY - 64) instance_destroy();
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -164,17 +100,7 @@ if(global.gamerTimer &gt; global.gameFrameCount){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(debug_mode){
-    draw_set_font(fnt_debug);
-    draw_text_colour(5,5,"FPS: " + string(fps_real),c_red,c_red,c_red,c_red,255);
-    draw_text_colour(5,25,"Day: " + string(global.day),c_red,c_red,c_red,c_red,255);
-    draw_text_colour(5,50,"InsBus: " + string(instance_number(obj_business)),c_red,c_red,c_red,c_red,255);
-    draw_text_colour(5,75,"Gov Cash: " + string(global.playerGov.cash),c_red,c_red,c_red,c_red,255);
-    
-    draw_text_colour(5,100,"Gov Cash: " + string(global.aiGov.cash),c_red,c_red,c_red,c_red,255);
-    
-    draw_set_font(fnt_normal);
-}
+            <string>draw_sprite(spriteToDraw,-1,x,y);
 </string>
           </argument>
         </arguments>

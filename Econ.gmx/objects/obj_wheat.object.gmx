@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 
-value = 5;
+value = 4;
 name = "wheat";
 </string>
           </argument>

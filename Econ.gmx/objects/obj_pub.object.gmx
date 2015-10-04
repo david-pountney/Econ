@@ -36,7 +36,7 @@ producePerDay = 2;
 
 productProduced = obj_beer;
 
-resourceMaxAmount = 5;
+resourceMaxAmount = 10;
 
 monthlyCost = 200;
 </string>

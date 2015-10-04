@@ -11,6 +11,8 @@
     <sprite>sprites\spr_wheatLand</sprite>
     <sprite>sprites\sprite2</sprite>
     <sprite>sprites\sprite4</sprite>
+    <sprite>sprites\spr_redDollar</sprite>
+    <sprite>sprites\spr_greenDollar</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -30,6 +32,10 @@
     </scripts>
     <script>scripts\scr_transaction.gml</script>
     <script>scripts\scr_checkForAdjacentLand.gml</script>
+    <scripts name="networking">
+      <script>scripts\scr_receivedPacketServer.gml</script>
+      <script>scripts\scr_receivedPacketClient.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug</font>
@@ -58,6 +64,11 @@
     <object>objects\obj_init</object>
     <objects name="governments">
       <object>objects\obj_gov</object>
+    </objects>
+    <object>objects\obj_cashSymbol</object>
+    <objects name="networking">
+      <object>objects\obj_server</object>
+      <object>objects\obj_client</object>
     </objects>
   </objects>
   <rooms name="rooms">

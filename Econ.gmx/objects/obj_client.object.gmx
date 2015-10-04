@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-999</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,85 +25,25 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Global init variables
-global.gamerTimer = 0;
-global.gameFrameCount = 10;
-global.day = 0;
-global.monthlyExpenses = 100;
+            <string>//Create Event of Object: ObjClient
 
-//Server
-global.server = noone;
+result = 0;
+ping = 0;
 
-//Client
-global.client = noone;
+var Type , IPAddress , Port;
+Type = network_socket_tcp;
+IPAddress = "127.0.0.1";
+Port = 64198;
+Socket = network_create_socket( Type );
+isConnected = network_connect( Socket , IPAddress , Port );
 
-//Governments
-global.playerGov = instance_find(obj_gov,0);
-global.aiGov = instance_find(obj_gov,1);
+var Size , Type , Alignment;
+Size = 1024;
+Type = buffer_fixed;
+Alignment = 1;
+Buffer = buffer_create( Size , Type , Alignment );
 
-//Colors
-global.defaultLandColor = make_colour_hsv(88,100,200);
-global.clearColor = c_white;
 
-//Gov colors
-global.govColors[0] = make_colour_hsv(88,100,200);
-global.govColors[1] = make_colour_hsv(130,100,200);
-
-//Modes
-global.mode = "buyLand";
-
-//Map modes
-global.mapMode = "landMapMode";
-
-//Global resources
-global.wheat = instance_find(obj_wheat,0);
-global.beer = instance_find(obj_beer,0);
-global.population = instance_find(obj_population,0);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="2">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Calculate each business profit
-if(global.day % 30 == 0){
-    for (var i = 0; i &lt; instance_number(obj_business); i += 1)
-    {
-        business[i] = instance_find(obj_business,i);
-        if(business[i].cashSymbol == noone){
-            //Made money
-            if(business[i].monthlyStartingCash &lt; business[i].cash){
-                symbol = instance_create(business[i].x,business[i].y - 64,obj_cashSymbol);
-                symbol.spriteToDraw = spr_greenDollar; 
-                symbol.business = business[i];
-            }
-            //Lost money
-            else{
-                symbol = instance_create(business[i].x,business[i].y - 64,obj_cashSymbol,);
-                symbol.spriteToDraw = spr_redDollar; 
-                symbol.business = business[i];
-            }
-            business[i].monthlyStartingCash = business[i].cash;
-            business[i].cashSymbol = symbol;
-        }
-    }
-}
 </string>
           </argument>
         </arguments>
@@ -126,28 +66,18 @@ if(global.day % 30 == 0){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Main loop
-global.gamerTimer += 1;
-if(global.gamerTimer &gt; global.gameFrameCount){
-    global.gamerTimer = 0;
-    
-    for (var i = 0; i &lt; instance_number(obj_business); i += 1)
-    {
-        business[i] = instance_find(obj_business,i);
-        with(business[i]){
-            event_perform(ev_other,ev_user0);
-            supplierDoneOnce = false;
-        }
-    }
+            <string>//Step Event of Object: ObjClient
+buffer_seek( Buffer , buffer_seek_start , 0 );
+buffer_write( Buffer , buffer_string , "gPING" );
+buffer_write( Buffer , buffer_u32 , current_time );
 
-    global.day += 1;
-}
+result = network_send_packet( Socket , Buffer , buffer_tell( Buffer ) );
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="7" enumb="68">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -164,17 +94,66 @@ if(global.gamerTimer &gt; global.gameFrameCount){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(debug_mode){
-    draw_set_font(fnt_debug);
-    draw_text_colour(5,5,"FPS: " + string(fps_real),c_red,c_red,c_red,c_red,255);
-    draw_text_colour(5,25,"Day: " + string(global.day),c_red,c_red,c_red,c_red,255);
-    draw_text_colour(5,50,"InsBus: " + string(instance_number(obj_business)),c_red,c_red,c_red,c_red,255);
-    draw_text_colour(5,75,"Gov Cash: " + string(global.playerGov.cash),c_red,c_red,c_red,c_red,255);
-    
-    draw_text_colour(5,100,"Gov Cash: " + string(global.aiGov.cash),c_red,c_red,c_red,c_red,255);
-    
-    draw_set_font(fnt_normal);
+            <string>var type_event = ds_map_find_value( async_load , "type" );
+switch( type_event ) {
+    case network_type_data:
+        var buffer = ds_map_find_value( async_load , "buffer" );
+        buffer_seek( buffer , buffer_seek_start , 0 );
+        script_execute(scr_receivedPacketClient, buffer );
+        break;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Game End Event of Object: Client
+network_destroy( Socket );
+buffer_delete( Buffer );
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//draw_text( 5 , 5 , "Client Connected: " + string( isConnected ) );
+
+draw_text( 5 , 20 , "Connected: " + string( result &gt;= 0 ) );
+draw_text( 5 , 35 , "My Ping: " + string( ping ) );
+
 </string>
           </argument>
         </arguments>
