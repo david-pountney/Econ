@@ -18,12 +18,28 @@ switch( msgid ) {//Case statements go here...
         var land = instance_position(landX,landY,obj_normalLand);
         if(land != noone){
             land.government = landGovernment;
-            script_execute(scr_colorGovernments);
+            //show_message(global.mapMode);
+            if(global.mapMode == "governmentMapMode")
+                script_execute(scr_colorGovernments);
         }
         
-        //show_message("got message");
+        show_message("got message");
         
-        var test = 0;
+        break;
+        
+    case "rGAMESTRT":
+        var gameStart = buffer_read( buffer , buffer_bool ); 
+        
+        global.gameStart = gameStart;
+        //show_message("rGAMESTRT");
+        
+        break;
+        
+    case "rSTRTGAME":
+        room = game_room;
+        //show_message("rSTRTGAME");
+        
+        break;
         
     default:
         break;

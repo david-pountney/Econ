@@ -30,6 +30,10 @@ global.gamerTimer = 0;
 global.gameFrameCount = 10;
 global.day = 0;
 global.monthlyExpenses = 100;
+global.gameStart = false;
+
+//Delta time
+global.deltaTime = 0;
 
 //Server
 global.server = noone;
@@ -59,6 +63,28 @@ global.mapMode = "landMapMode";
 global.wheat = instance_find(obj_wheat,0);
 global.beer = instance_find(obj_beer,0);
 global.population = instance_find(obj_population,0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Create player government
+global.playerGov = instance_create(608,608, obj_playerGov);
 </string>
           </argument>
         </arguments>
@@ -127,7 +153,11 @@ if(global.day % 30 == 0){
           <argument>
             <kind>1</kind>
             <string>///Main loop
-global.gamerTimer += 1;
+
+//Set up delta time
+global.deltaTime = (30 / 1000000 * delta_time);
+//show_message(delta);
+if(global.gameStart == true)    global.gamerTimer += (1 * global.deltaTime);
 if(global.gamerTimer &gt; global.gameFrameCount){
     global.gamerTimer = 0;
     
@@ -164,17 +194,17 @@ if(global.gamerTimer &gt; global.gameFrameCount){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(debug_mode){
+            <string>//if(debug_mode){
     draw_set_font(fnt_debug);
-    draw_text_colour(5,5,"FPS: " + string(fps_real),c_red,c_red,c_red,c_red,255);
-    draw_text_colour(5,25,"Day: " + string(global.day),c_red,c_red,c_red,c_red,255);
-    draw_text_colour(5,50,"InsBus: " + string(instance_number(obj_business)),c_red,c_red,c_red,c_red,255);
-    draw_text_colour(5,75,"Gov Cash: " + string(global.playerGov.cash),c_red,c_red,c_red,c_red,255);
+    draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 25,"FPS: " + string(fps_real),c_red,c_red,c_red,c_red,255);
+    draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 50,"Day: " + string(global.day),c_red,c_red,c_red,c_red,255);
+    draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 75,"InsBus: " + string(instance_number(obj_business)),c_red,c_red,c_red,c_red,255);
+    draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 100,"Gov Cash: " + string(global.playerGov.cash),c_red,c_red,c_red,c_red,255);
     
-    draw_text_colour(5,100,"Gov Cash: " + string(global.aiGov.cash),c_red,c_red,c_red,c_red,255);
+    draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 125,"Gov Cash: " + string(global.aiGov.cash),c_red,c_red,c_red,c_red,255);
     
     draw_set_font(fnt_normal);
-}
+//}
 </string>
           </argument>
         </arguments>

@@ -27,11 +27,43 @@ switch( msgid ) {//Case statements go here...
         
         for (i=0; i<ds_list_size(obj_server.SocketList); i++) { 
             var currentSocket = ds_list_find_value(obj_server.SocketList, i);
-            //show_message(currentSocket);
-            network_send_packet(currentSocket, Buffer, buffer_tell( Buffer )); 
+            if(currentSocket != socket)
+            show_message(currentSocket);
+                network_send_packet(currentSocket, Buffer, buffer_tell( Buffer )); 
         }
         
         break;
+        
+    case "sGAMESTRT":
+        var gameStart = buffer_read( buffer , buffer_bool );
+        
+        buffer_seek( Buffer , buffer_seek_start , 0 );
+        buffer_write( Buffer , buffer_string , "rGAMESTRT" );
+        buffer_write( Buffer , buffer_bool , gameStart );
+        
+        for (i=0; i<ds_list_size(obj_server.SocketList); i++) { 
+            var currentSocket = ds_list_find_value(obj_server.SocketList, i);
+            if(currentSocket != socket)
+            show_message("currentSocket");
+                network_send_packet(currentSocket, Buffer, buffer_tell( Buffer )); 
+        }
+        
+        break;
+        
+    case "sSTRTGAME":
+        buffer_seek( Buffer , buffer_seek_start , 0 );
+        buffer_write( Buffer , buffer_string , "rSTRTGAME" );
+
+        for (i=0; i<ds_list_size(obj_server.SocketList); i++) { 
+            var currentSocket = ds_list_find_value(obj_server.SocketList, i);
+            if(currentSocket != socket)
+            //show_message("cursocket ");
+                network_send_packet(currentSocket, Buffer, buffer_tell( Buffer )); 
+        }
+        
+        break;
+        
+        
         
     default:
         break;

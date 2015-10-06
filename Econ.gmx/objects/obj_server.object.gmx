@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -38,6 +38,8 @@ Type = buffer_fixed;
 Alignment = 1;
 Buffer = buffer_create( Size , Type , Alignment );
 SocketList = ds_list_create(); 
+
+
 </string>
           </argument>
         </arguments>
@@ -79,7 +81,7 @@ switch( type_event ) {
         var socket = ds_map_find_value( async_load , "id" );
         buffer_seek( buffer , buffer_seek_start , 0 );
         script_execute(scr_receivedPacketServer, buffer , socket );
-        break; 
+        break;
 }
 </string>
           </argument>

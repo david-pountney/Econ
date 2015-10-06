@@ -13,6 +13,7 @@
     <sprite>sprites\sprite4</sprite>
     <sprite>sprites\spr_redDollar</sprite>
     <sprite>sprites\spr_greenDollar</sprite>
+    <sprite>sprites\spr_buttonBackground</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -42,37 +43,47 @@
     <font>fonts\fnt_normal</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_grid</object>
-    <object>objects\obj_control</object>
-    <objects name="tiles">
-      <object>objects\obj_normalLand</object>
-      <object>objects\obj_populationLand</object>
-      <object>objects\obj_wheatLand</object>
-    </objects>
-    <objects name="goods">
-      <object>objects\obj_good</object>
-      <object>objects\obj_wheat</object>
-      <object>objects\obj_beer</object>
-      <object>objects\obj_population</object>
-    </objects>
-    <objects name="businesses">
-      <object>objects\obj_business</object>
-      <object>objects\obj_farm</object>
-      <object>objects\obj_brewery</object>
-      <object>objects\obj_pub</object>
-    </objects>
-    <object>objects\obj_init</object>
-    <objects name="governments">
-      <object>objects\obj_gov</object>
-    </objects>
-    <object>objects\obj_cashSymbol</object>
     <objects name="networking">
       <object>objects\obj_server</object>
       <object>objects\obj_client</object>
     </objects>
+    <object>objects\obj_control</object>
+    <objects name="gameRoom">
+      <objects name="governments">
+        <object>objects\obj_gov</object>
+        <object>objects\obj_playerGov</object>
+      </objects>
+      <objects name="goods">
+        <object>objects\obj_good</object>
+        <object>objects\obj_wheat</object>
+        <object>objects\obj_beer</object>
+        <object>objects\obj_population</object>
+      </objects>
+      <objects name="tiles">
+        <object>objects\obj_normalLand</object>
+        <object>objects\obj_populationLand</object>
+        <object>objects\obj_wheatLand</object>
+      </objects>
+      <objects name="businesses">
+        <object>objects\obj_business</object>
+        <object>objects\obj_farm</object>
+        <object>objects\obj_brewery</object>
+        <object>objects\obj_pub</object>
+      </objects>
+      <object>objects\obj_grid</object>
+      <object>objects\obj_cashSymbol</object>
+      <object>objects\obj_gameRoomInit</object>
+    </objects>
+    <objects name="multiplayerLobby">
+      <object>objects\obj_hostServer</object>
+      <object>objects\obj_joinServer</object>
+      <object>objects\obj_startGame</object>
+    </objects>
+    <object>objects\obj_gameInit</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
+    <room>rooms\mutliplayer_lobby</room>
+    <room>rooms\game_room</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
