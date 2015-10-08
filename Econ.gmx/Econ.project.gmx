@@ -51,7 +51,8 @@
     <objects name="gameRoom">
       <objects name="governments">
         <object>objects\obj_gov</object>
-        <object>objects\obj_playerGov</object>
+        <object>objects\obj_gov1</object>
+        <object>objects\obj_gov2</object>
       </objects>
       <objects name="goods">
         <object>objects\obj_good</object>

@@ -32,6 +32,8 @@ corpTax = 0.1;
 importTax = 0.1;
 exportTax = 0.1;
 
+yourGov = false;
+
 land = instance_position(floor(x/32)*32, floor(y/32)*32, obj_normalLand);
 land.government = id;
 

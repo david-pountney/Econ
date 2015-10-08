@@ -27,17 +27,16 @@ switch( msgid ) {//Case statements go here...
         
         break;
         
-    case "rGAMESTRT":
-        var gameStart = buffer_read( buffer , buffer_bool ); 
-        
-        global.gameStart = gameStart;
-        //show_message("rGAMESTRT");
+    case "rJOINROOM":
+        room = game_room;
         
         break;
         
-    case "rSTRTGAME":
-        room = game_room;
-        //show_message("rSTRTGAME");
+    case "rMYGOV":
+        var test2 = buffer_read( buffer , buffer_u32 );    
+        
+        var test3 = instance_find(test2,0);
+        show_message(string(test3.test));
         
         break;
         

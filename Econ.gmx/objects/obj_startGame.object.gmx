@@ -27,11 +27,11 @@
             <kind>1</kind>
             <string>//Multiplayer send message
 buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
-buffer_write( global.client.Buffer , buffer_string , "sSTRTGAME" );
+buffer_write( global.client.Buffer , buffer_string , "sJOINROOM" );
     
 result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
 
-room = game_room;
+//room = game_room;
 </string>
           </argument>
         </arguments>
