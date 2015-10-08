@@ -25,20 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Gov variables
-cash = 1000;
-
-corpTax = 0.1; 
-importTax = 0.1;
-exportTax = 0.1;
-
-yourGov = false;
-
-land = instance_position(floor(x/32)*32, floor(y/32)*32, obj_normalLand);
-land.government = id;
-
-color = make_colour_hsv(random(255),100,200);
-//color = c_yellow;
+            <string>///Set land owned by government
+//script_execute(scr_setGovernment,land,id);
 </string>
           </argument>
         </arguments>
@@ -59,8 +47,20 @@ color = make_colour_hsv(random(255),100,200);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set land owned by government
-//script_execute(scr_setGovernment,land,id);
+            <string>///Gov variables
+cash = 1000;
+
+corpTax = 0.1; 
+importTax = 0.1;
+exportTax = 0.1;
+
+yourGov = false;
+
+land = instance_position(floor(x/32)*32, floor(y/32)*32, obj_normalLand);
+land.government = noone;
+
+
+//color = c_yellow;
 </string>
           </argument>
         </arguments>

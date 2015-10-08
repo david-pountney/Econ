@@ -150,17 +150,20 @@ result = network_send_packet( global.client.Socket , global.client.Buffer , buff
 var business = instance_position(floor(mouse_x/32)*32, floor(mouse_y/32)*32, obj_business)
 
 if(global.mode == "buyLand"){
+    //show_message("1");
     if(land != noone){
+        //show_message("2");
         if(land.government == noone){
-            if(script_execute(scr_checkForAdjacentLand,land, global.playerGov)){
-                land.government = global.playerGov;
-                
+            //show_message(global.myGov.color);
+            if(script_execute(scr_checkForAdjacentLand,land, global.myGov)){
+                land.government = global.myGov;
+                //show_message(global.myGov);
                 //Multiplayer send message
                 buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
                 buffer_write( global.client.Buffer , buffer_string , "sGOVADD" );
                 buffer_write( global.client.Buffer , buffer_u16 , land.x );
                 buffer_write( global.client.Buffer , buffer_u16 , land.y );
-                buffer_write( global.client.Buffer , buffer_u32 , land.government );
+                buffer_write( global.client.Buffer , buffer_u32 , global.myGov );
     
                 result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
                 

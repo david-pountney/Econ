@@ -15,6 +15,9 @@ rightNode = instance_position(floor((startingNode.x + 32)/32)*32, floor((startin
 upNode = instance_position(floor((startingNode.x)/32)*32, floor((startingNode.y - 32)/32)*32, obj_normalLand);
 downNode = instance_position(floor((startingNode.x)/32)*32, floor((startingNode.y + 32)/32)*32, obj_normalLand);
 
+//show_message("ln " + string(leftNode.government));
+//show_message(government);
+
 if(leftNode != noone)
     if(leftNode.government == government) return true;
 if(rightNode != noone)

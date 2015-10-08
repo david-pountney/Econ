@@ -36,8 +36,7 @@ global.gameStart = true;
 global.deltaTime = 0;
 
 //Governments
-global.playerGov = instance_find(obj_gov,0);
-global.aiGov = instance_find(obj_gov,1);
+global.myGov = noone;
 
 //Colors
 global.defaultLandColor = make_colour_hsv(88,100,200);
@@ -202,9 +201,11 @@ result = network_send_packet( global.client.Socket , global.client.Buffer , buff
     draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 25,"FPS: " + string(fps_real),c_red,c_red,c_red,c_red,255);
     draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 50,"Day: " + string(global.day),c_red,c_red,c_red,c_red,255);
     draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 75,"InsBus: " + string(instance_number(obj_business)),c_red,c_red,c_red,c_red,255);
-    draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 100,"Gov Cash: " + string(global.playerGov.cash),c_red,c_red,c_red,c_red,255);
     
-    draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 125,"Gov Cash: " + string(global.aiGov.cash),c_red,c_red,c_red,c_red,255);
+    if(global.myGov != noone)
+        draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 100,"Gov Cash: " + string(global.myGov.cash),c_red,c_red,c_red,c_red,255);
+    
+    //draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 125,"Gov Cash: " + string(.cash),c_red,c_red,c_red,c_red,255);
     
     draw_set_font(fnt_normal);
 //}

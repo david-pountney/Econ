@@ -1,4 +1,3 @@
-
 for (var i = 0; i < instance_number(obj_normalLand); i += 1)
 {
    land[i] = instance_find(obj_normalLand,i);
