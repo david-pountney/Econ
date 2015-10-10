@@ -4,6 +4,10 @@ var buffer = argument[ 0 ];
 var msgid = buffer_read( buffer , buffer_string );
 
 var land;
+var landX;
+var landY;
+var landGovernment;
+var business;
 
 switch( msgid ) {//Case statements go here...
 
@@ -13,9 +17,9 @@ switch( msgid ) {//Case statements go here...
         break;
 
     case "rGOVADD":
-        var landX = buffer_read( buffer , buffer_u16 );
-        var landY = buffer_read( buffer , buffer_u16 );
-        var landGovernment = buffer_read( buffer , buffer_u32 );    
+        landX = buffer_read( buffer , buffer_u16 );
+        landY = buffer_read( buffer , buffer_u16 );
+        landGovernment = buffer_read( buffer , buffer_u32 );    
         
         land = instance_position(landX,landY,obj_normalLand);
         if(land != noone){
@@ -47,6 +51,23 @@ switch( msgid ) {//Case statements go here...
         view_yview[0] = land.y - view_hview[0] / 2 + 16;
         
         //show_message(global.myGov);
+        break;
+        
+    case "rADDBUS":
+        landX = buffer_read( buffer , buffer_u16 );
+        landY = buffer_read( buffer , buffer_u16 );
+        business = buffer_read( buffer , buffer_u32 );    
+        
+        land = instance_position(landX,landY,obj_normalLand);
+        if(land != noone){
+            var newBus = instance_create(landX,landY,business); 
+            //show_message(global.mapMode);
+            //if(global.mapMode == "governmentMapMode")
+            //    script_execute(scr_colorGovernments);
+        }
+        
+        //show_message("got message");
+        
         break;
         
     default:

@@ -30,6 +30,7 @@
       <script>scripts\scr_colorResource.gml</script>
       <script>scripts\scr_resetMapColor.gml</script>
       <script>scripts\scr_colorGovernments.gml</script>
+      <script>scripts\scr_colorBusinessWealth.gml</script>
     </scripts>
     <script>scripts\scr_transaction.gml</script>
     <script>scripts\scr_checkForAdjacentLand.gml</script>

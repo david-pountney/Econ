@@ -4,6 +4,11 @@ var socket = argument[ 1 ];
 
 var msgid = buffer_read( buffer , buffer_string );
 
+var landX;
+var landY;
+var landGovernment;
+var business;
+
 switch( msgid ) {//Case statements go here...
     
     case "gPING":
@@ -15,9 +20,9 @@ switch( msgid ) {//Case statements go here...
         break;
         
     case "sGOVADD":
-        var landX = buffer_read( buffer , buffer_u16 );
-        var landY = buffer_read( buffer , buffer_u16 );
-        var landGovernment = buffer_read( buffer , buffer_u32 );
+        landX = buffer_read( buffer , buffer_u16 );
+        landY = buffer_read( buffer , buffer_u16 );
+        landGovernment = buffer_read( buffer , buffer_u32 );
         
         buffer_seek( Buffer , buffer_seek_start , 0 );
         buffer_write( Buffer , buffer_string , "rGOVADD" );
@@ -59,6 +64,28 @@ switch( msgid ) {//Case statements go here...
         if(position == 1) buffer_write( Buffer , buffer_u32 , obj_gov2 );
         
         network_send_packet(socket, Buffer, buffer_tell( Buffer )); 
+
+        break;
+        
+    case "sADDBUS":
+        landX = buffer_read( buffer , buffer_u16 );
+        landY = buffer_read( buffer , buffer_u16 );
+        business = buffer_read( buffer , buffer_u32 );
+    
+        buffer_seek( Buffer , buffer_seek_start , 0 );
+        buffer_write( Buffer , buffer_string , "rADDBUS" );
+        
+        buffer_write( Buffer , buffer_u16 , landX );
+        buffer_write( Buffer , buffer_u16 , landY );
+        buffer_write( Buffer , buffer_u32 , business );
+        
+        for (i=0; i<ds_list_size(obj_server.SocketList); i++) { 
+            var currentSocket = ds_list_find_value(obj_server.SocketList, i);
+            
+            if(currentSocket != socket)
+            //show_message("cursocket ");
+                network_send_packet(currentSocket, Buffer, buffer_tell( Buffer )); 
+        }
 
         break;
         

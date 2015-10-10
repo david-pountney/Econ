@@ -98,6 +98,9 @@ if(global.day % 30 == 0){
             }
             business[i].monthlyStartingCash = business[i].cash;
             business[i].cashSymbol = symbol;
+            
+            if(business[i].cash &gt; business[i].highestCash)
+                business[i].highestCash = business[i].cash;
         }
     }
 }

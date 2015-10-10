@@ -179,6 +179,15 @@ if(global.mode == "placeBusiness"){
     if(business == noone){
         if(land.government != noone){
             newIns = instance_create(mouse_x,mouse_y,obj_farm);
+                        
+            buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
+            buffer_write( global.client.Buffer , buffer_string , "sADDBUS" );
+            buffer_write( global.client.Buffer , buffer_u16 , land.x );
+            buffer_write( global.client.Buffer , buffer_u16 , land.y );
+            buffer_write( global.client.Buffer , buffer_u32 , obj_farm );
+
+            result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
+            
             //newIns.land = instance_position(floor(mouse_x/32)*32, floor(mouse_y/32)*32, obj_normalLand);
             //if(newIns.land) newIns.land.color = c_red;
         }
@@ -260,6 +269,29 @@ if(global.mode == "placeBusiness"){
 if(ins) drawDebugMenu = true;
 else drawDebugMenu = false;
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="100">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>script_execute(scr_colorBusinessWealth);
 </string>
           </argument>
         </arguments>
