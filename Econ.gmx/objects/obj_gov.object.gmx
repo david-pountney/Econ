@@ -48,7 +48,7 @@
           <argument>
             <kind>1</kind>
             <string>///Gov variables
-cash = 1000;
+cash = 10000;
 
 corpTax = 0.1; 
 importTax = 0.1;

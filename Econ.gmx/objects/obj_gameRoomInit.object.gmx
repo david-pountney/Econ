@@ -39,8 +39,8 @@ global.deltaTime = 0;
 global.myGov = noone;
 
 //Colors
+global.whiteHSV = make_color_hsv(0,0,255);//make_colour_hsv(88,100,200);
 global.defaultLandColor = make_colour_hsv(88,100,200);
-global.clearColor = c_white;
 
 //Gov colors
 global.govColors[0] = make_colour_hsv(88,100,200);

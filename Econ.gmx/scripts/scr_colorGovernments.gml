@@ -6,5 +6,5 @@ for (var i = 0; i < instance_number(obj_normalLand); i += 1)
    if(land[i].government != noone){
         land[i].color = land[i].government.color;
    }
-   else land[i].color = global.clearColor;
+   else land[i].color = global.whiteHSV;
 }

@@ -156,19 +156,27 @@ if(global.mode == "buyLand"){
         if(land.government == noone){
             //show_message(global.myGov.color);
             if(script_execute(scr_checkForAdjacentLand,land, global.myGov)){
-                land.government = global.myGov;
-                //show_message(global.myGov);
-                //Multiplayer send message
-                buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
-                buffer_write( global.client.Buffer , buffer_string , "sGOVADD" );
-                buffer_write( global.client.Buffer , buffer_u16 , land.x );
-                buffer_write( global.client.Buffer , buffer_u16 , land.y );
-                buffer_write( global.client.Buffer , buffer_u32 , global.myGov );
-    
-                result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
-                
-                if(global.mapMode == "governmentMapMode")
-                    script_execute(scr_colorGovernments);
+                if(global.myGov.cash &gt;= 100){
+                    land.government = global.myGov;
+                    //show_message(global.myGov);
+                    //Multiplayer send message
+                    buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
+                    buffer_write( global.client.Buffer , buffer_string , "sGOVADD" );
+                    buffer_write( global.client.Buffer , buffer_u16 , land.x );
+                    buffer_write( global.client.Buffer , buffer_u16 , land.y );
+                    buffer_write( global.client.Buffer , buffer_u32 , global.myGov );
+        
+                    result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
+                    
+                    if(global.mapMode == "governmentMapMode")
+                        script_execute(scr_colorGovernments);
+                        
+                    global.myGov.cash -= 100;
+                    
+                    symbol = instance_create(land.x,land.y - 64,obj_cashSymbol);
+                    symbol.spriteToDraw = spr_redDollar; 
+                    //symbol.business = business[i];
+                }
             }
         }
         
@@ -385,7 +393,7 @@ script_execute(scr_colorGovernments);
           <argument>
             <kind>1</kind>
             <string>global.mapMode = "landMapMode";
-script_execute(scr_resetMapColor, 88);
+script_execute(scr_resetMapColor, global.defaultLandColor);
 </string>
           </argument>
         </arguments>
