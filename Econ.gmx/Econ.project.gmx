@@ -9,11 +9,13 @@
     <sprite>sprites\spr_rect</sprite>
     <sprite>sprites\spr_landPop</sprite>
     <sprite>sprites\spr_wheatLand</sprite>
+    <sprite>sprites\spr_iron</sprite>
     <sprite>sprites\sprite2</sprite>
     <sprite>sprites\sprite4</sprite>
     <sprite>sprites\spr_redDollar</sprite>
     <sprite>sprites\spr_greenDollar</sprite>
     <sprite>sprites\spr_buttonBackground</sprite>
+    <sprite>sprites\spr_buildMenu</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -65,6 +67,7 @@
         <object>objects\obj_normalLand</object>
         <object>objects\obj_populationLand</object>
         <object>objects\obj_wheatLand</object>
+        <object>objects\obj_iron</object>
       </objects>
       <objects name="businesses">
         <object>objects\obj_business</object>
@@ -75,6 +78,7 @@
       <object>objects\obj_grid</object>
       <object>objects\obj_cashSymbol</object>
       <object>objects\obj_gameRoomInit</object>
+      <object>objects\obj_buildMenu</object>
     </objects>
     <objects name="multiplayerLobby">
       <object>objects\obj_hostServer</object>

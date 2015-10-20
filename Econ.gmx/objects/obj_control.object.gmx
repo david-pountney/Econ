@@ -25,13 +25,40 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Multiplayer send message
-/*
-buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
-buffer_write( global.client.Buffer , buffer_string , "sSTRTGAME" );
+            <string>///Set up variables
+//Show the build menu
+showBuildMenu = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check if build menu should be open
+if(keyboard_check(vk_tab)) {
+    if(!instance_exists(obj_buildMenu))
+        buildMenu = instance_create(0,0,obj_buildMenu);
+}
+else if(instance_exists(obj_buildMenu))
+    with(obj_buildMenu) instance_destroy();
     
-result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
-*/
+
 </string>
           </argument>
         </arguments>
@@ -282,6 +309,29 @@ else drawDebugMenu = false;
         </arguments>
       </action>
     </event>
+    <event eventtype="10" enumb="101">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>script_execute(scr_colorResource,"iron",global.ironColor);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="10" enumb="100">
       <action>
         <libid>1</libid>
@@ -322,7 +372,7 @@ else drawDebugMenu = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>script_execute(scr_colorResource,"wheat",50);
+            <string>script_execute(scr_colorResource,"wheat",global.wheatColor);
 </string>
           </argument>
         </arguments>
@@ -369,7 +419,7 @@ script_execute(scr_colorGovernments);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>script_execute(scr_colorResource,"pop",150);
+            <string>script_execute(scr_colorResource,"pop",global.populationColor);
 </string>
           </argument>
         </arguments>

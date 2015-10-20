@@ -46,6 +46,11 @@ global.defaultLandColor = make_colour_hsv(88,100,200);
 global.govColors[0] = make_colour_hsv(88,100,200);
 global.govColors[1] = make_colour_hsv(130,100,200);
 
+//Resource Colors
+global.wheatColor = make_colour_hsv(40,240,255);
+global.populationColor = make_colour_hsv(200,240,255);
+global.ironColor = make_colour_hsv(160,240,255);
+
 //Modes
 global.mode = "buyLand";
 
