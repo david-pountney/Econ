@@ -15,7 +15,10 @@
     <sprite>sprites\spr_redDollar</sprite>
     <sprite>sprites\spr_greenDollar</sprite>
     <sprite>sprites\spr_buttonBackground</sprite>
-    <sprite>sprites\spr_buildMenu</sprite>
+    <sprites name="buildMenu">
+      <sprite>sprites\spr_bmWheat</sprite>
+      <sprite>sprites\spr_buildMenu</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -74,11 +77,23 @@
         <object>objects\obj_farm</object>
         <object>objects\obj_brewery</object>
         <object>objects\obj_pub</object>
+        <object>objects\obj_businessMarker</object>
       </objects>
       <object>objects\obj_grid</object>
       <object>objects\obj_cashSymbol</object>
       <object>objects\obj_gameRoomInit</object>
-      <object>objects\obj_buildMenu</object>
+      <objects name="buildMenu">
+        <object>objects\obj_buildMenu</object>
+        <object>objects\obj_bmBackground</object>
+        <objects name="selectResource">
+          <object>objects\obj_selectResource</object>
+          <object>objects\obj_bmWheat</object>
+        </objects>
+        <objects name="selectBusiness">
+          <object>objects\obj_selectBusiness</object>
+          <object>objects\obj_bmFarm</object>
+        </objects>
+      </objects>
     </objects>
     <objects name="multiplayerLobby">
       <object>objects\obj_hostServer</object>

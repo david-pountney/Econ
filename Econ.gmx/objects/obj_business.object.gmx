@@ -25,6 +25,29 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Snap to grid
+x=floor(x/32)*32;
+y=floor(y/32)*32;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Business variable define
 startingCash = 1000;
 cash = startingCash;
@@ -74,29 +97,6 @@ government = land.government;
 
 //Cash symbol
 cashSymbol = noone;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Snap to grid
-x=floor(x/32)*32;
-y=floor(y/32)*32;
 </string>
           </argument>
         </arguments>
