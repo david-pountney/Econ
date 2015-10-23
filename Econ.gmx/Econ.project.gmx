@@ -17,6 +17,7 @@
     <sprite>sprites\spr_buttonBackground</sprite>
     <sprites name="buildMenu">
       <sprite>sprites\spr_bmWheat</sprite>
+      <sprite>sprites\spr_bmFarm</sprite>
       <sprite>sprites\spr_buildMenu</sprite>
     </sprites>
   </sprites>

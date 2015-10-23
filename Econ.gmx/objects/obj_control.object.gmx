@@ -31,6 +31,7 @@ showBuildMenu = false;
 
 selectedBusinessObj = noone;
 selectedBusinessIns = noone;
+buildMenuOpen = false;
 </string>
           </argument>
         </arguments>
@@ -54,7 +55,16 @@ selectedBusinessIns = noone;
           <argument>
             <kind>1</kind>
             <string>///Check if build menu should be open
-if(keyboard_check(vk_tab)) {
+if(keyboard_check_pressed(vk_tab)) {
+    buildMenuOpen = !buildMenuOpen;
+    
+    //Cancel any businessMarker, we are starting again
+    if(instance_exists(obj_businessMarker))
+        with(obj_businessMarker)    instance_destroy();
+}
+
+if(buildMenuOpen){
+    
     if(!instance_exists(obj_buildMenu))
         buildMenu = instance_create(0,0,obj_buildMenu);
         
@@ -336,6 +346,7 @@ else drawDebugMenu = false;
             <kind>1</kind>
             <string>selectedBusinessIns = instance_create(mouse_x,mouse_y,obj_businessMarker);
 selectedBusinessIns.color = global.wheatColor;
+selectedBusinessIns.selectedBusinessObj = selectedBusinessObj;
 </string>
           </argument>
         </arguments>
