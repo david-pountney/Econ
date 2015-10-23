@@ -29,7 +29,8 @@
 
 land.government = obj_gov1;
 
-color = make_colour_hsv(random(255),100,200);
+//color = make_colour_hsv(random(255),100,200);
+color = make_colour_hsv(0,240,240);
 </string>
           </argument>
         </arguments>

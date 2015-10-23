@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>color = global.defaultLandColor;
+drawOutline = false;
 
 //resource["pop"] = 0;
 
@@ -68,7 +69,10 @@ if(x &gt;  view_xview[0] - 32){
     if(x &lt;  view_xview[0] + view_wview[0]){
         if(y &gt; view_yview[0] - 32){
             if(y &lt; view_yview[0] + view_hview[0]){
+                if(drawOutline)
+                    draw_rectangle_colour(x,y, x + sprite_get_width(spr_rect),y + sprite_get_height(spr_rect),global.myGov.color,global.myGov.color,global.myGov.color,global.myGov.color,true);
                 draw_rectangle_colour(x,y, x + sprite_get_width(spr_rect),y + sprite_get_height(spr_rect),color,color,color,color,false);
+
             }
         }
     }
