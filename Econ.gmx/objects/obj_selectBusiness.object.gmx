@@ -29,6 +29,8 @@
 topLeftY = obj_buildMenu.topLeftY;
 
 bmFarm = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 120,obj_bmFarm);
+bmBrewery = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 120,obj_bmBrewery);
+bmPub = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .75),topLeftY + 120,obj_bmPub);
 </string>
           </argument>
         </arguments>
@@ -52,6 +54,11 @@ bmFarm = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topL
           <argument>
             <kind>1</kind>
             <string>with(bmFarm) instance_destroy();
+with(bmBrewery) instance_destroy();
+with(bmPub) instance_destroy();
+
+
+
 </string>
           </argument>
         </arguments>
@@ -79,6 +86,12 @@ topLeftY = obj_buildMenu.topLeftY;
 
 bmFarm.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
 bmFarm.y = topLeftY + 200;
+
+bmBrewery.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
+bmBrewery.y = topLeftY + 200;
+
+bmPub.x = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
+bmPub.y = topLeftY + 200;
 </string>
           </argument>
         </arguments>

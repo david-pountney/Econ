@@ -28,7 +28,7 @@
             <string>topLeftX = x - sprite_get_width(spr_buildMenu) * .5;
 topLeftY = y - sprite_get_height(spr_buildMenu) * .5;
 
-bmBackground = instance_create(topLeftX,topLeftY,obj_bmBackground);
+backgroundPanel = instance_create(topLeftX,topLeftY,obj_backgroundPanel);
 
 selectResource = instance_create(x,y,obj_selectResource);
 selectBusiness = noone;
@@ -60,7 +60,7 @@ obj_control.buildMenuOpen = false;
 //Kill all objects we have in our scope
 if(selectResource != noone)   with(selectResource) instance_destroy();
 if(selectBusiness != noone)   with(selectBusiness) instance_destroy();
-with(bmBackground) instance_destroy();
+with(backgroundPanel) instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -83,11 +83,14 @@ with(bmBackground) instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>topLeftX = x - sprite_get_width(spr_buildMenu) * .5;
+            <string>x = (view_xview[0] + (view_wport[0] * .5));
+y = (view_yview[0] + (view_hport[0] * .5));
+
+topLeftX = x - sprite_get_width(spr_buildMenu) * .5;
 topLeftY = y - sprite_get_height(spr_buildMenu) * .5;
 
-bmBackground.x = topLeftX;
-bmBackground.y = topLeftY;
+backgroundPanel.x = topLeftX;
+backgroundPanel.y = topLeftY;
 
 //show_message(x);
 //show_message(y);

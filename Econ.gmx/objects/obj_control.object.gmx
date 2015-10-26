@@ -64,15 +64,15 @@ if(keyboard_check_pressed(vk_tab)) {
 }
 
 if(buildMenuOpen){
-    
-    if(!instance_exists(obj_buildMenu))
-        buildMenu = instance_create(0,0,obj_buildMenu);
-        
-    buildMenu.x = (view_xview[0] + (view_wport[0] * .5));
-    buildMenu.y = (view_yview[0] + (view_hport[0] * .5));
+    //if(!instance_exists(obj_buildMenu))
+        //buildMenu = instance_create(0,0,obj_buildMenu);
+    obj_menuController.menu = obj_buildMenu;
 }
 else if(instance_exists(obj_buildMenu))
-    with(obj_buildMenu) instance_destroy();
+    //with(obj_buildMenu) instance_destroy();
+    obj_menuController.menu = noone;
+    
+with(obj_menuController)    event_perform(ev_other,ev_user0);
     
 
     
@@ -194,8 +194,8 @@ else if(instance_exists(obj_buildMenu))
             <string>var land = instance_position(floor(mouse_x/32)*32, floor(mouse_y/32)*32, obj_normalLand)
 var business = instance_position(floor(mouse_x/32)*32, floor(mouse_y/32)*32, obj_business)
 
-if(global.mode == "buyLand"){
-    //show_message("1");
+//show_message("1");
+if(global.mode = "buyLand"){
     if(land != noone){
         //show_message("2");
         if(land.government == noone){
@@ -228,73 +228,7 @@ if(global.mode == "buyLand"){
     }
 }
 
-if(global.mode == "placeBusiness"){
-    if(business == noone){
-        if(land.government != noone){
-            newIns = instance_create(mouse_x,mouse_y,obj_farm);
-                        
-            buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
-            buffer_write( global.client.Buffer , buffer_string , "sADDBUS" );
-            buffer_write( global.client.Buffer , buffer_u16 , land.x );
-            buffer_write( global.client.Buffer , buffer_u16 , land.y );
-            buffer_write( global.client.Buffer , buffer_u32 , obj_farm );
 
-            result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
-            
-            //newIns.land = instance_position(floor(mouse_x/32)*32, floor(mouse_y/32)*32, obj_normalLand);
-            //if(newIns.land) newIns.land.color = c_red;
-        }
-    }
-}
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="51">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>var land = instance_position(floor(mouse_x/32)*32, floor(mouse_y/32)*32, obj_normalLand);
-var business = instance_position(floor(mouse_x/32)*32, floor(mouse_y/32)*32, obj_business);
-
-if(global.mode == "buyLand"){
-    if(land != noone){
-        if(land.government == noone){
-            if(script_execute(scr_checkForAdjacentLand,land, global.aiGov)){
-                land.government = global.aiGov;
-                if(global.mapMode == "governmentMapMode")
-                    script_execute(scr_colorGovernments);
-            }
-        }
-        
-    }
-}
-
-if(global.mode == "placeBusiness"){
-    if(business == noone){
-        if(land.government != noone){
-            newIns = instance_create(mouse_x,mouse_y,obj_brewery);
-            //newIns.land = instance_position(floor(mouse_x/32)*32, floor(mouse_y/32)*32, obj_normalLand);
-            //if(newIns.land) newIns.land.color = c_red;
-        }
-    }
-}
 </string>
           </argument>
         </arguments>
@@ -344,7 +278,8 @@ else drawDebugMenu = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>selectedBusinessIns = instance_create(mouse_x,mouse_y,obj_businessMarker);
+            <string>///Create business marker
+selectedBusinessIns = instance_create(mouse_x,mouse_y,obj_businessMarker);
 selectedBusinessIns.color = global.wheatColor;
 selectedBusinessIns.selectedBusinessObj = selectedBusinessObj;
 </string>
@@ -487,52 +422,6 @@ script_execute(scr_colorGovernments);
             <kind>1</kind>
             <string>global.mapMode = "landMapMode";
 script_execute(scr_resetMapColor, global.defaultLandColor);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="76">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.mode = "buyLand";
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="66">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.mode = "placeBusiness";
 </string>
           </argument>
         </arguments>

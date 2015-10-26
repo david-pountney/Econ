@@ -7,4 +7,5 @@ for (var i = 0; i < instance_number(obj_normalLand); i += 1)
         land[i].color = land[i].government.color;
    }
    else land[i].color = global.whiteHSV;
+   land[i].drawOutline = false;
 }

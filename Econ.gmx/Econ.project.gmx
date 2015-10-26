@@ -18,8 +18,11 @@
     <sprites name="buildMenu">
       <sprite>sprites\spr_bmWheat</sprite>
       <sprite>sprites\spr_bmFarm</sprite>
+      <sprite>sprites\spr_bmBrewery</sprite>
+      <sprite>sprites\spr_bmPub</sprite>
       <sprite>sprites\spr_buildMenu</sprite>
     </sprites>
+    <sprite>sprites\spr_farmPic</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -44,10 +47,12 @@
       <script>scripts\scr_receivedPacketServer.gml</script>
       <script>scripts\scr_receivedPacketClient.gml</script>
     </scripts>
+    <script>scripts\scr_popupMenu.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug</font>
     <font>fonts\fnt_normal</font>
+    <font>fonts\fnt_menu</font>
   </fonts>
   <objects name="objects">
     <objects name="networking">
@@ -83,9 +88,9 @@
       <object>objects\obj_grid</object>
       <object>objects\obj_cashSymbol</object>
       <object>objects\obj_gameRoomInit</object>
+      <object>objects\obj_backgroundPanel</object>
       <objects name="buildMenu">
         <object>objects\obj_buildMenu</object>
-        <object>objects\obj_bmBackground</object>
         <objects name="selectResource">
           <object>objects\obj_selectResource</object>
           <object>objects\obj_bmWheat</object>
@@ -93,7 +98,12 @@
         <objects name="selectBusiness">
           <object>objects\obj_selectBusiness</object>
           <object>objects\obj_bmFarm</object>
+          <object>objects\obj_bmBrewery</object>
+          <object>objects\obj_bmPub</object>
         </objects>
+      </objects>
+      <objects name="businessStats">
+        <object>objects\obj_businessStats</object>
       </objects>
     </objects>
     <objects name="multiplayerLobby">
@@ -102,6 +112,7 @@
       <object>objects\obj_startGame</object>
     </objects>
     <object>objects\obj_gameInit</object>
+    <object>objects\obj_menuController</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\mutliplayer_lobby</room>

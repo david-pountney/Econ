@@ -43,8 +43,7 @@ global.whiteHSV = make_color_hsv(0,0,255);//make_colour_hsv(88,100,200);
 global.defaultLandColor = make_colour_hsv(88,100,200);
 
 //Gov colors
-//global.govColors[0] = make_colour_hsv(88,100,200);
-global.govColors[0] = make_colour_hsv(0,100,100);
+global.govColors[0] = make_colour_hsv(88,100,200);
 global.govColors[1] = make_colour_hsv(130,100,200);
 
 //Resource Colors
