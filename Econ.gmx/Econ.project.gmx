@@ -22,7 +22,11 @@
       <sprite>sprites\spr_bmPub</sprite>
       <sprite>sprites\spr_buildMenu</sprite>
     </sprites>
-    <sprite>sprites\spr_farmPic</sprite>
+    <sprites name="businessStats">
+      <sprite>sprites\spr_farmPic</sprite>
+      <sprite>sprites\spr_breweryPic</sprite>
+      <sprite>sprites\spr_pubPic</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -105,6 +109,7 @@
       <objects name="businessStats">
         <object>objects\obj_businessStats</object>
       </objects>
+      <object>objects\obj_militaryBase</object>
     </objects>
     <objects name="multiplayerLobby">
       <object>objects\obj_hostServer</object>

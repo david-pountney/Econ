@@ -29,6 +29,8 @@
 
 color = c_red;
 
+picture = spr_farmPic;
+
 productProduced = instance_find(obj_wheat,0);
 //show_message(productProduced);
 producePerDay = 1;

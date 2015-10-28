@@ -32,10 +32,12 @@ color = c_white;
 
 backgroundPanel = instance_create(topLeftX,topLeftY,obj_backgroundPanel);
 
-cash = obj_menuController.selectedBusiness.cash;
+cash = 0;
 monthlyStartingCash = 0;
 name = "";
 pstType = "";
+
+picture = noone;
 
 productProduced = noone;
 producePerDay = 0;
@@ -144,6 +146,8 @@ monthlyStartingCash = obj_menuController.selectedBusiness.monthlyStartingCash;
 name = obj_menuController.selectedBusiness.name;
 pstType = obj_menuController.selectedBusiness.pstType;
 
+picture = obj_menuController.selectedBusiness.picture;
+
 productProduced = obj_menuController.selectedBusiness.productProduced;
 producePerDay = obj_menuController.selectedBusiness.producePerDay;
 productStock = obj_menuController.selectedBusiness.productStock;
@@ -179,16 +183,20 @@ supplying[2] = obj_menuController.selectedBusiness.supplying[2];
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>startY = topLeftY + 150;
+            <string>startY = topLeftY + 300;
 startX = topLeftX + 150;
 
 gapY = 30;
 
-//draw_sprite_ext(spr_farmPic,-1,startX,startY,.5,.5,0,c_white,1);
+if(picture != noone)
+    draw_sprite_ext(picture,-1,startX,startY - (gapY*6),1,1,0,c_white,1);
 
 var titleCol = c_blue;
 
 draw_set_font(fnt_menu);
+//Name
+draw_text_colour(startX,startY - gapY,"Name: ",titleCol,titleCol,titleCol,titleCol,1);
+draw_text_colour(startX + 120,startY - gapY,"Temp" + string(name),color,color,color,color,1);
 //Cash
 draw_text_colour(startX,startY,"Cash: ",titleCol,titleCol,titleCol,titleCol,1);
 draw_text_colour(startX + 120,startY,"$" + string(cash),color,color,color,color,1);
@@ -229,16 +237,16 @@ if(pstType != "primary"){
 if(pstType != "tertiary"){
     //Supplying 1
     if(supplying[0] != noone){
-        draw_text_colour(startX + 400,startY + (gapY*2),"Supplying: ",titleCol,titleCol,titleCol,titleCol,1);
-        draw_text_colour(startX + 400,startY + (gapY*3),string(supplying[0]),color,color,color,color,1);
+        draw_text_colour(startX + 400,startY - (gapY),"Supplying: ",titleCol,titleCol,titleCol,titleCol,1);
+        draw_text_colour(startX + 400,startY,string(supplying[0]),color,color,color,color,1);
     }
     //Supplying 2
     if(supplying[1] != noone){
-        draw_text_colour(startX + 400,startY + (gapY*4),string(supplying[1]),titleCol,titleCol,titleCol,titleCol,1);
+        draw_text_colour(startX + 400,startY + (gapY),string(supplying[1]),titleCol,titleCol,titleCol,titleCol,1);
     }
     //Supplying 3
     if(supplying[2] != noone){
-        draw_text_colour(startX + 400,startY + (gapY*5),string(supplying[2]),titleCol,titleCol,titleCol,titleCol,1);
+        draw_text_colour(startX + 400,startY + (gapY*2),string(supplying[2]),titleCol,titleCol,titleCol,titleCol,1);
     }
 }
 draw_set_font(fnt_normal);

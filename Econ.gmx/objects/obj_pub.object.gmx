@@ -29,6 +29,8 @@
 
 color = c_maroon;
 
+picture = spr_pubPic;
+
 pstType = "tertiary";
 
 resourceRequired = instance_find(obj_beer,0);

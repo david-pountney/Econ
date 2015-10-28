@@ -60,6 +60,9 @@ pstType = "";
 //Set mask
 mask_index = spr_rect;
 
+//Business stats pic
+picture = noone;
+
 //Product
 productProduced = noone;
 producePerDay = 0;
