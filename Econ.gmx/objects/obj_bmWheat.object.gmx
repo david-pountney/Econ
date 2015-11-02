@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>self</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="6" enumb="7">
@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with(obj_buildMenu) event_perform(ev_other,ev_user0);
+            <string>obj_buildMenu.selectedResource = obj_bmWheat;
+with(obj_buildMenu) event_perform(ev_other,ev_user0);
 </string>
           </argument>
         </arguments>

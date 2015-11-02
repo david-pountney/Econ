@@ -8,5 +8,5 @@ if(instance_exists(obj_businessStats)) with(obj_businessStats) instance_destroy(
 
 if(menu == noone) exit;
 
-newPopup = instance_create(0,0,menu);
+newPopup = instance_create(view_xview[0] + view_wport[0] * .5 ,view_yview[0] + view_hport[0] * .5,menu);
 

@@ -121,7 +121,10 @@ backgroundPanel.y = topLeftY;
             <string>//Move to select business
 with(selectResource) instance_destroy();
 
-selectBusiness = instance_create(x,y,obj_selectBusiness);
+if(selectedResource == obj_bmWheat)
+    selectBusiness = instance_create(x,y,obj_bmWheatTree);
+else if(selectedResource == obj_bmIron)
+    selectBusiness = instance_create(x,y,obj_bmIronTree);
 </string>
           </argument>
         </arguments>

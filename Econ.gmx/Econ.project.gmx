@@ -16,11 +16,17 @@
     <sprite>sprites\spr_greenDollar</sprite>
     <sprite>sprites\spr_buttonBackground</sprite>
     <sprites name="buildMenu">
-      <sprite>sprites\spr_bmWheat</sprite>
-      <sprite>sprites\spr_bmFarm</sprite>
-      <sprite>sprites\spr_bmBrewery</sprite>
-      <sprite>sprites\spr_bmPub</sprite>
       <sprite>sprites\spr_buildMenu</sprite>
+      <sprites name="bmWheat">
+        <sprite>sprites\spr_bmWheat</sprite>
+        <sprite>sprites\spr_bmFarm</sprite>
+        <sprite>sprites\spr_bmBrewery</sprite>
+        <sprite>sprites\spr_bmPub</sprite>
+      </sprites>
+      <sprites name="bmIron">
+        <sprite>sprites\spr_bmIron</sprite>
+        <sprite>sprites\spr_bmIronMine</sprite>
+      </sprites>
     </sprites>
     <sprites name="businessStats">
       <sprite>sprites\spr_farmPic</sprite>
@@ -74,17 +80,19 @@
         <object>objects\obj_good</object>
         <object>objects\obj_wheat</object>
         <object>objects\obj_beer</object>
+        <object>objects\obj_iron</object>
         <object>objects\obj_population</object>
       </objects>
       <objects name="tiles">
         <object>objects\obj_normalLand</object>
         <object>objects\obj_populationLand</object>
         <object>objects\obj_wheatLand</object>
-        <object>objects\obj_iron</object>
+        <object>objects\obj_ironLand</object>
       </objects>
       <objects name="businesses">
         <object>objects\obj_business</object>
         <object>objects\obj_farm</object>
+        <object>objects\obj_ironMine</object>
         <object>objects\obj_brewery</object>
         <object>objects\obj_pub</object>
         <object>objects\obj_businessMarker</object>
@@ -98,12 +106,17 @@
         <objects name="selectResource">
           <object>objects\obj_selectResource</object>
           <object>objects\obj_bmWheat</object>
+          <object>objects\obj_bmIron</object>
         </objects>
         <objects name="selectBusiness">
-          <object>objects\obj_selectBusiness</object>
           <object>objects\obj_bmFarm</object>
           <object>objects\obj_bmBrewery</object>
           <object>objects\obj_bmPub</object>
+          <object>objects\obj_bmIronMine</object>
+          <objects name="trees">
+            <object>objects\obj_bmIronTree</object>
+            <object>objects\obj_bmWheatTree</object>
+          </objects>
         </objects>
       </objects>
       <objects name="businessStats">
