@@ -61,6 +61,19 @@ global.mapMode = "landMapMode";
 global.wheat = instance_find(obj_wheat,0);
 global.beer = instance_find(obj_beer,0);
 global.population = instance_find(obj_population,0);
+
+//Global techs
+global.wheatQuality = 1;
+global.beerQuality = 1;
+global.ironQuality = 1;
+
+global.resourceQuality = ds_map_create();
+ds_map_add(global.resourceQuality,"wheat", global.wheatQuality);
+ds_map_add(global.resourceQuality,"beer", global.beerQuality);
+ds_map_add(global.resourceQuality,"iron", global.ironQuality);
+
+
+
 </string>
           </argument>
         </arguments>

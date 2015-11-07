@@ -4,6 +4,11 @@ var distance = 0;
 var returnedObject = noone;
 var bestDistance = 9999;
 
+var listOfPossibleSuppliers = ds_list_create();
+var listOfEqualSuppliers = ds_list_create();
+
+var bestRating = 0;
+
 //show_message(obj0);
 
 //If business doesn't yet have a resource, stop looking for a supplier
@@ -31,19 +36,50 @@ for (var i = 0; i < instance_number(obj_business); i += 1)
         //show_message("Base object is: " + string(obj0.id));
         //Do they work together?
         if(obj0.resourceRequired == business[i].productProduced){
-            //show_message("Expression 2 is true");
-            //var test1 = obj0.resourceRequired;
-            //var test2 = business[i].productProduced;
-            distance = script_execute(scr_getDistance,obj0, business[i]);
-            //show_message("distace " + string(distance));
-            //show_message("bestdistace " + string(bestDistance));
-            if(distance < bestDistance){ 
-                bestDistance = distance;
-                returnedObject = business[i];
-                //show_message("got new ro " + string(returnedObject));
+            //Add to list to check later
+            ds_list_add(listOfPossibleSuppliers,business[i]);
+            
+            business[i].rating = 0;
+            
+            //Quality
+            business[i].rating += business[i].productQuality;
+            
+            if(business[i].rating >= bestRating){
+                bestRating = business[i].rating;
             }
+
         }
    }
+}
+
+for(var i = 0; i < ds_list_size(listOfPossibleSuppliers); i += 1){
+    var supplier = ds_list_find_value(listOfPossibleSuppliers, i);
+   
+    if(supplier.rating == bestRating){
+        ds_list_add(listOfEqualSuppliers,supplier);
+    }
+}
+
+if(ds_list_size(listOfEqualSuppliers) == 1){ 
+    returnedObject = ds_list_find_value(listOfEqualSuppliers,0);
+}
+//Else find closest supplier
+else{
+    for(var i = 0; i < ds_list_size(listOfEqualSuppliers); i += 1){
+        supplier = ds_list_find_value(listOfEqualSuppliers, i);
+           
+        //show_message("Expression 2 is true");
+        //var test1 = obj0.resourceRequired;
+        //var test2 = business[i].productProduced;
+        distance = script_execute(scr_getDistance,obj0, supplier);
+        //show_message("distace " + string(distance));
+        //show_message("bestdistace " + string(bestDistance));
+        if(distance < bestDistance){ 
+             bestDistance = distance;
+             returnedObject = supplier;
+             //show_message("got new ro " + string(returnedObject));
+        }
+    }
 }
 
 if(returnedObject == noone) return returnedObject;

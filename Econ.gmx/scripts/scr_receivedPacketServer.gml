@@ -8,6 +8,9 @@ var landX;
 var landY;
 var landGovernment;
 var business;
+var government;
+var good;
+var productQuality;
 
 switch( msgid ) {//Case statements go here...
     
@@ -71,6 +74,7 @@ switch( msgid ) {//Case statements go here...
         landX = buffer_read( buffer , buffer_u16 );
         landY = buffer_read( buffer , buffer_u16 );
         business = buffer_read( buffer , buffer_u32 );
+        var quality = buffer_read( buffer , buffer_u16 );
     
         buffer_seek( Buffer , buffer_seek_start , 0 );
         buffer_write( Buffer , buffer_string , "rADDBUS" );
@@ -78,6 +82,7 @@ switch( msgid ) {//Case statements go here...
         buffer_write( Buffer , buffer_u16 , landX );
         buffer_write( Buffer , buffer_u16 , landY );
         buffer_write( Buffer , buffer_u32 , business );
+        buffer_write( Buffer , buffer_u16 , quality );
         
         for (i=0; i<ds_list_size(obj_server.SocketList); i++) { 
             var currentSocket = ds_list_find_value(obj_server.SocketList, i);
@@ -87,6 +92,28 @@ switch( msgid ) {//Case statements go here...
                 network_send_packet(currentSocket, Buffer, buffer_tell( Buffer )); 
         }
 
+        break;
+        
+    case "sPRODUCTQUAL":
+        government = buffer_read( buffer , buffer_u32 );
+        good = buffer_read( buffer , buffer_u32 );
+        productQuality = buffer_read( buffer , buffer_u16 );
+    
+        buffer_seek( Buffer , buffer_seek_start , 0 );
+        buffer_write( Buffer , buffer_string , "rPRODUCTQUAL" );
+        
+        buffer_write( Buffer , buffer_u32 , government );
+        buffer_write( Buffer , buffer_u32 , good );
+        buffer_write( Buffer , buffer_u16 , productQuality );
+        
+
+        for (i=0; i<ds_list_size(obj_server.SocketList); i++) { 
+            var currentSocket = ds_list_find_value(obj_server.SocketList, i);
+            if(currentSocket != socket)
+            //show_message(currentSocket);
+                network_send_packet(currentSocket, Buffer, buffer_tell( Buffer )); 
+        }
+        
         break;
         
     default:

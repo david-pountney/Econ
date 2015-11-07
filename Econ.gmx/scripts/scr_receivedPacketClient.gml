@@ -8,6 +8,8 @@ var landX;
 var landY;
 var landGovernment;
 var business;
+var good;
+var productQuality;
 
 switch( msgid ) {//Case statements go here...
 
@@ -56,17 +58,42 @@ switch( msgid ) {//Case statements go here...
     case "rADDBUS":
         landX = buffer_read( buffer , buffer_u16 );
         landY = buffer_read( buffer , buffer_u16 );
-        business = buffer_read( buffer , buffer_u32 );    
+        business = buffer_read( buffer , buffer_u32 );
+        var quality = buffer_read( buffer , buffer_u16 );      
         
         land = instance_position(landX,landY,obj_normalLand);
         if(land != noone){
             var newBus = instance_create(landX,landY,business); 
+            newBus.productQuality = quality;
             //show_message(global.mapMode);
             //if(global.mapMode == "governmentMapMode")
             //    script_execute(scr_colorGovernments);
         }
         
         //show_message("got message");
+        
+        break;
+        
+    case "rPRODUCTQUAL":
+        landGovernment = buffer_read( buffer , buffer_u32 );
+        good = buffer_read( buffer , buffer_u32 );
+        productQuality = buffer_read( buffer , buffer_u16 );    
+        
+        for (var i = 0; i < instance_number(obj_business); i += 1)
+        {
+            business[i] = instance_find(obj_business,i);
+            if(business[i].government == landGovernment){
+                show_message(string(business[i].productProduced));
+                show_message(string(good));
+                if(business[i].productProduced == good){
+                    show_message(string(business[i].productProduced));
+                    business[i].productQuality = productQuality;
+                    show_message(string(productQuality));
+                }
+            }
+        }
+        
+        global.wheatQuality = productQuality;
         
         break;
         
