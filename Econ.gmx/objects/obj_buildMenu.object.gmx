@@ -55,7 +55,7 @@ selectBusiness = noone;
           <argument>
             <kind>1</kind>
             <string>//Kill the build menu flasg which would otherwise cause it to re-open the menu
-obj_control.buildMenuOpen = false;
+obj_menuController.buildMenuOpen = false;
 
 //Kill all objects we have in our scope
 if(selectResource != noone)   with(selectResource) instance_destroy();

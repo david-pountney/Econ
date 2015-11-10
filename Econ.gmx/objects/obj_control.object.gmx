@@ -26,56 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>///Set up variables
-//Show the build menu
-showBuildMenu = false;
 
 selectedBusinessObj = noone;
 selectedBusinessIns = noone;
-buildMenuOpen = false;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Check if build menu should be open
-if(keyboard_check_pressed(vk_tab)) {
-    buildMenuOpen = !buildMenuOpen;
-    
-    //Cancel any businessMarker, we are starting again
-    if(instance_exists(obj_businessMarker))
-        with(obj_businessMarker)    instance_destroy();
-}
 
-if(buildMenuOpen){
-    //if(!instance_exists(obj_buildMenu))
-        //buildMenu = instance_create(0,0,obj_buildMenu);
-    obj_menuController.menu = obj_buildMenu;
-}
-else if(instance_exists(obj_buildMenu))
-    //with(obj_buildMenu) instance_destroy();
-    obj_menuController.menu = noone;
-    
-with(obj_menuController)    event_perform(ev_other,ev_user0);
-    
 
-    
 
 </string>
           </argument>

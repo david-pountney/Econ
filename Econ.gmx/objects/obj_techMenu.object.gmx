@@ -25,16 +25,46 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>menu = noone;
+            <string>topLeftX = x - sprite_get_width(spr_buildMenu) * .5;
+topLeftY = y - sprite_get_height(spr_buildMenu) * .5;
 
-selectedBusiness = noone;
+color = c_white;
 
-showBuildMenu = false;
+backgroundPanel = instance_create(topLeftX,topLeftY,obj_backgroundPanel);
 
-buildMenuOpen = false;
-businessStatsMenuOpen = false;
-techMenuOpen = false;
 
+
+//selectResource = instance_create(x,y,obj_selectResource);
+//selectBusiness = noone;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Kill the build menu flasg which would otherwise cause it to re-open the menu
+obj_menuController.techMenuOpen = false;
+
+//Kill all objects we have in our scope
+//if(selectResource != noone)   with(selectResource) instance_destroy();
+//if(selectBusiness != noone)   with(selectBusiness) instance_destroy();
+with(backgroundPanel) instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -57,63 +87,20 @@ techMenuOpen = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Check if build menu should be open
-if(keyboard_check_pressed(vk_tab)) {
-    buildMenuOpen = !buildMenuOpen;
-    
-    //Makes sure only ONE menu at a time
-    if(menu != noone &amp;&amp; buildMenuOpen){
-        buildMenuOpen = false;
-    }
-    
-    //Cancel any businessMarker, we are starting again
-    if(instance_exists(obj_businessMarker))
-        with(obj_businessMarker)    instance_destroy();
-}
+            <string>///Position objects
+x = (view_xview[0] + (view_wport[0] * .5));
+y = (view_yview[0] + (view_hport[0] * .5));
 
-///Check if tech menu should be open
-if(keyboard_check_pressed(vk_alt)) {
-    techMenuOpen = !techMenuOpen;
-    
-    //Makes sure only ONE menu at a time
-    if(menu != noone &amp;&amp; techMenuOpen){
-        techMenuOpen = false;  
-    }
-    
-    //Cancel any businessMarker, we are starting again
-    if(instance_exists(obj_businessMarker))
-        with(obj_businessMarker)    instance_destroy();
-}
+topLeftX = x - sprite_get_width(spr_buildMenu) * .5;
+topLeftY = y - sprite_get_height(spr_buildMenu) * .5;
 
-///Check if menu should be closed
-if(keyboard_check_pressed(vk_escape)) {
-    buildMenuOpen = false;
-    businessStatsMenuOpen = false;
-    techMenuOpen = false;
-    
-    //Cancel any businessMarker, we are starting again
-    if(instance_exists(obj_businessMarker))
-        with(obj_businessMarker)    instance_destroy();
-}
+backgroundPanel.x = topLeftX;
+backgroundPanel.y = topLeftY;
 
-if(buildMenuOpen){
-    menu = obj_buildMenu;
-}
-else if(techMenuOpen){
-    menu = obj_techMenu;
-}
-else if(businessStatsMenuOpen){
-    menu = obj_businessStats;
-}
-else// if(instance_exists(obj_buildMenu))
-    menu = noone;    
-    
-//Finally, Call popup script    
-script_execute(scr_popupMenu, menu);
-    
-
-    
-
+//show_message(x);
+//show_message(y);
+//show_message(topLeftX);
+//show_message(topLeftY);
 </string>
           </argument>
         </arguments>
