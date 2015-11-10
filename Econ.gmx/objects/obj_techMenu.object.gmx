@@ -32,7 +32,7 @@ color = c_white;
 
 backgroundPanel = instance_create(topLeftX,topLeftY,obj_backgroundPanel);
 
-
+increaseProductQuality = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_increaseProductQuality);
 
 //selectResource = instance_create(x,y,obj_selectResource);
 //selectBusiness = noone;
@@ -58,13 +58,14 @@ backgroundPanel = instance_create(topLeftX,topLeftY,obj_backgroundPanel);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Kill the build menu flasg which would otherwise cause it to re-open the menu
+            <string>//Kill the build menu flag which would otherwise cause it to re-open the menu
 obj_menuController.techMenuOpen = false;
 
 //Kill all objects we have in our scope
 //if(selectResource != noone)   with(selectResource) instance_destroy();
 //if(selectBusiness != noone)   with(selectBusiness) instance_destroy();
 with(backgroundPanel) instance_destroy();
+with(increaseProductQuality) instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -96,6 +97,9 @@ topLeftY = y - sprite_get_height(spr_buildMenu) * .5;
 
 backgroundPanel.x = topLeftX;
 backgroundPanel.y = topLeftY;
+
+increaseProductQuality.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
+increaseProductQuality.y = topLeftY + 200;
 
 //show_message(x);
 //show_message(y);

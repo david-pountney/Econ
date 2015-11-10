@@ -33,6 +33,9 @@
       <sprite>sprites\spr_breweryPic</sprite>
       <sprite>sprites\spr_pubPic</sprite>
     </sprites>
+    <sprites name="tech">
+      <sprite>sprites\spr_defaultDebug</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -127,6 +130,10 @@
       <objects name="businessStats">
         <object>objects\obj_businessStats</object>
       </objects>
+      <objects name="techMenu">
+        <object>objects\obj_techMenu</object>
+        <object>objects\obj_increaseProductQuality</object>
+      </objects>
       <object>objects\obj_militaryBase</object>
     </objects>
     <objects name="multiplayerLobby">
@@ -136,9 +143,6 @@
     </objects>
     <object>objects\obj_gameInit</object>
     <object>objects\obj_menuController</object>
-    <objects name="techMenu">
-      <object>objects\obj_techMenu</object>
-    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\mutliplayer_lobby</room>
