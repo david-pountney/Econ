@@ -132,7 +132,17 @@
       </objects>
       <objects name="techMenu">
         <object>objects\obj_techMenu</object>
-        <object>objects\obj_increaseProductQuality</object>
+        <objects name="mainTechMenu">
+          <object>objects\obj_mainTechMenu</object>
+          <object>objects\obj_increaseProductQuality</object>
+        </objects>
+        <objects name="increaseProductQualityMenu">
+          <object>objects\obj_increaseProductQualityMenu</object>
+          <object>objects\obj_increaseWheatQuality</object>
+          <objects name="trees">
+            <object>objects\obj_increaseProductQualityTree</object>
+          </objects>
+        </objects>
       </objects>
       <object>objects\obj_militaryBase</object>
     </objects>

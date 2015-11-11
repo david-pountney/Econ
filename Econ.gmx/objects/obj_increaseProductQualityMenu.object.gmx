@@ -25,18 +25,35 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>menu = noone;
+            <string>topLeftX = obj_buildMenu.topLeftX;
+topLeftY = obj_buildMenu.topLeftY;
 
-selectedBusiness = noone;
-
-showBuildMenu = false;
-
-buildMenuOpen = false;
-businessStatsMenuOpen = false;
-techMenuOpen = false;
-
-menuX = view_xview[0] + view_wport[0] * .5;
-menuY = view_yview[0] + view_hport[0] * .5;
+bmWheat = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_bmWheat);
+bmIron = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 200,obj_bmIron);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with(bmWheat) instance_destroy();
+with(bmIron) instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -59,66 +76,14 @@ menuY = view_yview[0] + view_hport[0] * .5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Check if build menu should be open
-if(keyboard_check_pressed(vk_tab)) {
-    buildMenuOpen = !buildMenuOpen;
-    
-    //Makes sure only ONE menu at a time
-    if(menu != noone &amp;&amp; buildMenuOpen){
-        buildMenuOpen = false;
-    }
-    
-    //Cancel any businessMarker, we are starting again
-    if(instance_exists(obj_businessMarker))
-        with(obj_businessMarker)    instance_destroy();
-}
+            <string>topLeftX = obj_buildMenu.topLeftX;
+topLeftY = obj_buildMenu.topLeftY;
 
-///Check if tech menu should be open
-if(keyboard_check_pressed(vk_alt)) {
-    techMenuOpen = !techMenuOpen;
-    
-    //Makes sure only ONE menu at a time
-    if(menu != noone &amp;&amp; techMenuOpen){
-        techMenuOpen = false;  
-    }
-    
-    //Cancel any businessMarker, we are starting again
-    if(instance_exists(obj_businessMarker))
-        with(obj_businessMarker)    instance_destroy();
-}
+bmWheat.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
+bmWheat.y = topLeftY + 200;
 
-///Check if menu should be closed
-if(keyboard_check_pressed(vk_escape)) {
-    buildMenuOpen = false;
-    businessStatsMenuOpen = false;
-    techMenuOpen = false;
-    
-    //Cancel any businessMarker, we are starting again
-    if(instance_exists(obj_businessMarker))
-        with(obj_businessMarker)    instance_destroy();
-}
-
-if(buildMenuOpen){
-    menu = obj_buildMenu;
-}
-else if(techMenuOpen){
-    menu = obj_techMenu;
-}
-else if(businessStatsMenuOpen){
-    menu = obj_businessStats;
-}
-else
-    menu = noone;    
-    
-menuX = view_xview[0] + view_wport[0] * .5;
-menuY = view_yview[0] + view_hport[0] * .5;
-    
-//Finally, Call popup script    
-script_execute(scr_popupMenu, menu);
-    
-
-    
-
+bmIron.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
+bmIron.y = topLeftY + 200;
 </string>
           </argument>
         </arguments>

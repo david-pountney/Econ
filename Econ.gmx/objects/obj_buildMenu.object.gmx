@@ -32,6 +32,8 @@ backgroundPanel = instance_create(topLeftX,topLeftY,obj_backgroundPanel);
 
 selectResource = instance_create(x,y,obj_selectResource);
 selectBusiness = noone;
+
+selectedResource = noone;
 </string>
           </argument>
         </arguments>
