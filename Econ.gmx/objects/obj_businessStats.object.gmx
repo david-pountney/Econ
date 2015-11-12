@@ -43,6 +43,9 @@ productProduced = noone;
 producePerDay = 0;
 productStock = 0;
 
+//Tech
+productQuality = 0;
+
 resourceRequired = noone;
 resourceConsumedPerDay = 1;
 resourceStock = 0;
@@ -141,6 +144,10 @@ backgroundPanel.y = topLeftY;
           <argument>
             <kind>1</kind>
             <string>///Set up business variables
+
+if(!instance_exists(obj_menuController.selectedBusiness)) 
+    with(obj_menuController.selectedBusiness) instance_destroy();
+
 cash = obj_menuController.selectedBusiness.cash;
 monthlyStartingCash = obj_menuController.selectedBusiness.monthlyStartingCash;
 name = obj_menuController.selectedBusiness.name;
@@ -151,6 +158,9 @@ picture = obj_menuController.selectedBusiness.picture;
 productProduced = obj_menuController.selectedBusiness.productProduced;
 producePerDay = obj_menuController.selectedBusiness.producePerDay;
 productStock = obj_menuController.selectedBusiness.productStock;
+
+//Tech
+productQuality = global.wheatQuality;
 
 resourceRequired = obj_menuController.selectedBusiness.resourceRequired;
 resourceConsumedPerDay = obj_menuController.selectedBusiness.resourceConsumedPerDay;
@@ -193,7 +203,7 @@ if(picture != noone)
 
 var titleCol = c_blue;
 
-draw_set_font(fnt_menu);
+draw_set_font(fnt_normal);
 //Name
 draw_text_colour(startX,startY - gapY,"Name: ",titleCol,titleCol,titleCol,titleCol,1);
 draw_text_colour(startX + 120,startY - gapY,"Temp" + string(name),color,color,color,color,1);
@@ -210,6 +220,10 @@ if(productProduced != noone){
 //Product stock
 draw_text_colour(startX,startY + (gapY*2),"Stock: ",titleCol,titleCol,titleCol,titleCol,1);
 draw_text_colour(startX + 120,startY + (gapY*2),string(productStock),color,color,color,color,1);
+
+//Product stock
+draw_text_colour(startX,startY + (gapY*3),"Quality: ",titleCol,titleCol,titleCol,titleCol,1);
+draw_text_colour(startX + 120,startY + (gapY*3),string(productQuality),color,color,color,color,1);
 
 if(pstType != "primary"){
     //Resource needed

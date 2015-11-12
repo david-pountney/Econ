@@ -49,8 +49,7 @@ color = c_blue;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>obj_control.selectedBusinessObj = obj_farm;
-with(obj_control) event_perform(ev_other,ev_user0);
+            <string>script_execute(scr_increaseProductQuality,obj_wheat);
 
 //Kill the build menu
 with(obj_techMenu) instance_destroy();
@@ -82,6 +81,7 @@ draw_set_font(fnt_menu);
 draw_set_halign(fa_center);
 draw_text_colour(x,y,textToDraw,color,color,color,color,1);
 draw_set_halign(fa_left);
+draw_set_font(fnt_normal);
 </string>
           </argument>
         </arguments>

@@ -349,6 +349,7 @@ if(cash &lt; 0)    instance_destroy();
 draw_circle_colour(x + 16,y + 16,12,color,color,false);
 
 if(debug_mode){
+    draw_set_font(fnt_debug);
     draw_text_colour(x,y - 30,string(id) + " " + string(object_get_name(object_index)),color,color,color,color,255);
     //draw_text_colour(x,y - 120,"Supplying: " + string(supplying[0]),color,color,color,color,255);
     //draw_text_colour(x,y - 90,"Supplying: " + string(supplying[1]),color,color,color,color,255);
@@ -356,6 +357,7 @@ if(debug_mode){
     draw_text_colour(x,y - 60,"Resource amount: " + string(resourceStock),color,color,color,color,255);
     draw_text_colour(x,y - 90,"Product Stock: " + string(productStock),color,color,color,color,255);
     draw_text_colour(x,y - 120,"Cash: " + string(cash),color,color,color,color,255);
+    draw_set_font(fnt_normal);
 }
 </string>
           </argument>
