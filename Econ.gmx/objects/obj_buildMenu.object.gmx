@@ -120,7 +120,7 @@ backgroundPanel.y = topLeftY;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Move to select business
+            <string>///Move to select business
 with(selectResource) instance_destroy();
 
 if(selectedResource == obj_bmWheat)

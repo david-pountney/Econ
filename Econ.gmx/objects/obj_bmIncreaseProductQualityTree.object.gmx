@@ -25,10 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>topLeftX = obj_buildMenu.topLeftX;
-topLeftY = obj_buildMenu.topLeftY;
+            <string>topLeftX = obj_techMenu.topLeftX;
+topLeftY = obj_techMenu.topLeftY;
 
-increaseProductQualityMenu = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_increaseProductQualityMenu);
+bmIncreaseWheatQuality = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 120,obj_bmIncreaseWheatQuality);
+//bmBrewery = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 120,obj_bmBrewery);
+//bmPub = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .75),topLeftY + 120,obj_bmPub);
 </string>
           </argument>
         </arguments>
@@ -51,8 +53,12 @@ increaseProductQualityMenu = instance_create(topLeftX + (sprite_get_width(spr_bu
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with(bmWheat) instance_destroy();
-with(bmIron) instance_destroy();
+            <string>with(bmIncreaseWheatQuality) instance_destroy();
+//with(bmBrewery) instance_destroy();
+//with(bmPub) instance_destroy();
+
+
+
 </string>
           </argument>
         </arguments>
@@ -75,14 +81,17 @@ with(bmIron) instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>topLeftX = obj_buildMenu.topLeftX;
-topLeftY = obj_buildMenu.topLeftY;
+            <string>topLeftX = obj_techMenu.topLeftX;
+topLeftY = obj_techMenu.topLeftY;
 
-bmWheat.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
-bmWheat.y = topLeftY + 200;
+bmIncreaseWheatQuality.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
+bmIncreaseWheatQuality.y = topLeftY + 200;
 
-bmIron.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
-bmIron.y = topLeftY + 200;
+//bmBrewery.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
+//bmBrewery.y = topLeftY + 200;
+
+//bmPub.x = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
+//bmPub.y = topLeftY + 200;
 </string>
           </argument>
         </arguments>

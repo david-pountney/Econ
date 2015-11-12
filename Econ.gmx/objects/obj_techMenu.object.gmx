@@ -36,6 +36,7 @@ mainTechMenu = instance_create(topLeftX,topLeftY,obj_mainTechMenu);
 //selectBusiness = noone;
 
 selectedTech = noone;
+selectTechTree = noone;
 </string>
           </argument>
         </arguments>
@@ -64,6 +65,8 @@ obj_menuController.techMenuOpen = false;
 //Kill all objects we have in our scope
 //if(selectResource != noone)   with(selectResource) instance_destroy();
 if(mainTechMenu != noone)   with(mainTechMenu) instance_destroy();
+if(selectTechTree != noone)   with(selectTechTree) instance_destroy();
+
 with(backgroundPanel) instance_destroy();
 </string>
           </argument>
@@ -126,10 +129,10 @@ backgroundPanel.y = topLeftY;
             <string>//Move to select business
 with(mainTechMenu) instance_destroy();
 
-if(selectedTech == obj_increaseProductQuality)
-    selectBusiness = instance_create(x,y,obj_bmWheatTree);
-else if(selectedResource == obj_bmIron)
-    selectBusiness = instance_create(x,y,obj_bmIronTree);
+if(selectedTech == obj_bmIncreaseProductQuality)
+    selectTechTree = instance_create(x,y,obj_bmIncreaseProductQualityTree);
+//else if(selectedResource == obj_bmIron)
+//    selectBusiness = instance_create(x,y,obj_bmIronTree);
 </string>
           </argument>
         </arguments>
