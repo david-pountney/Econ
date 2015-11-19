@@ -28,7 +28,7 @@
             <string>topLeftX = obj_techMenu.topLeftX;
 topLeftY = obj_techMenu.topLeftY;
 
-increaseProductQuality = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_bmIncreaseProductQuality);
+increaseProductQuality = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_tmIncreaseProductQuality);
 </string>
           </argument>
         </arguments>

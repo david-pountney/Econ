@@ -99,11 +99,6 @@ topLeftY = y - sprite_get_height(spr_buildMenu) * .5;
 
 backgroundPanel.x = topLeftX;
 backgroundPanel.y = topLeftY;
-
-//show_message(x);
-//show_message(y);
-//show_message(topLeftX);
-//show_message(topLeftY);
 </string>
           </argument>
         </arguments>
@@ -129,8 +124,8 @@ backgroundPanel.y = topLeftY;
             <string>//Move to select business
 with(mainTechMenu) instance_destroy();
 
-if(selectedTech == obj_bmIncreaseProductQuality)
-    selectTechTree = instance_create(x,y,obj_bmIncreaseProductQualityTree);
+if(selectedTech == obj_tmIncreaseProductQuality)
+    selectTechTree = instance_create(x,y,obj_tmIncreaseProductQualityTree);
 //else if(selectedResource == obj_bmIron)
 //    selectBusiness = instance_create(x,y,obj_bmIronTree);
 </string>

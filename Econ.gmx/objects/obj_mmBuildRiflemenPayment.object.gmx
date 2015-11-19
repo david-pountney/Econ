@@ -25,36 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>color = noone;
-selectedBusinessObj = noone;
+            <string>topLeftX = obj_militaryBuildMenu.topLeftX;
+topLeftY = obj_militaryBuildMenu.topLeftY;
 
-global.mode = "placeBusiness";
+nationStockpileTextX = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
+nationStockpileTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .25);
 
-//Set mask
-mask_index = spr_rect;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="1" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.mode = "buyLand";
+textToDraw = "Increase# Wheat Quality";
+color = c_blue;
 </string>
           </argument>
         </arguments>
@@ -77,9 +55,12 @@ mask_index = spr_rect;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Snap to grid
-x=floor(mouse_x/32)*32;
-y=floor(mouse_y/32)*32;
+            <string>///Position objects
+x = obj_backgroundPanel.x;
+y = obj_backgroundPanel.y;
+
+topLeftX = x// - sprite_get_width(spr_buildMenu) * .5;
+topLeftY = y// - sprite_get_height(spr_buildMenu) * .5;
 </string>
           </argument>
         </arguments>
@@ -102,35 +83,16 @@ y=floor(mouse_y/32)*32;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var land = instance_position(floor(mouse_x/32)*32, floor(mouse_y/32)*32, obj_normalLand);
-var business = instance_position(floor(mouse_x/32)*32, floor(mouse_y/32)*32, obj_business);
+            <string>script_execute(scr_increaseProductQuality,obj_wheat);
 
-if(business == noone){
-    if(land.government == global.myGov){
-        newIns = instance_create(mouse_x,mouse_y,selectedBusinessObj);
-        newIns.busType = "govOwned";
-                    
-        buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
-        buffer_write( global.client.Buffer , buffer_string , "sADDBUS" );
-        buffer_write( global.client.Buffer , buffer_u16 , land.x );
-        buffer_write( global.client.Buffer , buffer_u16 , land.y );
-        buffer_write( global.client.Buffer , buffer_u32 , selectedBusinessObj );
-        buffer_write( global.client.Buffer , buffer_u16 , ds_map_find_value(global.resourceQuality,newIns.productProduced.name ));
-        
-        result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
-        
-        instance_destroy();
-        //newIns.land = instance_position(floor(mouse_x/32)*32, floor(mouse_y/32)*32, obj_normalLand);
-        //if(newIns.land) newIns.land.color = c_red;
-    }
-}
-
+//Kill the build menu
+with(obj_techMenu) instance_destroy();
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="73">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -147,9 +109,11 @@ if(business == noone){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_alpha(0.5);
-draw_circle_colour(x + 16,y + 16,12,color,color,false);
-draw_set_alpha(255);
+            <string>draw_set_font(fnt_menu);
+draw_set_halign(fa_center);
+draw_text_colour(nationStockpileTextX,nationStockpileTextY,"National Stockpile",color,color,color,color,1);
+draw_set_halign(fa_left);
+draw_set_font(fnt_normal);
 </string>
           </argument>
         </arguments>

@@ -10,6 +10,12 @@ var resourceValue = business.productProduced.value;
 
 var income = amount * resourceValue;
 
-business.cash += income;
+if(busType == "govOwned"){
+    global.myGov.cash += income;
+}
+else if(busType == "capitalistOwned"){
+    business.cash += income;
+}
+
 business.resourceStock--;
 

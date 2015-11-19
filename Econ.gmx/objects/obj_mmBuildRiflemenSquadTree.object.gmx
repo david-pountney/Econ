@@ -25,11 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>topLeftX = obj_buildMenu.topLeftX;
-topLeftY = obj_buildMenu.topLeftY;
+            <string>topLeftX = obj_militaryBuildMenu.topLeftX;
+topLeftY = obj_militaryBuildMenu.topLeftY;
 
-bmWheat = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_bmWheat);
-bmIron = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 200,obj_bmIron);
+mmBuildRiflemenSquad = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 120,obj_mmBuildRiflemenPayment);
+//bmBrewery = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 120,obj_bmBrewery);
+//bmPub = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .75),topLeftY + 120,obj_bmPub);
 </string>
           </argument>
         </arguments>
@@ -52,8 +53,12 @@ bmIron = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLe
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with(bmWheat) instance_destroy();
-with(bmIron) instance_destroy();
+            <string>with(mmBuildRiflemenSquad) instance_destroy();
+//with(bmBrewery) instance_destroy();
+//with(bmPub) instance_destroy();
+
+
+
 </string>
           </argument>
         </arguments>
@@ -76,14 +81,17 @@ with(bmIron) instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>topLeftX = obj_buildMenu.topLeftX;
-topLeftY = obj_buildMenu.topLeftY;
+            <string>topLeftX = obj_militaryBuildMenu.topLeftX;
+topLeftY = obj_militaryBuildMenu.topLeftY;
 
-bmWheat.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
-bmWheat.y = topLeftY;
+mmBuildRiflemenSquad.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
+mmBuildRiflemenSquad.y = topLeftY + 200;
 
-bmIron.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
-bmIron.y = topLeftY + 200;
+//bmBrewery.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
+//bmBrewery.y = topLeftY + 200;
+
+//bmPub.x = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
+//bmPub.y = topLeftY + 200;
 </string>
           </argument>
         </arguments>

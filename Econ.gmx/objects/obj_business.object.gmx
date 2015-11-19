@@ -49,6 +49,8 @@ y=floor(y/32)*32;
           <argument>
             <kind>1</kind>
             <string>///Business variable define
+busType = "";
+
 startingCash = 1000;
 cash = startingCash;
 highestCash = cash;
@@ -293,12 +295,15 @@ if(global.day % 30 == 0){
             <string>///Pay monthly expenses
 if(global.day % 30 == 0){
     //Monthly expenses
-     cash -= monthlyCost;
-     
-     //Corporation tax
-     government.cash += cash * government.corpTax;
-     cash -= cash * government.corpTax;
-
+    if(busType == "govOwned"){
+        global.myGov.cash -= monthlyCost;
+    }
+    else if(busType == "capitalistOwned"){
+        cash -= monthlyCost;
+        //Corporation tax
+        government.cash += cash * government.corpTax;
+        cash -= cash * government.corpTax;
+    }
 }
 </string>
           </argument>

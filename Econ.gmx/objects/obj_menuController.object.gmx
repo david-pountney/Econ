@@ -34,6 +34,7 @@ showBuildMenu = false;
 buildMenuOpen = false;
 businessStatsMenuOpen = false;
 techMenuOpen = false;
+militaryBuildMenuOpen = false;
 
 menuX = view_xview[0] + view_wport[0] * .5;
 menuY = view_yview[0] + view_hport[0] * .5;
@@ -87,11 +88,26 @@ if(keyboard_check_pressed(vk_alt)) {
         with(obj_businessMarker)    instance_destroy();
 }
 
+///Check if tech menu should be open
+if(keyboard_check_pressed(ord("M"))) {
+    militaryBuildMenuOpen = !militaryBuildMenuOpen;
+    
+    //Makes sure only ONE menu at a time
+    if(menu != noone &amp;&amp; militaryBuildMenuOpen){
+        militaryBuildMenuOpen = false;  
+    }
+    
+    //Cancel any businessMarker, we are starting again
+    if(instance_exists(obj_businessMarker))
+        with(obj_businessMarker)    instance_destroy();
+}
+
 ///Check if menu should be closed
 if(keyboard_check_pressed(vk_escape)) {
     buildMenuOpen = false;
     businessStatsMenuOpen = false;
     techMenuOpen = false;
+    militaryBuildMenuOpen = false;
     
     //Cancel any businessMarker, we are starting again
     if(instance_exists(obj_businessMarker))
@@ -107,8 +123,11 @@ else if(techMenuOpen){
 else if(businessStatsMenuOpen){
     menu = obj_businessStats;
 }
+else if(militaryBuildMenuOpen){
+    menu = obj_militaryBuildMenu;
+}
 else
-    menu = noone;    
+    menu = noone;
     
 menuX = view_xview[0] + view_wport[0] * .5;
 menuY = view_yview[0] + view_hport[0] * .5;

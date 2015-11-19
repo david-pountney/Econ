@@ -25,11 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>topLeftX = obj_buildMenu.topLeftX;
-topLeftY = obj_buildMenu.topLeftY;
+            <string>topLeftX = obj_militaryBuildMenu.topLeftX;
+topLeftY = obj_militaryBuildMenu.topLeftY;
 
-bmWheat = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_bmWheat);
-bmIron = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 200,obj_bmIron);
+buildRiflemanSquad = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_mmBuildRiflemenSquad);
 </string>
           </argument>
         </arguments>
@@ -52,8 +51,7 @@ bmIron = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLe
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with(bmWheat) instance_destroy();
-with(bmIron) instance_destroy();
+            <string>with(buildRiflemanSquad) instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -76,14 +74,11 @@ with(bmIron) instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>topLeftX = obj_buildMenu.topLeftX;
-topLeftY = obj_buildMenu.topLeftY;
+            <string>topLeftX = obj_militaryBuildMenu.topLeftX;
+topLeftY = obj_militaryBuildMenu.topLeftY;
 
-bmWheat.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
-bmWheat.y = topLeftY;
-
-bmIron.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
-bmIron.y = topLeftY + 200;
+buildRiflemanSquad.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
+buildRiflemanSquad.y = topLeftY + 200;
 </string>
           </argument>
         </arguments>

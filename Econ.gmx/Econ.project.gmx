@@ -6,6 +6,8 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
+    <sprite>sprites\spr_defaultDebug</sprite>
+    <sprite>sprites\spr_defaultDebugTab</sprite>
     <sprite>sprites\spr_rect</sprite>
     <sprite>sprites\spr_landPop</sprite>
     <sprite>sprites\spr_wheatLand</sprite>
@@ -32,9 +34,6 @@
       <sprite>sprites\spr_farmPic</sprite>
       <sprite>sprites\spr_breweryPic</sprite>
       <sprite>sprites\spr_pubPic</sprite>
-    </sprites>
-    <sprites name="tech">
-      <sprite>sprites\spr_defaultDebug</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -121,6 +120,11 @@
           <object>objects\obj_bmBrewery</object>
           <object>objects\obj_bmPub</object>
           <object>objects\obj_bmIronMine</object>
+          <objects name="selectBusinessTabs">
+            <object>objects\obj_bmTab</object>
+            <object>objects\obj_bmTabGovSubbed</object>
+            <object>objects\obj_bmTabGovOwned</object>
+          </objects>
           <objects name="trees">
             <object>objects\obj_bmIronTree</object>
             <object>objects\obj_bmWheatTree</object>
@@ -134,12 +138,25 @@
         <object>objects\obj_techMenu</object>
         <objects name="mainTechMenu">
           <object>objects\obj_mainTechMenu</object>
-          <object>objects\obj_bmIncreaseProductQuality</object>
+          <object>objects\obj_tmIncreaseProductQuality</object>
         </objects>
         <objects name="increaseProductQualityMenu">
-          <object>objects\obj_bmIncreaseWheatQuality</object>
+          <object>objects\obj_tmIncreaseWheatQuality</object>
           <objects name="trees">
-            <object>objects\obj_bmIncreaseProductQualityTree</object>
+            <object>objects\obj_tmIncreaseProductQualityTree</object>
+          </objects>
+        </objects>
+      </objects>
+      <objects name="militaryBuildMenu">
+        <object>objects\obj_militaryBuildMenu</object>
+        <objects name="militaryProductMenu">
+          <object>objects\obj_militaryProductMenu</object>
+          <object>objects\obj_mmBuildRiflemenSquad</object>
+        </objects>
+        <objects name="militaryPurchaseMenu">
+          <object>objects\obj_mmBuildRiflemenPayment</object>
+          <objects name="trees">
+            <object>objects\obj_mmBuildRiflemenSquadTree</object>
           </objects>
         </objects>
       </objects>
