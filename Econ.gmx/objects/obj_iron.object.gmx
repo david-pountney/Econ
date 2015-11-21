@@ -29,7 +29,7 @@
 
 name = "iron";
 value = 20;
-
+displayName = "Iron";
 </string>
           </argument>
         </arguments>

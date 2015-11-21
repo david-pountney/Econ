@@ -28,6 +28,7 @@
             <string>///Set up variables
 value = 0;
 name = "";
+displayName = "";
 </string>
           </argument>
         </arguments>

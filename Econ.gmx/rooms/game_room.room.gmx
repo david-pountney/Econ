@@ -493,6 +493,7 @@
     <instance objName="obj_populationLand" x="1248" y="608" name="inst_00F72354" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_gov2" x="1248" y="608" name="inst_42680738" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_iron" x="224" y="0" name="inst_9886617C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_riflemenSquad" x="256" y="0" name="inst_18630F30" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

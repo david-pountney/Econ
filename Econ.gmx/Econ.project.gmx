@@ -65,6 +65,7 @@
     <scripts name="menu">
       <script>scripts\scr_popupMenu.gml</script>
     </scripts>
+    <script>scripts\scr_getAmountOfStockpiledGood.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug</font>
@@ -91,6 +92,9 @@
         <object>objects\obj_beer</object>
         <object>objects\obj_iron</object>
         <object>objects\obj_population</object>
+        <objects name="militaryGoods">
+          <object>objects\obj_riflemenSquad</object>
+        </objects>
       </objects>
       <objects name="tiles">
         <object>objects\obj_normalLand</object>

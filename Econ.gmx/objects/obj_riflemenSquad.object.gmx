@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_good</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,11 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>unitMakeUp = ds_map_create();
 
-value = 4;
-name = "wheat";
-displayName = "Wheat";
+ds_map_add(unitMakeUp, obj_wheat , 5);
 </string>
           </argument>
         </arguments>

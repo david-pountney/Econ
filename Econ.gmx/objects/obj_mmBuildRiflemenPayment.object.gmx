@@ -28,11 +28,18 @@
             <string>topLeftX = obj_militaryBuildMenu.topLeftX;
 topLeftY = obj_militaryBuildMenu.topLeftY;
 
+unitGood = instance_find(obj_riflemenSquad,0);
+
 nationStockpileTextX = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
-nationStockpileTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .25);
+nationStockpileTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .1);
+
+importGoodsTextX = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
+importGoodsTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .1);
 
 textToDraw = "Increase# Wheat Quality";
 color = c_blue;
+
+
 </string>
           </argument>
         </arguments>
@@ -61,6 +68,12 @@ y = obj_backgroundPanel.y;
 
 topLeftX = x// - sprite_get_width(spr_buildMenu) * .5;
 topLeftY = y// - sprite_get_height(spr_buildMenu) * .5;
+
+nationStockpileTextX = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
+nationStockpileTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .1);
+
+importGoodsTextX = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
+importGoodsTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .1);
 </string>
           </argument>
         </arguments>
@@ -109,9 +122,37 @@ with(obj_techMenu) instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(fnt_menu);
+            <string>draw_set_font(fnt_normal);
 draw_set_halign(fa_center);
+
+//Headers
 draw_text_colour(nationStockpileTextX,nationStockpileTextY,"National Stockpile",color,color,color,color,1);
+draw_text_colour(importGoodsTextX,importGoodsTextY,"Import Goods",color,color,color,color,1);
+
+//nation stockpile
+var yOffset = 50;
+var count = 0;
+for(i=ds_map_find_first(unitGood.unitMakeUp); count&lt;ds_map_size(unitGood.unitMakeUp); i=ds_map_find_next(unitGood.unitMakeUp,i)) {
+    //Draw display name of good
+    draw_text_colour(nationStockpileTextX,nationStockpileTextY + yOffset,i.displayName,color,color,color,color,1);
+    
+    //Draw amount of good needed and amount stored
+    draw_text_colour(nationStockpileTextX + 50,nationStockpileTextY + yOffset,
+        "     (" + string(script_execute(scr_getAmountOfStockpiledGood, i)) + "/" + string(ds_map_find_value(unitGood.unitMakeUp, i))
+        + ")",color,color,color,color,1);
+
+    //show_message(i.displayName)
+    count += 1;
+}
+
+/*
+for(var i = 0; i &lt; ds_list_size(unitGood.unitMakeUp); ++i){
+    goodName = ds_list_find_value(unitGood.unitMakeUp, i).displayName;
+    ds_map_
+    draw_text_colour(nationStockpileTextX,nationStockpileTextY + yOffset,goodName,color,color,color,color,1);
+    yOffset += 50;
+}*/
+
 draw_set_halign(fa_left);
 draw_set_font(fnt_normal);
 </string>
