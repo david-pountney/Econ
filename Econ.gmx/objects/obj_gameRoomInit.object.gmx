@@ -148,7 +148,7 @@ if(global.day % 30 == 0){
 
 //Set up delta time
 global.deltaTime = (30 / 1000000 * delta_time);
-//show_message(delta);
+
 if(global.gameStart == true)    global.gamerTimer += (1 * global.deltaTime);
 if(global.gamerTimer &gt; global.gameFrameCount){
     global.gamerTimer = 0;
