@@ -35,6 +35,7 @@
       <sprite>sprites\spr_breweryPic</sprite>
       <sprite>sprites\spr_pubPic</sprite>
     </sprites>
+    <sprite>sprites\sprite21</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -158,6 +159,11 @@
           <object>objects\obj_mbBuildBarracks</object>
         </objects>
       </objects>
+      <objects name="militaryBase">
+        <object>objects\obj_militaryBase</object>
+        <object>objects\obj_baseMarker</object>
+        <object>objects\obj_barracks</object>
+      </objects>
       <objects name="militaryRecruitMenu">
         <object>objects\obj_militaryRecruitMenu</object>
         <objects name="militaryRecruitProductMenu">
@@ -172,7 +178,6 @@
           </objects>
         </objects>
       </objects>
-      <object>objects\obj_militaryBase</object>
     </objects>
     <objects name="multiplayerLobby">
       <object>objects\obj_hostServer</object>

@@ -28,6 +28,7 @@
             <string>menu = noone;
 
 selectedBusiness = noone;
+selectedBase = noone;
 
 showBuildMenu = false;
 
