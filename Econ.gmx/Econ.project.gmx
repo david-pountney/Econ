@@ -158,6 +158,7 @@
           <object>objects\obj_mmBuildRiflemenSquad</object>
         </objects>
         <objects name="militaryPurchaseMenu">
+          <object>objects\obj_mmFinalizePayment</object>
           <object>objects\obj_mmBuildRiflemenPayment</object>
           <objects name="trees">
             <object>objects\obj_mmBuildRiflemenSquadTree</object>

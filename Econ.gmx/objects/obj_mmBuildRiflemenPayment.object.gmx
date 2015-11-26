@@ -167,12 +167,12 @@ for(i=ds_map_find_first(unitGood.unitMakeUp); count&lt;ds_map_size(unitGood.unit
     //Draw display name of national stockpile good and amount
     draw_text_colour(nationStockpileTextX,nationStockpileTextY + yOffset,i.displayName +
     "     (" + string(amountOfStockpiledGood) + "/" + string(amountOfGoodNeeded)
-        + ")",color,color,color,color,1);
+        + ")" + "     $" + string(i.value * amountOfGoodNeeded)  ,color,color,color,color,1);
     
-    //Draw display name of national stockpile good and amount
+    //Draw display name of imported good and amount
     draw_text_colour(importGoodsTextX,importGoodsTextY + yOffset,i.displayName +
     "     (" + string(amountOfImportedGood) + "/" + string(amountOfGoodNeeded)
-        + ")",color,color,color,color,1);
+        + ")" + "     $" + string(i.value * amountOfGoodNeeded)  ,color,color,color,color,1);
     
     count += 1;
 }
