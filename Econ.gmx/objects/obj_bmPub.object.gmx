@@ -29,7 +29,7 @@
 with(obj_control) event_perform(ev_other,ev_user0);
 
 //Kill the build menu
-with(obj_buildMenu) instance_destroy();
+with(obj_buildBusinessMenu) instance_destroy();
 </string>
           </argument>
         </arguments>

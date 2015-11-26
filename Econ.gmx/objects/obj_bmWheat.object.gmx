@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>obj_buildMenu.selectedResource = obj_bmWheat;
-with(obj_buildMenu) event_perform(ev_other,ev_user0);
+            <string>obj_buildBusinessMenu.selectedResource = obj_bmWheat;
+with(obj_buildBusinessMenu) event_perform(ev_other,ev_user0);
 </string>
           </argument>
         </arguments>

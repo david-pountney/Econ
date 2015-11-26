@@ -28,6 +28,7 @@
             <string>unitMakeUp = ds_map_create();
 
 ds_map_add(unitMakeUp, obj_wheat , 5);
+ds_map_add(unitMakeUp, obj_iron , 7);
 </string>
           </argument>
         </arguments>

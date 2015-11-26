@@ -25,16 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>topLeftX = obj_militaryBuildMenu.topLeftX;
-topLeftY = obj_militaryBuildMenu.topLeftY;
+            <string>topLeftX = obj_militaryRecruitMenu.topLeftX;
+topLeftY = obj_militaryRecruitMenu.topLeftY;
 
 unitGood = instance_find(obj_riflemenSquad,0);
 
-nationStockpileTextX = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
-nationStockpileTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .1);
+stockpileTextX = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
+stockpileTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .1);
 
-importGoodsTextX = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
-importGoodsTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .1);
+purchaseGoodsTextX = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
+purchaseGoodsTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .1);
 
 currentDay = global.day;
 
@@ -42,13 +42,13 @@ currentDay = global.day;
 var count = 0;
 for(i=ds_map_find_first(unitGood.unitMakeUp); count&lt;ds_map_size(unitGood.unitMakeUp); i=ds_map_find_next(unitGood.unitMakeUp,i)) {
     //The amount of the good needed
-    amountOfGoodNeeded = ds_map_find_value(unitGood.unitMakeUp, i);
+    i.amountOfGoodNeeded = ds_map_find_value(unitGood.unitMakeUp, i);
     
     //The amount of the good we have stockpilled nationally
-    amountOfStockpiledGood = script_execute(scr_getAmountOfStockpiledGood, i, true);
+    i.amountOfStockpiledGood = script_execute(scr_getAmountOfStockpiledGood, i, true);
 
     //The amount of the good that can be imported from other governments
-    amountOfImportedGood = script_execute(scr_getAmountOfStockpiledGood, i, false);
+    i.amountOfImportedGood = script_execute(scr_getAmountOfStockpiledGood, i, false);
 
     count++;
 }
@@ -86,11 +86,11 @@ y = obj_backgroundPanel.y;
 topLeftX = x// - sprite_get_width(spr_buildMenu) * .5;
 topLeftY = y// - sprite_get_height(spr_buildMenu) * .5;
 
-nationStockpileTextX = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
-nationStockpileTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .1);
+stockpileTextX = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
+stockpileTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .1);
 
-importGoodsTextX = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
-importGoodsTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .1);
+purchaseGoodsTextX = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
+purchaseGoodsTextY = topLeftY + (sprite_get_height(spr_buildMenu) * .1);
 </string>
           </argument>
         </arguments>
@@ -143,38 +143,43 @@ with(obj_techMenu) instance_destroy();
 draw_set_halign(fa_center);
 
 //Headers
-draw_text_colour(nationStockpileTextX,nationStockpileTextY,"National Stockpile",color,color,color,color,1);
-draw_text_colour(importGoodsTextX,importGoodsTextY,"Import Goods",color,color,color,color,1);
+draw_text_colour(stockpileTextX,stockpileTextY,"Government Stockpile",color,color,color,color,1);
+draw_text_colour(purchaseGoodsTextX,purchaseGoodsTextY,"Purchase Goods",color,color,color,color,1);
 
 //nation stockpile
-var yOffset = 50;
 var count = 0;
 for(i=ds_map_find_first(unitGood.unitMakeUp); count&lt;ds_map_size(unitGood.unitMakeUp); i=ds_map_find_next(unitGood.unitMakeUp,i)) {
     //Calculate good amounts
-    if(global.day != currentDay){
+    //if(global.day != currentDay){
         //The amount of the good needed
-        amountOfGoodNeeded = ds_map_find_value(unitGood.unitMakeUp, i);
+        i.amountOfGoodNeeded = ds_map_find_value(unitGood.unitMakeUp, i);
         
         //The amount of the good we have stockpilled nationally
-        amountOfStockpiledGood = script_execute(scr_getAmountOfStockpiledGood, i, true);
+        i.amountOfStockpiledGood = script_execute(scr_getAmountOfStockpiledGood, i, true);
     
         //The amount of the good that can be imported from other governments
-        amountOfImportedGood = script_execute(scr_getAmountOfStockpiledGood, i, false);
+        i.amountOfImportedGood = script_execute(scr_getAmountOfStockpiledGood, i, false);
 
         currentDay = global.day;
-    }
-    
+    //}
+    count++;
+}
+
+var yOffset = 50;
+var count = 0;
+for(i=ds_map_find_first(unitGood.unitMakeUp); count&lt;ds_map_size(unitGood.unitMakeUp); i=ds_map_find_next(unitGood.unitMakeUp,i)) {
     //Draw display name of national stockpile good and amount
-    draw_text_colour(nationStockpileTextX,nationStockpileTextY + yOffset,i.displayName +
-    "     (" + string(amountOfStockpiledGood) + "/" + string(amountOfGoodNeeded)
-        + ")" + "     $" + string(i.value * amountOfGoodNeeded)  ,color,color,color,color,1);
+    draw_text_colour(stockpileTextX,stockpileTextY + yOffset,i.displayName +
+    "     (" + string(i.amountOfStockpiledGood) + "/" + string(i.amountOfGoodNeeded)
+        + ")" + "     $" + string(i.value * i.amountOfGoodNeeded)  ,color,color,color,color,1);
     
     //Draw display name of imported good and amount
-    draw_text_colour(importGoodsTextX,importGoodsTextY + yOffset,i.displayName +
-    "     (" + string(amountOfImportedGood) + "/" + string(amountOfGoodNeeded)
-        + ")" + "     $" + string(i.value * amountOfGoodNeeded)  ,color,color,color,color,1);
+    draw_text_colour(purchaseGoodsTextX,purchaseGoodsTextY + yOffset,i.displayName +
+    "     (" + string(i.amountOfImportedGood) + "/" + string(i.amountOfGoodNeeded)
+        + ")" + "     $" + string(i.value * i.amountOfGoodNeeded)  ,color,color,color,color,1);
     
-    count += 1;
+    yOffset += 50;
+    count++;
 }
 
 draw_set_halign(fa_left);

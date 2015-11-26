@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>topLeftX = obj_militaryBuildMenu.topLeftX;
-topLeftY = obj_militaryBuildMenu.topLeftY;
+            <string>topLeftX = obj_militaryRecruitMenu.topLeftX;
+topLeftY = obj_militaryRecruitMenu.topLeftY;
 
 mmBuildRiflemenSquad = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 120,obj_mmBuildRiflemenPayment);
 //bmBrewery = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 120,obj_bmBrewery);
@@ -81,8 +81,8 @@ mmBuildRiflemenSquad = instance_create(topLeftX + (sprite_get_width(spr_buildMen
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>topLeftX = obj_militaryBuildMenu.topLeftX;
-topLeftY = obj_militaryBuildMenu.topLeftY;
+            <string>topLeftX = obj_militaryRecruitMenu.topLeftX;
+topLeftY = obj_militaryRecruitMenu.topLeftY;
 
 mmBuildRiflemenSquad.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
 mmBuildRiflemenSquad.y = topLeftY + 200;

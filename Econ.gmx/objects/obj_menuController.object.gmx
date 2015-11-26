@@ -34,7 +34,8 @@ showBuildMenu = false;
 buildMenuOpen = false;
 businessStatsMenuOpen = false;
 techMenuOpen = false;
-militaryBuildMenuOpen = false;
+militaryRecruitMenuOpen = false;
+militaryBaseMenuOpen = false;
 
 menuX = view_xview[0] + view_wport[0] * .5;
 menuY = view_yview[0] + view_hport[0] * .5;
@@ -90,11 +91,25 @@ if(keyboard_check_pressed(vk_alt)) {
 
 ///Check if tech menu should be open
 if(keyboard_check_pressed(ord("M"))) {
-    militaryBuildMenuOpen = !militaryBuildMenuOpen;
+    militaryRecruitMenuOpen = !militaryRecruitMenuOpen;
     
     //Makes sure only ONE menu at a time
-    if(menu != noone &amp;&amp; militaryBuildMenuOpen){
-        militaryBuildMenuOpen = false;  
+    if(menu != noone &amp;&amp; militaryRecruitMenuOpen){
+        militaryRecruitMenuOpen = false;  
+    }
+    
+    //Cancel any businessMarker, we are starting again
+    if(instance_exists(obj_businessMarker))
+        with(obj_businessMarker)    instance_destroy();
+}
+
+///Check if tech menu should be open
+if(keyboard_check_pressed(ord("B"))) {
+    militaryBaseMenuOpen = !militaryBaseMenuOpen;
+    
+    //Makes sure only ONE menu at a time
+    if(menu != noone &amp;&amp; militaryBaseMenuOpen){
+        militaryBaseMenuOpen = false;  
     }
     
     //Cancel any businessMarker, we are starting again
@@ -107,7 +122,8 @@ if(keyboard_check_pressed(vk_escape)) {
     buildMenuOpen = false;
     businessStatsMenuOpen = false;
     techMenuOpen = false;
-    militaryBuildMenuOpen = false;
+    militaryRecruitMenuOpen = false;
+    militaryBaseMenuOpen  = false;
     
     //Cancel any businessMarker, we are starting again
     if(instance_exists(obj_businessMarker))
@@ -115,7 +131,7 @@ if(keyboard_check_pressed(vk_escape)) {
 }
 
 if(buildMenuOpen){
-    menu = obj_buildMenu;
+    menu = obj_buildBusinessMenu;
 }
 else if(techMenuOpen){
     menu = obj_techMenu;
@@ -123,8 +139,11 @@ else if(techMenuOpen){
 else if(businessStatsMenuOpen){
     menu = obj_businessStats;
 }
-else if(militaryBuildMenuOpen){
-    menu = obj_militaryBuildMenu;
+else if(militaryRecruitMenuOpen){
+    menu = obj_militaryRecruitMenu;
+}
+else if(militaryBaseMenuOpen){
+    menu = obj_militaryBaseMenu;
 }
 else
     menu = noone;

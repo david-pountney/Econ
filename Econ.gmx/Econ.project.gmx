@@ -112,8 +112,8 @@
       </objects>
       <object>objects\obj_cashSymbol</object>
       <object>objects\obj_backgroundPanel</object>
-      <objects name="buildMenu">
-        <object>objects\obj_buildMenu</object>
+      <objects name="buildBusinessMenu">
+        <object>objects\obj_buildBusinessMenu</object>
         <objects name="selectResource">
           <object>objects\obj_selectResource</object>
           <object>objects\obj_bmWheat</object>
@@ -151,10 +151,17 @@
           </objects>
         </objects>
       </objects>
-      <objects name="militaryBuildMenu">
-        <object>objects\obj_militaryBuildMenu</object>
-        <objects name="militaryProductMenu">
-          <object>objects\obj_militaryProductMenu</object>
+      <objects name="militaryBaseMenu">
+        <object>objects\obj_militaryBaseMenu</object>
+        <objects name="militaryBaseProductMenu">
+          <object>objects\obj_militaryBaseProductMenu</object>
+          <object>objects\obj_mbBuildBarracks</object>
+        </objects>
+      </objects>
+      <objects name="militaryRecruitMenu">
+        <object>objects\obj_militaryRecruitMenu</object>
+        <objects name="militaryRecruitProductMenu">
+          <object>objects\obj_militaryRecruitProductMenu</object>
           <object>objects\obj_mmBuildRiflemenSquad</object>
         </objects>
         <objects name="militaryPurchaseMenu">

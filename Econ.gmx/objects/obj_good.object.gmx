@@ -29,6 +29,10 @@
 value = 0;
 name = "";
 displayName = "";
+
+amountOfGoodNeeded = 0;
+amountOfStockpiledGood = 0;
+amountOfImportedGood = 0;
 </string>
           </argument>
         </arguments>

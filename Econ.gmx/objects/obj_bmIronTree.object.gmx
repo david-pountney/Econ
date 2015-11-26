@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>topLeftX = obj_buildMenu.topLeftX;
-topLeftY = obj_buildMenu.topLeftY;
+            <string>topLeftX = obj_buildBusinessMenu.topLeftX;
+topLeftY = obj_buildBusinessMenu.topLeftY;
 
 bmIronMine = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 120,obj_bmIronMine);
 
@@ -92,8 +92,8 @@ if(bmTabGovOwned != noone) with(bmTabGovOwned) instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>topLeftX = obj_buildMenu.topLeftX;
-topLeftY = obj_buildMenu.topLeftY;
+            <string>topLeftX = obj_buildBusinessMenu.topLeftX;
+topLeftY = obj_buildBusinessMenu.topLeftY;
 
 bmIronMine.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
 bmIronMine.y = topLeftY + 200;

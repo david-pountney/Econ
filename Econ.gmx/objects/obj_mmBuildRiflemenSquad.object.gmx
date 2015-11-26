@@ -49,8 +49,8 @@ color = c_blue;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>obj_militaryBuildMenu.selectedMilitaryUnit = obj_mmBuildRiflemenSquad;
-with(obj_militaryBuildMenu) event_perform(ev_other,ev_user0);
+            <string>obj_militaryRecruitMenu.selectedMilitaryUnit = obj_mmBuildRiflemenSquad;
+with(obj_militaryRecruitMenu) event_perform(ev_other,ev_user0);
 </string>
           </argument>
         </arguments>
