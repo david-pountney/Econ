@@ -137,7 +137,7 @@
         </objects>
       </objects>
       <objects name="businessStats">
-        <object>objects\obj_businessStats</object>
+        <object>objects\obj_businessStatsMenu</object>
       </objects>
       <objects name="techMenu">
         <object>objects\obj_techMenu</object>
@@ -159,11 +159,6 @@
           <object>objects\obj_mbBuildBarracks</object>
         </objects>
       </objects>
-      <objects name="militaryBase">
-        <object>objects\obj_militaryBase</object>
-        <object>objects\obj_baseMarker</object>
-        <object>objects\obj_barracks</object>
-      </objects>
       <objects name="militaryRecruitMenu">
         <object>objects\obj_militaryRecruitMenu</object>
         <objects name="militaryRecruitProductMenu">
@@ -177,6 +172,11 @@
             <object>objects\obj_mmBuildRiflemenSquadTree</object>
           </objects>
         </objects>
+      </objects>
+      <objects name="militaryBase">
+        <object>objects\obj_militaryBase</object>
+        <object>objects\obj_baseMarker</object>
+        <object>objects\obj_barracks</object>
       </objects>
     </objects>
     <objects name="multiplayerLobby">
