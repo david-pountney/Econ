@@ -67,6 +67,7 @@
       <script>scripts\scr_popupMenu.gml</script>
     </scripts>
     <script>scripts\scr_getAmountOfStockpiledGood.gml</script>
+    <script>scripts\scr_buyFromGovernmentStockpile.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug</font>
@@ -136,7 +137,7 @@
           </objects>
         </objects>
       </objects>
-      <objects name="businessStats">
+      <objects name="businessStatsMenu">
         <object>objects\obj_businessStatsMenu</object>
       </objects>
       <objects name="techMenu">
@@ -166,8 +167,8 @@
           <object>objects\obj_mmBuildRiflemenSquad</object>
         </objects>
         <objects name="militaryPurchaseMenu">
-          <object>objects\obj_mmFinalizePayment</object>
           <object>objects\obj_mmBuildRiflemenPayment</object>
+          <object>objects\obj_productBuyButton</object>
           <objects name="trees">
             <object>objects\obj_mmBuildRiflemenSquadTree</object>
           </objects>

@@ -30,6 +30,7 @@ value = 0;
 name = "";
 displayName = "";
 
+//Used for purchasing goods
 amountOfGoodNeeded = 0;
 amountOfStockpiledGood = 0;
 amountOfImportedGood = 0;
