@@ -49,6 +49,7 @@ y=floor(y/32)*32 + 16;
           <argument>
             <kind>1</kind>
             <string>selected = false;
+path = path_add();
 </string>
           </argument>
         </arguments>

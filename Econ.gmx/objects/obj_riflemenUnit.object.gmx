@@ -27,36 +27,14 @@
             <kind>1</kind>
             <string>event_inherited();
 
-scr_definePath(obj_riflemenUnit.x,obj_riflemenUnit.y, obj_ironLand.x+16, obj_ironLand.y+16);
+scr_definePath(x,y, obj_ironLand.x+16, obj_ironLand.y+16, path);
 
 pos = 1;
-xx = path_get_point_x(global.path,pos);
-yy = path_get_point_y(global.path,pos);
+xx = path_get_point_x(path,pos);
+yy = path_get_point_y(path,pos);
 
-
-
-//path_start(global.path, 1,1,0);
+path_start(path, 1,1,0);
 </string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
           </argument>
         </arguments>
       </action>
@@ -78,23 +56,25 @@ yy = path_get_point_y(global.path,pos);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(point_distance(x,y,xx,yy) &lt; 20){
-    //show_message("close to path point");
-    pos++;
-    if (pos = path_get_number(global.path)){
-        instance_destroy();
-    }
-    else
-    {
-        xx = path_get_point_x(global.path,pos);
-        yy = path_get_point_y(global.path,pos);
-        //show_message(xx);
-        //show_message(yy);
-    }
+            <string>
+//show_message("close to path point");
+pos++;
+if (pos = path_get_number(path)){
+    // instance_destroy();
 }
-mp_potential_step(xx,yy,3,false);
-        //show_message(xx);
-        //show_message(yy);
+else
+{
+    //xx = path_get_point_x(path,pos);
+    //yy = path_get_point_y(path,pos);
+    //show_message(xx);
+    //show_message(yy);
+}
+
+if(instance_position(xx,yy,obj_unit)){
+    //show_message("found collision");
+}
+
+//mp_potential_step(xx,yy,3,false);
 </string>
           </argument>
         </arguments>

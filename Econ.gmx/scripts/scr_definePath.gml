@@ -2,13 +2,14 @@ var sx = argument0;
 var sy = argument1;
 var fx = argument2;
 var fy = argument3;
-//var gfp = argument4;
+var path = argument4;
 
-if(!mp_grid_path(global.pathfindingGrid, global.path, sx,sy,fx,fy,false)){
+if(!mp_grid_path(global.pathfindingGrid, path, sx,sy,fx,fy,false)){
     show_message("No path");
     return false;
 }
 else{
-    path_set_kind(global.path, 0);
+    path_set_kind(path, 0);
+    show_message(string(path));
     return true;
 }

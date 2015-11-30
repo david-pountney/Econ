@@ -178,6 +178,7 @@ var snap_y = (mouse_y/32) * 32 ;
 
 var inst = instance_create(snap_x, snap_y, obj_wheatLand);
 with(inst) mp_grid_add_instances(global.pathfindingGrid, id, false);
+/*
 if scr_definePath(obj_riflemenUnit.x + 16,obj_riflemenUnit.y + 16, obj_ironLand.x+16, obj_ironLand.y+16)
 {
     with(obj_unit){
@@ -186,6 +187,7 @@ if scr_definePath(obj_riflemenUnit.x + 16,obj_riflemenUnit.y + 16, obj_ironLand.
     }
 }
 else with (inst) instance_destroy();
+*/
 </string>
           </argument>
         </arguments>

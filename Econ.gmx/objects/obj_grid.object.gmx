@@ -55,7 +55,7 @@ xx = 0;
             <kind>1</kind>
             <string>///Set up pathfinding
 global.pathfindingGrid = mp_grid_create(0,0,room_width / 32, room_height / 32, 32, 32);
-global.path = path_add();
+//global.path = path_add();
 
 </string>
           </argument>
@@ -114,6 +114,7 @@ yy = 0;
             <string>draw_set_alpha(.3);
 mp_grid_draw(global.pathfindingGrid);
 draw_set_alpha(1);
+if(global.pathfindingGrid)
 draw_path(global.pathfindingGrid,x,y,true);
 </string>
           </argument>
