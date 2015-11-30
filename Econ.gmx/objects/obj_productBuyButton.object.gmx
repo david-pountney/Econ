@@ -71,9 +71,11 @@ if(!haveEnoughOfAllGoods) exit;
 if(buyMode == "governmentStockpile"){
     goodBrought = script_execute(scr_buyFromGovernmentStockpile,unitGood);
 }
-//if(mode == "purchaseGoods")
+if(buyMode == "purchaseGoods"){
+    goodBrought = false;//script_execute(scr_buyFromGovernmentStockpile,unitGood);
+}
 
-if(goodBrought) show_message("Brought");
+if(goodBrought) with(obj_militaryRecruitMenu) instance_destroy();
 </string>
           </argument>
         </arguments>

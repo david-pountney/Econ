@@ -28,14 +28,16 @@
             <string>topLeftX = obj_militaryRecruitMenu.topLeftX;
 topLeftY = obj_militaryRecruitMenu.topLeftY;
 
-mmBuildRiflemenSquad = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_mmBuildRiflemenPayment);
+mmBuildRiflemenPayment = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_mmBuildRiflemenPayment);
 
-buyButton = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 300, obj_productBuyButton);
-buyButton.unitGood = obj_riflemenSquad;
-buyButton.buyMode = "governmentStockpile";
+buyButtonGovernmentStockpile = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 450, obj_productBuyButton);
+buyButtonGovernmentStockpile.unitGood = obj_riflemenSquad;
+buyButtonGovernmentStockpile.buyMode = "governmentStockpile";
 
-//bmBrewery = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 120,obj_bmBrewery);
-//bmPub = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .75),topLeftY + 120,obj_bmPub);
+buyButtonPurchaseGood = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .75),topLeftY + 450, obj_productBuyButton);
+buyButtonPurchaseGood.unitGood = obj_riflemenSquad;
+buyButtonPurchaseGood.buyMode = "purchaseGoods";
+
 </string>
           </argument>
         </arguments>
@@ -58,8 +60,9 @@ buyButton.buyMode = "governmentStockpile";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with(mmBuildRiflemenSquad) instance_destroy();
-with(buyButton) instance_destroy();
+            <string>with(mmBuildRiflemenPayment) instance_destroy();
+with(buyButtonGovernmentStockpile) instance_destroy();
+with(buyButtonPurchaseGood) instance_destroy();
 
 //with(bmBrewery) instance_destroy();
 //with(bmPub) instance_destroy();
@@ -91,17 +94,14 @@ with(buyButton) instance_destroy();
             <string>topLeftX = obj_militaryRecruitMenu.topLeftX;
 topLeftY = obj_militaryRecruitMenu.topLeftY;
 
-mmBuildRiflemenSquad.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
-mmBuildRiflemenSquad.y = topLeftY + 200;
+mmBuildRiflemenPayment.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
+mmBuildRiflemenPayment.y = topLeftY + 200;
 
-buyButton.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
-buyButton.y = topLeftY + 300;
+buyButtonGovernmentStockpile.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
+buyButtonGovernmentStockpile.y = topLeftY + 450;
 
-//bmBrewery.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
-//bmBrewery.y = topLeftY + 200;
-
-//bmPub.x = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
-//bmPub.y = topLeftY + 200;
+buyButtonPurchaseGood.x = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
+buyButtonPurchaseGood.y = topLeftY + 450;
 </string>
           </argument>
         </arguments>

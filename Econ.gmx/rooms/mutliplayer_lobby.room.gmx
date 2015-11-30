@@ -55,6 +55,7 @@
     <instance objName="obj_gameInit" x="0" y="0" name="inst_B60C058E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_joinServer" x="512" y="544" name="inst_16597D23" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_startGame" x="512" y="416" name="inst_4EEE2DA1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_mouse" x="32" y="0" name="inst_43FB154A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

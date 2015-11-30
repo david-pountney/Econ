@@ -35,7 +35,8 @@
       <sprite>sprites\spr_breweryPic</sprite>
       <sprite>sprites\spr_pubPic</sprite>
     </sprites>
-    <sprite>sprites\sprite21</sprite>
+    <sprite>sprites\spr_riflemenUnit</sprite>
+    <sprite>sprites\spr_cursor</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -68,6 +69,9 @@
     </scripts>
     <script>scripts\scr_getAmountOfStockpiledGood.gml</script>
     <script>scripts\scr_buyFromGovernmentStockpile.gml</script>
+    <script>scripts\scr_buyFromPuchaseGoods.gml</script>
+    <script>scripts\scr_toggleSelect.gml</script>
+    <script>scripts\scr_definePath.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug</font>
@@ -187,6 +191,9 @@
     </objects>
     <object>objects\obj_gameInit</object>
     <object>objects\obj_menuController</object>
+    <object>objects\obj_unit</object>
+    <object>objects\obj_riflemenUnit</object>
+    <object>objects\obj_mouse</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\mutliplayer_lobby</room>

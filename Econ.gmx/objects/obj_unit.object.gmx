@@ -25,14 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>col = c_black;  //color to use
-defaultCol = c_black;
-gw = 32; //size of grid
-gh = 32;
-w = 1; // wqidth of grid lines
-yy =0;
-xx = 0;
-
+            <string>///Snap to grid
+x=floor(x/32)*32 + 16;
+y=floor(y/32)*32 + 16;
 </string>
           </argument>
         </arguments>
@@ -53,10 +48,33 @@ xx = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set up pathfinding
-global.pathfindingGrid = mp_grid_create(0,0,room_width / 32, room_height / 32, 32, 32);
-global.path = path_add();
+            <string>selected = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Select unit
 
+if(instance_exists(obj_mouse))
+    scr_toggleSelect(obj_mouse.px, obj_mouse.py, mouse_x, mouse_y);
 </string>
           </argument>
         </arguments>
@@ -79,42 +97,17 @@ global.path = path_add();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-while(xx &lt; room_width || yy &lt; room_height){
-    draw_set_colour(col);
-    draw_line_width(xx,0,xx,room_height,w);
-    draw_line_width(0,yy,room_width,yy,w);
-    draw_set_colour(defaultCol);
-    xx += gw;
-    yy += gh;
-}
-xx = 0;
-yy = 0;
+            <string>//Draw selected
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_set_alpha(.3);
-mp_grid_draw(global.pathfindingGrid);
-draw_set_alpha(1);
-draw_path(global.pathfindingGrid,x,y,true);
+if(selected){
+    draw_set_alpha(.25);
+    draw_circle_color(x + 16,y + 16,16,c_lime, c_lime, true);
+    draw_set_alpha(.1);
+    draw_circle_color(x + 16,y + 16,16,c_lime, c_lime, false);
+    draw_set_alpha(1);
+}
+
+draw_self();
 </string>
           </argument>
         </arguments>
