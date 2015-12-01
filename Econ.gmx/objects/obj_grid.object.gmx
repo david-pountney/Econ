@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>col = c_black;  //color to use
+            <string>///Grid variables
+
+col = c_black;  //color to use
 defaultCol = c_black;
 gw = 32; //size of grid
 gh = 32;
@@ -55,8 +57,9 @@ xx = 0;
             <kind>1</kind>
             <string>///Set up pathfinding
 global.pathfindingGrid = mp_grid_create(0,0,room_width / 32, room_height / 32, 32, 32);
-//global.path = path_add();
 
+mp_grid_add_instances(global.pathfindingGrid,obj_business,false);
+mp_grid_add_instances(global.pathfindingGrid,obj_unit,false);
 </string>
           </argument>
         </arguments>
@@ -114,8 +117,7 @@ yy = 0;
             <string>draw_set_alpha(.3);
 mp_grid_draw(global.pathfindingGrid);
 draw_set_alpha(1);
-if(global.pathfindingGrid)
-draw_path(global.pathfindingGrid,x,y,true);
+
 </string>
           </argument>
         </arguments>

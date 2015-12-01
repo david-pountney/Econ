@@ -10,6 +10,8 @@ if(!mp_grid_path(global.pathfindingGrid, path, sx,sy,fx,fy,false)){
 }
 else{
     path_set_kind(path, 0);
-    show_message(string(path));
+    endX = fx;
+    endY = fy;
+    //show_message(string(path));
     return true;
 }

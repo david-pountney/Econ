@@ -176,8 +176,27 @@ var inst = instance_create(snap_x, snap_y, obj_riflemenUnit);
             <string>var snap_x = (mouse_x/32) * 32;
 var snap_y = (mouse_y/32) * 32 ;
 
-var inst = instance_create(snap_x, snap_y, obj_wheatLand);
-with(inst) mp_grid_add_instances(global.pathfindingGrid, id, false);
+//var inst = instance_create(snap_x, snap_y, obj_wheatLand);
+//with(inst) mp_grid_add_instances(global.pathfindingGrid, id, false);
+
+//Move selected units to mouse
+with(obj_unit){
+    if(selected){
+        pathHaulted = false;
+        path = path_add();
+        foundPath = scr_definePath(x,y, (floor(mouse_x/32) * 32 + 16), (floor(mouse_y/32) * 32 + 16), path);
+        if(foundPath){
+            x = floor(x/32) * 32 + 16;
+            y = floor(y/32) * 32 + 16;
+            drawPath = true;
+            
+            path_start(path,3,0,1);
+        }
+    }
+}
+
+//for(var i = 0; i &lt; instance_number(obj_))
+
 /*
 if scr_definePath(obj_riflemenUnit.x + 16,obj_riflemenUnit.y + 16, obj_ironLand.x+16, obj_ironLand.y+16)
 {

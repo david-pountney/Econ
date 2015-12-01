@@ -48,8 +48,194 @@ y=floor(y/32)*32 + 16;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>selected = false;
-path = path_add();
+            <string>///Set up pathfinding
+selected = false;
+drawPath = false;
+pathHaulted = false;
+
+path = noone;//path_add();
+
+pos = 1;
+//xx = path_get_point_x(path,pos);
+//yy = path_get_point_y(path,pos);
+
+//Path endings
+endX = 0;
+endY = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+//if(speed == 0 )drawPath = false;
+
+if(path != noone){
+    if(scr_checkDirection(path) == "right"){
+        if(collision_rectangle(x,y - 16,x + 32, y + 16, obj_unit, 0, true) ){
+            //path_speed = 0;
+            //x = floor(x/32) * 32 + 16;
+            //y = floor(y/32) * 32 + 16;
+            
+            if(!pathHaulted){
+                path_end();
+                pathHaulted = true;
+                x = floor(x/32) * 32 + 16;
+                y = floor(y/32) * 32 + 16;
+                show_message("stopping movement - right");
+            }
+        }
+        else if(pathHaulted) {
+            foundPath = scr_definePath(x,y, endX, endY, path);
+            //show_message(string(path_get_kind(path)));
+            if(foundPath){
+                //x = floor(x/32) * 32 + 16;
+                //y = floor(y/32) * 32 + 16;
+                drawPath = true;
+                //path_set_kind(path,0);
+                path_start(path,3,0,1);
+                pathHaulted = false;
+                show_message("starting movement - right");
+            }
+        }
+    }
+    if(scr_checkDirection(path) == "left"){
+        if(collision_rectangle(x,y - 16,x - 32, y + 16, obj_unit, 0, true)){
+            //path_speed = 0;
+            //x = floor(x/32) * 32 + 16;
+            //y = floor(y/32) * 32 + 16;
+            if(!pathHaulted){
+                path_end();
+                pathHaulted = true;
+                x = floor(x/32) * 32 + 16;
+                y = floor(y/32) * 32 + 16;
+                show_message("stopping movement - left");
+            }
+        }
+        else if(pathHaulted) {
+            foundPath = scr_definePath(x,y, endX, endY, path);
+            //show_message(string(path_get_kind(path)));
+            if(foundPath){
+                //x = floor(x/32) * 32 + 16;
+               // y = floor(y/32) * 32 + 16;
+                drawPath = true;
+                path_start(path,3,0,1);
+                pathHaulted = false;
+                show_message("starting movement - left");
+            }
+        }
+    }
+    if(scr_checkDirection(path) == "up"){
+        if(collision_rectangle(x - 16,y - 32,x + 16, y, obj_unit, 0, true)){
+            //path_speed = 0;
+            //x = floor(x/32) * 32 + 16;
+            //y = floor(y/32) * 32 + 16;
+            if(!pathHaulted){
+                path_end();
+                pathHaulted = true;
+                x = floor(x/32) * 32 + 16;
+                y = floor(y/32) * 32 + 16;
+                //show_message("setting pos");
+            }
+        }
+        else if(pathHaulted) {
+            foundPath = scr_definePath(x,y, endX, endY, path);
+            //show_message(string(path_get_kind(path)));
+            if(foundPath){
+                //x = floor(x/32) * 32 + 16;
+                //y = floor(y/32) * 32 + 16;
+                drawPath = true;
+                path_start(path,3,0,1);
+                pathHaulted = false;
+                //show_message("starting movement");
+            }
+        }
+    }
+    if(scr_checkDirection(path) == "down"){
+        if(collision_rectangle(x - 16,y,x + 16, y + 32, obj_unit, 0, true)){
+            //path_speed = 0;
+            //x = floor(x/32) * 32 + 16;
+            //y = floor(y/32) * 32 + 16;
+            if(!pathHaulted){
+                path_end();
+                pathHaulted = true;
+                x = floor(x/32) * 32 + 16;
+                y = floor(y/32) * 32 + 16;
+                //show_message("setting pos");
+            }
+        }
+        else if(pathHaulted) {
+            foundPath = scr_definePath(x,y, endX, endY, path);
+            //show_message(string(path_get_kind(path)));
+            if(foundPath){
+                //pathInterupted = false;
+                //x = floor(x/32) * 32 + 16;
+                //y = floor(y/32) * 32 + 16;
+                drawPath = true;
+                path_start(path,3,0,1);
+                pathHaulted = false;
+                //show_message("starting movement");
+            }
+        }
+    }
+}
+
+
+//else
+{
+    //xx = path_get_point_x(path,pos);
+    //yy = path_get_point_y(path,pos);
+    //show_message(xx);
+    //show_message(yy);
+}
+
+//if(instance_position(xx,yy,obj_unit)){
+    //show_message("found collision");
+//}
+
+//mp_potential_step(xx,yy,3,false);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_unit">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>x = xprevious;
+y = yprevious;
 </string>
           </argument>
         </arguments>
@@ -73,7 +259,6 @@ path = path_add();
           <argument>
             <kind>1</kind>
             <string>///Select unit
-
 if(instance_exists(obj_mouse))
     scr_toggleSelect(obj_mouse.px, obj_mouse.py, mouse_x, mouse_y);
 </string>
@@ -109,6 +294,9 @@ if(selected){
 }
 
 draw_self();
+
+//Debug for drawing path
+if(drawPath)    draw_path(path,x,y,true);
 </string>
           </argument>
         </arguments>
