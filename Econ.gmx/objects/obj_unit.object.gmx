@@ -55,13 +55,18 @@ pathHaulted = false;
 
 path = noone;//path_add();
 
-pos = 1;
-//xx = path_get_point_x(path,pos);
-//yy = path_get_point_y(path,pos);
+node = 1;
+xx = path_get_point_x(path,node);
+yy = path_get_point_y(path,node);
 
 //Path endings
 endX = 0;
 endY = 0;
+
+xPlusGridSize = x + 32;
+xMinusGridSize = x - 32;
+
+mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor(y/32));
 </string>
           </argument>
         </arguments>
@@ -86,6 +91,31 @@ endY = 0;
             <kind>1</kind>
             <string>
 //if(speed == 0 )drawPath = false;
+
+if(point_distance(x,y,xx,yy) &lt; 6){
+    node++;
+    xx = path_get_point_x(path,node);
+    yy = path_get_point_y(path,node);
+}
+
+//Completed moving on to a new cell
+if(x &gt;= xPlusGridSize){
+    xPlusGridSize = xPlusGridSize + 32;
+    //Right
+    if(point_direction(x,y,xx,yy) == 0){
+        
+    }
+    //xDire = point_direction(x,y,);
+    //mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor(y/32));
+    mp_grid_clear_cell(global.pathfindingGrid,floor((xPlusGridSize - 32)/32),floor(y/32));
+}
+if(x &lt;= xMinusGridSize){
+    xMinusGridSize = xMinusGridSize - 32;
+    //mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor(y/32));
+    mp_grid_clear_cell(global.pathfindingGrid,floor((xMinusGridSize + 32)/32),floor(y/32));
+}
+
+
 
 if(path != noone){
     if(scr_checkDirection(path) == "right"){
@@ -196,21 +226,6 @@ if(path != noone){
         }
     }
 }
-
-
-//else
-{
-    //xx = path_get_point_x(path,pos);
-    //yy = path_get_point_y(path,pos);
-    //show_message(xx);
-    //show_message(yy);
-}
-
-//if(instance_position(xx,yy,obj_unit)){
-    //show_message("found collision");
-//}
-
-//mp_potential_step(xx,yy,3,false);
 
 </string>
           </argument>

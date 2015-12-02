@@ -182,6 +182,7 @@ var snap_y = (mouse_y/32) * 32 ;
 //Move selected units to mouse
 with(obj_unit){
     if(selected){
+        mp_grid_clear_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
         pathHaulted = false;
         path = path_add();
         foundPath = scr_definePath(x,y, (floor(mouse_x/32) * 32 + 16), (floor(mouse_y/32) * 32 + 16), path);
