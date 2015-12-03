@@ -66,7 +66,7 @@ endX = 0;
 endY = 0;
 
 xPlusGridSize = x;
-xMinusGridSize = x - 32;
+xMinusGridSize = x;
 
 yPlusGridSize = y + 32;
 yMinusGridSize = y - 32;
@@ -114,30 +114,34 @@ if(moving){
         
         xMinusGridSize = xPlusGridSize - 32;
         xPlusGridSize = xPlusGridSize + 32;
-        
+        //show_message("test: " + string(xx));
         if(path_get_x(path,x) == x){
             //show_message("node: " + string(node));
             //show_message("Node Amount: " + string(path_get_number(path)));
             node = 0;
             xx = path_get_point_x(path,node);
             yy = path_get_point_y(path,node);
-
+            show_message("Finished right movement: " + string(xx));
             //show_message("xx: " + string(xx));
             //show_message("yy: " + string(yy));
             xPlusGridSize = xPlusGridSize - 32;
             moving = false;
+            //mp_grid_add_cell(global.pathfindingGrid,floor((x+32)/32),floor(y/32));
+            
             exit;
         }
     
         //Right
         xx = path_get_point_x(path,node);
+        show_message("xx: " + string(xx));
+        show_message("x: " + string(x));
         if(xx &gt; x){
             mp_grid_add_cell(global.pathfindingGrid,floor((x+32)/32),floor(y/32));
             mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
         }
         //Up
         yy = path_get_point_y(path,node);
-        if(yy &lt; y){
+        if(yy &lt; y &amp;&amp; yy != 0){
             show_message("y: " + string(y));
             show_message("yy: " + string(yy));
             show_message("node: " + string(node));
@@ -154,7 +158,7 @@ if(moving){
     }
     if(x &lt;= xMinusGridSize){
         node++;
-        
+        show_message("dfdf");
         xPlusGridSize = xPlusGridSize - 32;
         xMinusGridSize = xPlusGridSize - 32;
         
@@ -176,8 +180,8 @@ if(moving){
         }
         //Up
         yy = path_get_point_y(path,node);
-        if(yy &lt; y){
-                        show_message("y: " + string(y));
+        if(yy &lt; y &amp;&amp; yy != 0){
+            show_message("y: " + string(y));
             show_message("yy: " + string(yy));
             show_message("node: " + string(node));
             show_message("Node Amount: " + string(path_get_number(path)));
@@ -355,30 +359,6 @@ if(path != noone){
     }
 }
 */
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_unit">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>x = xprevious;
-y = yprevious;
 </string>
           </argument>
         </arguments>
