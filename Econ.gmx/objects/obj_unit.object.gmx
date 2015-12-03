@@ -48,23 +48,28 @@ y=floor(y/32)*32 + 16;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set up pathfinding
+            <string>  ///Set up pathfinding
 selected = false;
 drawPath = false;
 pathHaulted = false;
 
 path = noone;//path_add();
 
-node = 1;
+node = 0;
 xx = path_get_point_x(path,node);
 yy = path_get_point_y(path,node);
+
+moving = false;
 
 //Path endings
 endX = 0;
 endY = 0;
 
-xPlusGridSize = x + 32;
+xPlusGridSize = x;
 xMinusGridSize = x - 32;
+
+yPlusGridSize = y + 32;
+yMinusGridSize = y - 32;
 
 mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor(y/32));
 </string>
@@ -92,31 +97,154 @@ mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor(y/32));
             <string>
 //if(speed == 0 )drawPath = false;
 
-if(point_distance(x,y,xx,yy) &lt; 6){
-    node++;
-    xx = path_get_point_x(path,node);
-    yy = path_get_point_y(path,node);
-}
+//if(point_distance(x,y,xx,yy) &lt; 6){
+if(path != noone){
 
-//Completed moving on to a new cell
-if(x &gt;= xPlusGridSize){
-    xPlusGridSize = xPlusGridSize + 32;
-    //Right
-    if(point_direction(x,y,xx,yy) == 0){
+    //show_message("Node Amount: " + string(path_get_number(path)));
+    //show_message("Node: " + string(node));
+    //show_message("XX: " + string(xx));
+    //show_message("YY: " + string(yy));
+}
+//}
+
+if(moving){
+    //Completed moving on to a new cell
+    if(x &gt;= xPlusGridSize){
+        node++;
         
+        xMinusGridSize = xPlusGridSize - 32;
+        xPlusGridSize = xPlusGridSize + 32;
+        
+        if(path_get_x(path,x) == x){
+            //show_message("node: " + string(node));
+            //show_message("Node Amount: " + string(path_get_number(path)));
+            node = 0;
+            xx = path_get_point_x(path,node);
+            yy = path_get_point_y(path,node);
+
+            //show_message("xx: " + string(xx));
+            //show_message("yy: " + string(yy));
+            xPlusGridSize = xPlusGridSize - 32;
+            moving = false;
+            exit;
+        }
+    
+        //Right
+        xx = path_get_point_x(path,node);
+        if(xx &gt; x){
+            mp_grid_add_cell(global.pathfindingGrid,floor((x+32)/32),floor(y/32));
+            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
+        }
+        //Up
+        yy = path_get_point_y(path,node);
+        if(yy &lt; y){
+            show_message("y: " + string(y));
+            show_message("yy: " + string(yy));
+            show_message("node: " + string(node));
+            show_message("Node Amount: " + string(path_get_number(path)));
+            mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor((y-32)/32));
+            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
+        }
+        //Down
+        yy = path_get_point_y(path,node);
+        if(yy &gt; y){
+            mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor((y+32)/32));
+            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
+        }
     }
-    //xDire = point_direction(x,y,);
-    //mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor(y/32));
-    mp_grid_clear_cell(global.pathfindingGrid,floor((xPlusGridSize - 32)/32),floor(y/32));
+    if(x &lt;= xMinusGridSize){
+        node++;
+        
+        xPlusGridSize = xPlusGridSize - 32;
+        xMinusGridSize = xPlusGridSize - 32;
+        
+        if(path_get_x(path,x) == x){
+            node = 0;
+            xx = path_get_point_x(path,node);
+            yy = path_get_point_y(path,node);
+            //show_message("yy: " + string(yy));
+            xMinusGridSize = xMinusGridSize + 32;
+            moving = false;
+            exit;
+        }
+        
+        //Left
+        xx = path_get_point_x(path,node);
+        if(xx &lt; x){
+            mp_grid_add_cell(global.pathfindingGrid,floor((x-32)/32),floor(y/32));
+            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
+        }
+        //Up
+        yy = path_get_point_y(path,node);
+        if(yy &lt; y){
+                        show_message("y: " + string(y));
+            show_message("yy: " + string(yy));
+            show_message("node: " + string(node));
+            show_message("Node Amount: " + string(path_get_number(path)));
+            mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor((y-32)/32));
+            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
+        }
+        //Down
+        yy = path_get_point_y(path,node);
+        if(yy &gt; y){
+            mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor((y+32)/32));
+            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
+        }
+    }
+    if(y &lt;= yMinusGridSize){
+        node++;
+        if(path_get_y(path,y) == y)
+            exit;
+        yMinusGridSize = yMinusGridSize - 32;
+        
+        //Left
+        xx = path_get_point_x(path,node);
+        if(xx &lt; x){
+            mp_grid_add_cell(global.pathfindingGrid,floor((x-32)/32),floor(y/32));
+            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
+        }
+        //Right
+        xx = path_get_point_x(path,node);
+        if(xx &gt; x){
+            mp_grid_add_cell(global.pathfindingGrid,floor(x+32/32),floor((y)/32));
+            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
+        }
+        //Up
+        yy = path_get_point_y(path,node);
+        if(yy &lt; y){
+            mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor((y-32)/32));
+            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
+        }
+    }
+    if(y &gt;= yPlusGridSize){
+        node++;
+        if(path_get_y(path,y) == y)
+            exit;
+        yPlusGridSize = yPlusGridSize + 32;
+        
+        //Left
+        xx = path_get_point_x(path,node);
+        if(xx &lt; x){
+            mp_grid_add_cell(global.pathfindingGrid,floor((x-32)/32),floor(y/32));
+            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
+        }
+        //Right
+        xx = path_get_point_x(path,node);
+        if(xx &gt; x){
+            mp_grid_add_cell(global.pathfindingGrid,floor(x+32/32),floor((y)/32));
+            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
+        }
+        //Down
+        yy = path_get_point_y(path,node);
+        if(yy &gt; y){
+            mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor((y+32)/32));
+            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
+        }
+    }
 }
-if(x &lt;= xMinusGridSize){
-    xMinusGridSize = xMinusGridSize - 32;
-    //mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor(y/32));
-    mp_grid_clear_cell(global.pathfindingGrid,floor((xMinusGridSize + 32)/32),floor(y/32));
-}
 
 
-
+/*
 if(path != noone){
     if(scr_checkDirection(path) == "right"){
         if(collision_rectangle(x,y - 16,x + 32, y + 16, obj_unit, 0, true) ){
@@ -226,7 +354,7 @@ if(path != noone){
         }
     }
 }
-
+*/
 </string>
           </argument>
         </arguments>
