@@ -1,5 +1,3 @@
-
-
 //Press
 var px = argument0;
 var py = argument1;
@@ -14,8 +12,10 @@ var bltr = (x>px && x<rx && y<py && y>ry);
 var brtl = (x<px && x>rx && y<py && y>ry);
 var trbl = (x<px && x>rx && y>py && y<ry);
 
-if(tlbr || bltr || brtl || trbl)
+if(tlbr || bltr || brtl || trbl){
     selected = true;
+    global.amountOfUnitsSelected++;
+}
 else
     selected = false;
     

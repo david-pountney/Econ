@@ -55,6 +55,18 @@ py = -1;
             <string>/// Follow the mouse
 x = mouse_x;
 y = mouse_y;
+
+var unit = instance_place(x,y,obj_unit);
+
+if(unit == noone){
+    sprite_index = spr_cursor;
+}
+else{
+    if(unit.government != global.myGov){
+        sprite_index = spr_targetUnit; 
+    }
+}
+
 </string>
           </argument>
         </arguments>
@@ -106,6 +118,8 @@ py = -1;
           <argument>
             <kind>1</kind>
             <string>///Set the press x and press y
+
+global.amountOfUnitsSelected = 0;
 
 px = mouse_x;
 py = mouse_y;

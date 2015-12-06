@@ -55,7 +55,7 @@ pathHaulted = false;
 
 path = noone;//path_add();
 
-node = 0;
+node = 1;
 xx = path_get_point_x(path,node);
 yy = path_get_point_y(path,node);
 
@@ -67,6 +67,8 @@ endY = 0;
 
 xPlusGridSize = x;
 xMinusGridSize = x;
+
+government = false;
 
 yPlusGridSize = y + 32;
 yMinusGridSize = y - 32;
@@ -107,258 +109,15 @@ if(path != noone){
 }
 //}
 
-if(moving){
-    //Completed moving on to a new cell
-    if(x &gt;= xPlusGridSize){
-        node++;
-        
-        xMinusGridSize = xPlusGridSize - 32;
-        xPlusGridSize = xPlusGridSize + 32;
-        //show_message("test: " + string(xx));
-        if(path_get_x(path,x) == x){
-            //show_message("node: " + string(node));
-            //show_message("Node Amount: " + string(path_get_number(path)));
-            node = 0;
-            xx = path_get_point_x(path,node);
-            yy = path_get_point_y(path,node);
-            show_message("Finished right movement: " + string(xx));
-            //show_message("xx: " + string(xx));
-            //show_message("yy: " + string(yy));
-            xPlusGridSize = xPlusGridSize - 32;
+if(moving == true){
+    if(path_get_x(path,x) == x){
+        if(path_get_y(path,y) == y){
             moving = false;
-            //mp_grid_add_cell(global.pathfindingGrid,floor((x+32)/32),floor(y/32));
-            
-            exit;
-        }
-    
-        //Right
-        xx = path_get_point_x(path,node);
-        show_message("xx: " + string(xx));
-        show_message("x: " + string(x));
-        if(xx &gt; x){
-            mp_grid_add_cell(global.pathfindingGrid,floor((x+32)/32),floor(y/32));
-            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
-        }
-        //Up
-        yy = path_get_point_y(path,node);
-        if(yy &lt; y &amp;&amp; yy != 0){
-            show_message("y: " + string(y));
-            show_message("yy: " + string(yy));
-            show_message("node: " + string(node));
-            show_message("Node Amount: " + string(path_get_number(path)));
-            mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor((y-32)/32));
-            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
-        }
-        //Down
-        yy = path_get_point_y(path,node);
-        if(yy &gt; y){
-            mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor((y+32)/32));
-            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
-        }
-    }
-    if(x &lt;= xMinusGridSize){
-        node++;
-        show_message("dfdf");
-        xPlusGridSize = xPlusGridSize - 32;
-        xMinusGridSize = xPlusGridSize - 32;
-        
-        if(path_get_x(path,x) == x){
-            node = 0;
-            xx = path_get_point_x(path,node);
-            yy = path_get_point_y(path,node);
-            //show_message("yy: " + string(yy));
-            xMinusGridSize = xMinusGridSize + 32;
-            moving = false;
-            exit;
-        }
-        
-        //Left
-        xx = path_get_point_x(path,node);
-        if(xx &lt; x){
-            mp_grid_add_cell(global.pathfindingGrid,floor((x-32)/32),floor(y/32));
-            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
-        }
-        //Up
-        yy = path_get_point_y(path,node);
-        if(yy &lt; y &amp;&amp; yy != 0){
-            show_message("y: " + string(y));
-            show_message("yy: " + string(yy));
-            show_message("node: " + string(node));
-            show_message("Node Amount: " + string(path_get_number(path)));
-            mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor((y-32)/32));
-            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
-        }
-        //Down
-        yy = path_get_point_y(path,node);
-        if(yy &gt; y){
-            mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor((y+32)/32));
-            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
-        }
-    }
-    if(y &lt;= yMinusGridSize){
-        node++;
-        if(path_get_y(path,y) == y)
-            exit;
-        yMinusGridSize = yMinusGridSize - 32;
-        
-        //Left
-        xx = path_get_point_x(path,node);
-        if(xx &lt; x){
-            mp_grid_add_cell(global.pathfindingGrid,floor((x-32)/32),floor(y/32));
-            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
-        }
-        //Right
-        xx = path_get_point_x(path,node);
-        if(xx &gt; x){
-            mp_grid_add_cell(global.pathfindingGrid,floor(x+32/32),floor((y)/32));
-            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
-        }
-        //Up
-        yy = path_get_point_y(path,node);
-        if(yy &lt; y){
-            mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor((y-32)/32));
-            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
-        }
-    }
-    if(y &gt;= yPlusGridSize){
-        node++;
-        if(path_get_y(path,y) == y)
-            exit;
-        yPlusGridSize = yPlusGridSize + 32;
-        
-        //Left
-        xx = path_get_point_x(path,node);
-        if(xx &lt; x){
-            mp_grid_add_cell(global.pathfindingGrid,floor((x-32)/32),floor(y/32));
-            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
-        }
-        //Right
-        xx = path_get_point_x(path,node);
-        if(xx &gt; x){
-            mp_grid_add_cell(global.pathfindingGrid,floor(x+32/32),floor((y)/32));
-            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
-        }
-        //Down
-        yy = path_get_point_y(path,node);
-        if(yy &gt; y){
-            mp_grid_add_cell(global.pathfindingGrid,floor(x/32),floor((y+32)/32));
-            mp_grid_clear_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
+            mp_grid_add_cell(global.pathfindingGrid,floor((x)/32),floor(y/32));
         }
     }
 }
 
-
-/*
-if(path != noone){
-    if(scr_checkDirection(path) == "right"){
-        if(collision_rectangle(x,y - 16,x + 32, y + 16, obj_unit, 0, true) ){
-            //path_speed = 0;
-            //x = floor(x/32) * 32 + 16;
-            //y = floor(y/32) * 32 + 16;
-            
-            if(!pathHaulted){
-                path_end();
-                pathHaulted = true;
-                x = floor(x/32) * 32 + 16;
-                y = floor(y/32) * 32 + 16;
-                show_message("stopping movement - right");
-            }
-        }
-        else if(pathHaulted) {
-            foundPath = scr_definePath(x,y, endX, endY, path);
-            //show_message(string(path_get_kind(path)));
-            if(foundPath){
-                //x = floor(x/32) * 32 + 16;
-                //y = floor(y/32) * 32 + 16;
-                drawPath = true;
-                //path_set_kind(path,0);
-                path_start(path,3,0,1);
-                pathHaulted = false;
-                show_message("starting movement - right");
-            }
-        }
-    }
-    if(scr_checkDirection(path) == "left"){
-        if(collision_rectangle(x,y - 16,x - 32, y + 16, obj_unit, 0, true)){
-            //path_speed = 0;
-            //x = floor(x/32) * 32 + 16;
-            //y = floor(y/32) * 32 + 16;
-            if(!pathHaulted){
-                path_end();
-                pathHaulted = true;
-                x = floor(x/32) * 32 + 16;
-                y = floor(y/32) * 32 + 16;
-                show_message("stopping movement - left");
-            }
-        }
-        else if(pathHaulted) {
-            foundPath = scr_definePath(x,y, endX, endY, path);
-            //show_message(string(path_get_kind(path)));
-            if(foundPath){
-                //x = floor(x/32) * 32 + 16;
-               // y = floor(y/32) * 32 + 16;
-                drawPath = true;
-                path_start(path,3,0,1);
-                pathHaulted = false;
-                show_message("starting movement - left");
-            }
-        }
-    }
-    if(scr_checkDirection(path) == "up"){
-        if(collision_rectangle(x - 16,y - 32,x + 16, y, obj_unit, 0, true)){
-            //path_speed = 0;
-            //x = floor(x/32) * 32 + 16;
-            //y = floor(y/32) * 32 + 16;
-            if(!pathHaulted){
-                path_end();
-                pathHaulted = true;
-                x = floor(x/32) * 32 + 16;
-                y = floor(y/32) * 32 + 16;
-                //show_message("setting pos");
-            }
-        }
-        else if(pathHaulted) {
-            foundPath = scr_definePath(x,y, endX, endY, path);
-            //show_message(string(path_get_kind(path)));
-            if(foundPath){
-                //x = floor(x/32) * 32 + 16;
-                //y = floor(y/32) * 32 + 16;
-                drawPath = true;
-                path_start(path,3,0,1);
-                pathHaulted = false;
-                //show_message("starting movement");
-            }
-        }
-    }
-    if(scr_checkDirection(path) == "down"){
-        if(collision_rectangle(x - 16,y,x + 16, y + 32, obj_unit, 0, true)){
-            //path_speed = 0;
-            //x = floor(x/32) * 32 + 16;
-            //y = floor(y/32) * 32 + 16;
-            if(!pathHaulted){
-                path_end();
-                pathHaulted = true;
-                x = floor(x/32) * 32 + 16;
-                y = floor(y/32) * 32 + 16;
-                //show_message("setting pos");
-            }
-        }
-        else if(pathHaulted) {
-            foundPath = scr_definePath(x,y, endX, endY, path);
-            //show_message(string(path_get_kind(path)));
-            if(foundPath){
-                //pathInterupted = false;
-                //x = floor(x/32) * 32 + 16;
-                //y = floor(y/32) * 32 + 16;
-                drawPath = true;
-                path_start(path,3,0,1);
-                pathHaulted = false;
-                //show_message("starting movement");
-            }
-        }
-    }
-}
-*/
 </string>
           </argument>
         </arguments>
@@ -410,9 +169,9 @@ if(instance_exists(obj_mouse))
 
 if(selected){
     draw_set_alpha(.25);
-    draw_circle_color(x + 16,y + 16,16,c_lime, c_lime, true);
+    draw_circle_color(x,y,16,c_lime, c_lime, true);
     draw_set_alpha(.1);
-    draw_circle_color(x + 16,y + 16,16,c_lime, c_lime, false);
+    draw_circle_color(x,y,16,c_lime, c_blue, false);
     draw_set_alpha(1);
 }
 

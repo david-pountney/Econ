@@ -97,6 +97,18 @@ switch( msgid ) {//Case statements go here...
         
         break;
         
+    case "rUNITADD":
+        var unitObj = buffer_read( buffer , buffer_u32 );
+        var unitX = buffer_read( buffer , buffer_u16 );
+        var unitY= buffer_read( buffer , buffer_u16 );
+        government = buffer_read( buffer , buffer_u32 );    
+        
+        unit = instance_create(unitX,unitY, unitObj);
+        
+        show_message("made");
+        
+        break;
+        
     default:
         break;
 } 

@@ -32,7 +32,7 @@ selectedBusinessIns = noone;
 selectedBaseIns = noone;
 selectedBaseObj = noone;
 
-
+mask_index = spr_rect;
 </string>
           </argument>
         </arguments>
@@ -147,13 +147,42 @@ selectedBaseObj = noone;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var snap_x = (mouse_x/32) * 32;
-var snap_y = (mouse_y/32) * 32;
+            <string>var snap_x = (obj_mouse.x/32) * 32;
+var snap_y = (obj_mouse.y/32) * 32;
 
-var inst = instance_create(snap_x, snap_y, obj_riflemenUnit);
+if(instance_position(snap_x,snap_y,obj_unit) == noone){
+    var unit = instance_create(snap_x, snap_y, obj_riflemenUnit);
+    unit.government = global.myGov;
+    
+    //Multiplayer send message
+    buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
+    buffer_write( global.client.Buffer , buffer_string , "sUNITADD" );
+    buffer_write( global.client.Buffer , buffer_u32 , unit.object_index );
+    buffer_write( global.client.Buffer , buffer_u16 , unit.x );
+    buffer_write( global.client.Buffer , buffer_u16 , unit.y );
+    buffer_write( global.client.Buffer , buffer_u32 , global.myGov );
+
+    result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
+
+    scr_recalculatePaths();
+}
 </string>
           </argument>
         </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>114</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_reverse_ydir</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="6" enumb="57">
@@ -176,39 +205,69 @@ var inst = instance_create(snap_x, snap_y, obj_riflemenUnit);
             <string>var snap_x = (mouse_x/32) * 32;
 var snap_y = (mouse_y/32) * 32 ;
 
-//var inst = instance_create(snap_x, snap_y, obj_wheatLand);
-//with(inst) mp_grid_add_instances(global.pathfindingGrid, id, false);
+var underUnit = instance_position(snap_x,snap_y,obj_unit);
 
-//Move selected units to mouse
-with(obj_unit){
-    if(selected){
-        moving = true;
-        mp_grid_clear_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
-        pathHaulted = false;
-        path = path_add();
-        foundPath = scr_definePath(x,y, (floor(mouse_x/32) * 32 + 16), (floor(mouse_y/32) * 32 + 16), path);
-        if(foundPath){
-            x = floor(x/32) * 32 + 16;
-            y = floor(y/32) * 32 + 16;
-            drawPath = true;
-            
-            path_start(path,3,0,1);
+//A unit is underneath mouse
+if(underUnit != noone){
+    //Amount of units selected is more than 0
+    if(global.amountOfUnitsSelected &gt; 0){
+        show_message("over unit");
+        if(underUnit.government == global.myGov){
+            exit;
         }
+        else
+            show_message("ENEMY!!!");
     }
+        
 }
 
-//for(var i = 0; i &lt; instance_number(obj_))
+arrayOfPositions[0] = instance_position(snap_x,snap_y,obj_normalLand);
+arrayOfPositions[1] = instance_position(snap_x + 32,snap_y,obj_normalLand);
+arrayOfPositions[2] = instance_position(snap_x + 32,snap_y + 32,obj_normalLand);
+arrayOfPositions[3] = instance_position(snap_x,snap_y + 32,obj_normalLand);
+arrayOfPositions[4] = instance_position(snap_x - 32,snap_y + 32,obj_normalLand);
+arrayOfPositions[5] = instance_position(snap_x - 32,snap_y,obj_normalLand);
+arrayOfPositions[6] = instance_position(snap_x - 32,snap_y - 32,obj_normalLand);
+arrayOfPositions[7] = instance_position(snap_x,snap_y - 32,obj_normalLand);
+arrayOfPositions[8] = instance_position(snap_x + 32,snap_y - 32,obj_normalLand);
 
-/*
-if scr_definePath(obj_riflemenUnit.x + 16,obj_riflemenUnit.y + 16, obj_ironLand.x+16, obj_ironLand.y+16)
+for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
 {
-    with(obj_unit){
-        xx = path_get_point_x(global.path, pos);
-        yy = path_get_point_y(global.path, pos);
-    }
+   unit[i] = instance_find(obj_unit,i);
+   if(unit[i].selected){
+        mp_grid_clear_cell(global.pathfindingGrid, floor(unit[i].x/32), floor(unit[i].y/32));
+        
+   }
 }
-else with (inst) instance_destroy();
-*/
+
+var currentPos = 0;
+
+for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
+{
+   unit[i] = instance_find(obj_unit,i);
+   if(unit[i].selected){
+        unit[i].moving = true;
+        unit[i].pathHaulted = false;
+        unit[i].path = path_add();
+        
+        if(instance_position(arrayOfPositions[currentPos].x, arrayOfPositions[currentPos].y, obj_unit)){
+            currentPos++;
+            continue;
+        }
+            
+        unit[i].foundPath = scr_definePath(unit[i].x,unit[i].y, (floor(arrayOfPositions[currentPos].x/32) * 32 + 16), (floor(arrayOfPositions[currentPos].y/32) * 32 + 16), unit[i].path, unit[i]);
+
+        if(unit[i].foundPath){
+            unit[i].x = floor(unit[i].x/32) * 32 + 16;
+            unit[i].y = floor(unit[i].y/32) * 32 + 16;
+            unit[i].drawPath = true;
+            
+            with(unit[i])  path_start(path,3,0,1);
+        }
+        currentPos++;
+   }
+}
+
 </string>
           </argument>
         </arguments>
@@ -241,7 +300,7 @@ if(global.mode = "buyLand"){
         if(land.government == noone){
             //show_message(global.myGov.color);
             if(script_execute(scr_checkForAdjacentLand,land, global.myGov)){
-                if(global.myGov.cash &gt;= 100){
+                if(global.myGov.cash &gt;= global.buyLandCost){
                     land.government = global.myGov;
                     //show_message(global.myGov);
                     //Multiplayer send message
@@ -256,7 +315,7 @@ if(global.mode = "buyLand"){
                     if(global.mapMode == "governmentMapMode")
                         script_execute(scr_colorGovernments);
                         
-                    global.myGov.cash -= 100;
+                    global.myGov.cash -= global.buyLandCost;
                     
                     symbol = instance_create(land.x,land.y - 64,obj_cashSymbol);
                     symbol.spriteToDraw = spr_redDollar; 

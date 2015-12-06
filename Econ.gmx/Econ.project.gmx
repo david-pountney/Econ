@@ -37,10 +37,15 @@
     </sprites>
     <sprite>sprites\spr_riflemenUnit</sprite>
     <sprite>sprites\spr_cursor</sprite>
+    <sprite>sprites\spr_targetUnit</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
+    <scripts name="networking">
+      <script>scripts\scr_receivedPacketServer.gml</script>
+      <script>scripts\scr_receivedPacketClient.gml</script>
+    </scripts>
     <script>scripts\scr_getDistance.gml</script>
     <script>scripts\scr_getClosestObj.gml</script>
     <script>scripts\scr_getSupplier.gml</script>
@@ -57,10 +62,6 @@
     </scripts>
     <script>scripts\scr_transaction.gml</script>
     <script>scripts\scr_checkForAdjacentLand.gml</script>
-    <scripts name="networking">
-      <script>scripts\scr_receivedPacketServer.gml</script>
-      <script>scripts\scr_receivedPacketClient.gml</script>
-    </scripts>
     <scripts name="techs">
       <script>scripts\scr_increaseProductQuality.gml</script>
     </scripts>
@@ -71,9 +72,13 @@
     <script>scripts\scr_buyFromGovernmentStockpile.gml</script>
     <script>scripts\scr_buyFromPuchaseGoods.gml</script>
     <script>scripts\scr_toggleSelect.gml</script>
-    <script>scripts\scr_definePath.gml</script>
     <script>scripts\scr_checkForAdjacentUnit.gml</script>
     <script>scripts\scr_checkDirection.gml</script>
+    <scripts name="path">
+      <script>scripts\scr_definePath.gml</script>
+      <script>scripts\scr_recalculatePaths.gml</script>
+    </scripts>
+    <script>scripts\scr_moveToAttack.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_debug</font>
