@@ -38,19 +38,16 @@ while(ds_list_size(listOfNodes) != 0){
     ds_list_add(listOfNeighbours, rightUpNode);
     
     for(var i = 0; i < ds_list_size(listOfNeighbours); i++){
-        //show_message("i " + string(i));
-        //show_message("size " + string(ds_list_size(listOfNeighbours)));
-        currentNeighbourNode = ds_list_find_value(listOfNeighbours, i);//instance_position(currentNode.x,currentNode.y,obj_normalLand);
+        currentNeighbourNode = ds_list_find_value(listOfNeighbours, i);
         if(currentNeighbourNode == noone)
             show_message("whoops..");
-        //show_message("curent neighbour: " + string(currentNeighbourNode));
-        //show_message("curent neighbour x: " + string(currentNeighbourNode.x));
-        //show_message("curent neighbour y: " + string(currentNeighbourNode.y));
+            
+        if(currentNeighbourNode.government != global.myGov) continue;
+        
         if(!position_meeting(currentNeighbourNode.x, currentNeighbourNode.y, obj_solid)){
-            show_message(string(currentNeighbourNode));
             return currentNeighbourNode;
         }
-        //else//    show_message("Collision detected");
+        
         ds_list_add(listOfNodes,currentNeighbourNode);
     }
     

@@ -105,8 +105,6 @@ switch( msgid ) {//Case statements go here...
         
         unit = instance_create(unitX,unitY, unitObj);
         
-        show_message("made");
-        
         break;
         
     default:

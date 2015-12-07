@@ -255,6 +255,8 @@ for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
             
             with(unit[i])  path_start(path,3,0,1);
         }
+        else with(unit[i]) mp_grid_add_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
+        
         currentPos++;
    }
 }

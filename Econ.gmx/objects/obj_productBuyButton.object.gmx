@@ -77,9 +77,9 @@ if(buyMode == "purchaseGoods"){
 
 if(goodBrought) {
     //Make unit
-    show_message(string(unit));
-    obj_barracks.broughtUnitObj = unit;
-    with(obj_militaryBase) event_perform(ev_other,ev_user0);
+    //show_message("Unit: " + string(unit));
+    obj_barracks.broughtUnitObj = obj_riflemenUnit;
+    with(obj_barracks) event_perform(ev_other,ev_user0);
     //Kill menu
     with(obj_militaryRecruitMenu) instance_destroy();
 }

@@ -13,6 +13,5 @@ else{
     path_set_kind(path, 0);
     unit.endX = fx;
     unit.endY = fy;
-    //show_message(string(path));
     return true;
 }

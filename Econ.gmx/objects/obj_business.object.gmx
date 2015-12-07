@@ -108,6 +108,9 @@ government = land.government;
 
 //Cash symbol
 cashSymbol = noone;
+
+//Add self to pathfindinggrid
+mp_grid_add_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
 </string>
           </argument>
         </arguments>
@@ -138,6 +141,9 @@ cashSymbol = noone;
 supplying[0] = noone;
 supplying[1] = noone;
 supplying[2] = noone;
+
+//Clear self from pathfindinggrid
+mp_grid_clear_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
 </string>
           </argument>
         </arguments>
