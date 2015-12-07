@@ -36,6 +36,7 @@ buyButtonGovernmentStockpile.buyMode = "governmentStockpile";
 
 buyButtonPurchaseGood = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .75),topLeftY + 450, obj_productBuyButton);
 buyButtonPurchaseGood.unitGood = obj_riflemenSquad;
+buyButtonPurchaseGood.unit = obj_riflemenUnit;
 buyButtonPurchaseGood.buyMode = "purchaseGoods";
 
 </string>

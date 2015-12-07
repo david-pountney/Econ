@@ -28,6 +28,76 @@
             <string>///Snap to grid
 x=floor(x/32)*32;
 y=floor(y/32)*32;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Set up variables
+
+//Unit just payed for
+broughtUnitObj = noone;
+
+//Unit instance
+unitIns = noone;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Make unit
+var unitCell = scr_breadthFirstSearch(instance_position(obj_barracks.x, obj_barracks.y,obj_normalLand) );
+    show_message(string(unitCell.x));
+if(unitCell != noone){
+    show_message(string(unitCell));
+    unitIns = instance_create(unitCell.x,unitCell.y,broughtUnitObj); 
+    unitIns.government = global.myGov;
+    
+    //Multiplayer send message
+    buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
+    buffer_write( global.client.Buffer , buffer_string , "sUNITADD" );
+    buffer_write( global.client.Buffer , buffer_u32 , unitIns.object_index );
+    buffer_write( global.client.Buffer , buffer_u16 , unitIns.x );
+    buffer_write( global.client.Buffer , buffer_u16 , unitIns.y );
+    buffer_write( global.client.Buffer , buffer_u32 , global.myGov );
+    
+    result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
+    
+    scr_recalculatePaths();
+}else show_message(string("nope"));
 </string>
           </argument>
         </arguments>

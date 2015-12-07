@@ -30,7 +30,7 @@ color = c_blue;
 
 buyMode = "";
 unitGood = noone;
-
+unit = noone;
 
 </string>
           </argument>
@@ -77,15 +77,10 @@ if(buyMode == "purchaseGoods"){
 
 if(goodBrought) {
     //Make unit
-    var unitCell = scr_breadthFirstSearch(instance_position(obj_barracks.x, obj_barracks.y,obj_normalLand) );
-    if(unitCell){
-        show_message(("barrack x " + string(obj_barracks.x)));
-        show_message(("barrack y " + string(obj_barracks.y)));
-        show_message(string(unitGood));
-        show_message(string(unitCell.x));
-        show_message(string(unitCell.y));
-        unitIns = instance_create(unitCell.x,unitCell.y,obj_riflemenUnit); 
-    }
+    show_message(string(unit));
+    obj_barracks.broughtUnitObj = unit;
+    with(obj_militaryBase) event_perform(ev_other,ev_user0);
+    //Kill menu
     with(obj_militaryRecruitMenu) instance_destroy();
 }
 </string>
