@@ -150,39 +150,30 @@ mask_index = spr_rect;
             <string>var snap_x = (obj_mouse.x/32) * 32;
 var snap_y = (obj_mouse.y/32) * 32;
 
-if(instance_position(snap_x,snap_y,obj_unit) == noone){
-    var unit = instance_create(snap_x, snap_y, obj_riflemenUnit);
-    unit.government = global.myGov;
+var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand));
+//show_message(string(cell));
+
+if(cell != noone){
+    if(instance_position(cell.x,cell.y,obj_unit) == noone){
+        var unit = instance_create(cell.x, cell.y, obj_riflemenUnit);
+        unit.government = global.myGov;
+        
+        //Multiplayer send message
+        buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
+        buffer_write( global.client.Buffer , buffer_string , "sUNITADD" );
+        buffer_write( global.client.Buffer , buffer_u32 , unit.object_index );
+        buffer_write( global.client.Buffer , buffer_u16 , unit.x );
+        buffer_write( global.client.Buffer , buffer_u16 , unit.y );
+        buffer_write( global.client.Buffer , buffer_u32 , global.myGov );
     
-    //Multiplayer send message
-    buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
-    buffer_write( global.client.Buffer , buffer_string , "sUNITADD" );
-    buffer_write( global.client.Buffer , buffer_u32 , unit.object_index );
-    buffer_write( global.client.Buffer , buffer_u16 , unit.x );
-    buffer_write( global.client.Buffer , buffer_u16 , unit.y );
-    buffer_write( global.client.Buffer , buffer_u32 , global.myGov );
-
-    result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
-
-    scr_recalculatePaths();
+        result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
+    
+        scr_recalculatePaths();
+    }
 }
 </string>
           </argument>
         </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>114</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_reverse_ydir</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="6" enumb="57">

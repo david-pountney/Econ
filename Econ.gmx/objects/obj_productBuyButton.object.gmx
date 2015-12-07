@@ -75,7 +75,19 @@ if(buyMode == "purchaseGoods"){
     goodBrought = false;//script_execute(scr_buyFromGovernmentStockpile,unitGood);
 }
 
-if(goodBrought) with(obj_militaryRecruitMenu) instance_destroy();
+if(goodBrought) {
+    //Make unit
+    var unitCell = scr_breadthFirstSearch(instance_position(obj_barracks.x, obj_barracks.y,obj_normalLand) );
+    if(unitCell){
+        show_message(("barrack x " + string(obj_barracks.x)));
+        show_message(("barrack y " + string(obj_barracks.y)));
+        show_message(string(unitGood));
+        show_message(string(unitCell.x));
+        show_message(string(unitCell.y));
+        unitIns = instance_create(unitCell.x,unitCell.y,obj_riflemenUnit); 
+    }
+    with(obj_militaryRecruitMenu) instance_destroy();
+}
 </string>
           </argument>
         </arguments>
