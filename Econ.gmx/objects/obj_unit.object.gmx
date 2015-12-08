@@ -141,6 +141,10 @@ if(moving == true){
           <argument>
             <kind>1</kind>
             <string>///Select unit
+
+//Check for any menu
+if(obj_menuController.menu) exit;
+
 if(instance_exists(obj_mouse))
     scr_toggleSelect(obj_mouse.px, obj_mouse.py, mouse_x, mouse_y);
 </string>

@@ -23,6 +23,8 @@ for (var i = 0; i < instance_number(obj_business); i += 1)
    
    if(object_get_name(object_index) == object_get_name(business[i].object_index)) continue;
 
+   if(!business[i].built) continue;
+   
    if(business[i] != obj0){
         //Can this business supply someone?
         if(business[i].supplyingFullFlag == true){

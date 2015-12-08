@@ -57,6 +57,13 @@ broughtUnitObj = noone;
 //Unit instance
 unitIns = noone;
 
+//Buildtime
+dayStartedBuilding = global.day;
+dayBuilt = global.day + 20;
+
+//Built
+built = false;
+
 //Add to grid
 mp_grid_add_cell(global.pathfindingGrid,floor(x/32), floor(y/32));
 </string>
@@ -83,6 +90,61 @@ mp_grid_add_cell(global.pathfindingGrid,floor(x/32), floor(y/32));
             <kind>1</kind>
             <string>///Remove from grid
 mp_grid_clear_cell(global.pathfindingGrid,floor(x/32), floor(y/32));
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Build the business
+if(((global.day - dayStartedBuilding) / (dayBuilt - dayStartedBuilding) * 100) &gt;= 100){
+    built = true;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="7">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Check for any menu
+if(obj_menuController.menu) exit;
+
+if(!built) exit;
+
+obj_menuController.militaryRecruitMenuOpen = true;
+obj_menuController.selectedBase = id;
 </string>
           </argument>
         </arguments>
@@ -125,6 +187,31 @@ if(unitCell != noone){
     
     scr_recalculatePaths();
 }else show_message(string("nope"));
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(!built){
+    draw_healthbar(x,y - 10,x + 30, (y - 10) + 4, ((global.day - dayStartedBuilding) / (dayBuilt - dayStartedBuilding) * 100),c_black,c_red,c_green,0,true,true );
+}
 </string>
           </argument>
         </arguments>

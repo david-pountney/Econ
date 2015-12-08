@@ -241,6 +241,8 @@ for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
         unit[i].pathHaulted = false;
         unit[i].path = path_add();
         
+        if(!arrayOfPositions[currentPos]) continue;
+        
         if(instance_position(arrayOfPositions[currentPos].x, arrayOfPositions[currentPos].y, obj_unit)){
             currentPos++;
             continue;

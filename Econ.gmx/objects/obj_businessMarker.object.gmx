@@ -106,6 +106,10 @@ y=floor(mouse_y/32)*32;
 var business = instance_position(floor(mouse_x/32)*32, floor(mouse_y/32)*32, obj_business);
 
 if(business == noone){
+    if(!land) exit;
+    
+    if(instance_position(land.x,land.y, obj_solid)) exit;
+    
     if(land.government == global.myGov){
         newIns = instance_create(mouse_x,mouse_y,selectedBusinessObj);
         newIns.busType = "govOwned";

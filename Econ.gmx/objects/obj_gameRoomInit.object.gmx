@@ -107,6 +107,9 @@ if(global.day % 30 == 0){
     for (var i = 0; i &lt; instance_number(obj_business); i += 1)
     {
         business[i] = instance_find(obj_business,i);
+        
+        if(!business[i].built) continue;
+        
         if(business[i].cashSymbol == noone){
             //Made money
             if(business[i].monthlyStartingCash &lt; business[i].cash){

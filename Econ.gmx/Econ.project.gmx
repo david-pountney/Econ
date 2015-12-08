@@ -75,8 +75,8 @@
     <scripts name="path">
       <script>scripts\scr_definePath.gml</script>
       <script>scripts\scr_recalculatePaths.gml</script>
+      <script>scripts\scr_moveToAttack.gml</script>
     </scripts>
-    <script>scripts\scr_moveToAttack.gml</script>
     <script>scripts\scr_breadthFirstSearch.gml</script>
   </scripts>
   <fonts name="fonts">
