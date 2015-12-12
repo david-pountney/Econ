@@ -36,7 +36,7 @@ switch( msgid ) {//Case statements go here...
         break;
         
     case "rJOINROOM":
-        room = game_room;
+        room = GAME_ROOM;
         
         break;
         
@@ -66,8 +66,8 @@ switch( msgid ) {//Case statements go here...
             var newBus = instance_create(landX,landY,business); 
             newBus.productQuality = quality;
             //show_message(global.mapMode);
-            //if(global.mapMode == "governmentMapMode")
-            //    script_execute(scr_colorGovernments);
+            if(global.mapMode == "governmentMapMode")
+                script_execute(scr_colorGovernments);
         }
         
         //show_message("got message");
@@ -86,9 +86,9 @@ switch( msgid ) {//Case statements go here...
                 show_message(string(business[i].productProduced));
                 show_message(string(good));
                 if(business[i].productProduced == good){
-                    show_message(string(business[i].productProduced));
+                    //show_message(string(business[i].productProduced));
                     business[i].productQuality = productQuality;
-                    show_message(string(productQuality));
+                    //show_message(string(productQuality));
                 }
             }
         }

@@ -36,7 +36,6 @@ switch( msgid ) {//Case statements go here...
         for (i=0; i<ds_list_size(obj_server.SocketList); i++) { 
             var currentSocket = ds_list_find_value(obj_server.SocketList, i);
             if(currentSocket != socket)
-            //show_message(currentSocket);
                 network_send_packet(currentSocket, Buffer, buffer_tell( Buffer )); 
         }
         

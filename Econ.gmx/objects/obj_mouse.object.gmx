@@ -121,10 +121,8 @@ py = -1;
 
 global.amountOfUnitsSelected = 0;
 
-
-
 //Check for any menu
-if(room = game_room)
+if(room = GAME_ROOM)
     if(obj_menuController.menu) exit;
 
 px = mouse_x;

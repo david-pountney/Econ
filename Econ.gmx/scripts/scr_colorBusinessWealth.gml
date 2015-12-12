@@ -2,6 +2,8 @@ var business;
 
 script_execute(scr_resetMapColor,make_color_hsv(0,0,255));
 
+global.mapMode = "businessWealthMapMode";
+
 //show_message("one");
 for (var i = 0; i < instance_number(obj_business); i += 1)
 {

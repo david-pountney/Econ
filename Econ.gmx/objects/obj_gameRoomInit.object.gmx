@@ -57,6 +57,12 @@ global.mode = "buyLand";
 //Map modes
 global.mapMode = "landMapMode";
 
+//Resource map mode
+global.resourceMapMode = "";
+
+//Current map mode resource color
+global.resourceColor = noone;
+
 //Global resources
 global.wheat = instance_find(obj_wheat,0);
 global.beer = instance_find(obj_beer,0);
@@ -236,6 +242,8 @@ result = network_send_packet( global.client.Socket , global.client.Buffer , buff
         draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 100,"Gov Cash: " + string(global.myGov.cash),c_red,c_red,c_red,c_red,255);
     
     //draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 125,"Gov Cash: " + string(.cash),c_red,c_red,c_red,c_red,255);
+    
+    draw_text_colour(view_xport[0] + view_wport[0] - 200,view_yport[0] + 125,"Real FPS: "  + string(fps),c_red,c_red,c_red,c_red,255);
     
     draw_set_font(fnt_normal);
 //}

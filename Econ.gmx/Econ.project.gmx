@@ -78,7 +78,11 @@
       <script>scripts\scr_moveToAttack.gml</script>
     </scripts>
     <script>scripts\scr_breadthFirstSearch.gml</script>
+    <script>scripts\scr_updateMapTileColor.gml</script>
   </scripts>
+  <shaders name="shaders">
+    <shader type="GLSLES">shaders\shd_default.shader</shader>
+  </shaders>
   <fonts name="fonts">
     <font>fonts\fnt_debug</font>
     <font>fonts\fnt_normal</font>
@@ -204,8 +208,12 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\mutliplayer_lobby</room>
-    <room>rooms\game_room</room>
+    <room>rooms\test_game_room</room>
+    <room>rooms\real_game_room</room>
   </rooms>
+  <constants number="1">
+    <constant name="GAME_ROOM">test_game_room</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>

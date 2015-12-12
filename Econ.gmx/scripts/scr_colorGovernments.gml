@@ -1,11 +1,10 @@
-for (var i = 0; i < instance_number(obj_normalLand); i += 1)
-{
-   land[i] = instance_find(obj_normalLand,i);
-   //show_message(land[i].color);
-   //show_message(land[i].government);
-   if(land[i].government != noone){
-        land[i].color = land[i].government.color;
-   }
-   else land[i].color = global.whiteHSV;
-   land[i].drawOutline = false;
+for(var i =  view_yview[0]; i <= view_yview[0] + view_hview[0]; i+=32){
+    for(var j = view_xview[0]; j <= view_xview[0] + view_wview[0]; j+=32){
+       land = instance_position(j,i,obj_normalLand);
+       if(land.government != noone){
+            land.color = land.government.color;
+       }
+       else land.color = global.whiteHSV;
+       land.drawOutline = false;
+    }
 }

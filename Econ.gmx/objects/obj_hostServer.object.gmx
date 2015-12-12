@@ -79,7 +79,7 @@ draw_set_valign(fa_top);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room = game_room;
+            <string>room = GAME_ROOM;
 </string>
           </argument>
         </arguments>

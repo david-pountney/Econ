@@ -307,8 +307,8 @@ if(global.mode = "buyLand"){
         
                     result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
                     
-                    if(global.mapMode == "governmentMapMode")
-                        script_execute(scr_colorGovernments);
+                    //if(global.mapMode == "governmentMapMode")
+                    //    script_execute(scr_colorGovernments);
                         
                     global.myGov.cash -= global.buyLandCost;
                     
@@ -540,8 +540,7 @@ script_execute(scr_colorGovernments);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.mapMode = "landMapMode";
-script_execute(scr_resetMapColor, global.defaultLandColor);
+            <string>script_execute(scr_resetMapColor, global.defaultLandColor);
 </string>
           </argument>
         </arguments>
