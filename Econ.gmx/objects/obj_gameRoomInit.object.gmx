@@ -50,6 +50,7 @@ global.govColors[1] = make_colour_hsv(130,100,200);
 global.wheatColor = make_colour_hsv(40,240,255);
 global.populationColor = make_colour_hsv(200,240,255);
 global.ironColor = make_colour_hsv(160,240,255);
+global.oilColor = make_colour_hsv(225,240,255);
 
 //Modes
 global.mode = "buyLand";
@@ -72,6 +73,11 @@ global.population = instance_find(obj_population,0);
 global.wheatQuality = 1;
 global.beerQuality = 1;
 global.ironQuality = 1;
+global.oilQuality = 1;
+global.breadQuality = 1;
+global.cannedFoodsQuality = 1;
+global.machineToolsQuality = 1;
+global.firearmsQuality = 1;
 
 //Costs
 global.buyLandCost = 100;
@@ -79,11 +85,16 @@ global.buyLandCost = 100;
 //Units
 global.amountOfUnitsSelected = 0;
 
+//The resource quality of each good
 global.resourceQuality = ds_map_create();
 ds_map_add(global.resourceQuality,"wheat", global.wheatQuality);
 ds_map_add(global.resourceQuality,"beer", global.beerQuality);
 ds_map_add(global.resourceQuality,"iron", global.ironQuality);
-
+ds_map_add(global.resourceQuality,"oil", global.oilQuality);
+ds_map_add(global.resourceQuality,"bread", global.breadQuality);
+ds_map_add(global.resourceQuality,"cannedFoods", global.cannedFoodsQuality);
+ds_map_add(global.resourceQuality,"machineTools", global.machineToolsQuality);
+ds_map_add(global.resourceQuality,"firearms", global.firearmsQuality);
 
 
 </string>

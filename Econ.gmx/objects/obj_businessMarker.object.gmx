@@ -119,6 +119,7 @@ if(business == noone){
         buffer_write( global.client.Buffer , buffer_u16 , land.x );
         buffer_write( global.client.Buffer , buffer_u16 , land.y );
         buffer_write( global.client.Buffer , buffer_u32 , selectedBusinessObj );
+        
         buffer_write( global.client.Buffer , buffer_u16 , ds_map_find_value(global.resourceQuality,newIns.productProduced.name ));
         
         result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );

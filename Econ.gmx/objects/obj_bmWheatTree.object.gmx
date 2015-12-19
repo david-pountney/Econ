@@ -28,9 +28,11 @@
             <string>topLeftX = obj_buildBusinessMenu.topLeftX;
 topLeftY = obj_buildBusinessMenu.topLeftY;
 
-bmFarm = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 120,obj_bmFarm);
-bmBrewery = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 120,obj_bmBrewery);
-bmPub = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .75),topLeftY + 120,obj_bmPub);
+bmFarm = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_bmFarm);
+bmBrewery = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 200,obj_bmBrewery);
+bmPub = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .75),topLeftY + 200,obj_bmPub);
+bmBakery = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 400,obj_bmBakery);
+bmCannedFoods = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 400,obj_bmCannedFoods);
 </string>
           </argument>
         </arguments>
@@ -56,7 +58,8 @@ bmPub = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .75),topLe
             <string>with(bmFarm) instance_destroy();
 with(bmBrewery) instance_destroy();
 with(bmPub) instance_destroy();
-
+with(bmBakery) instance_destroy();
+with(bmCannedFoods) instance_destroy();
 
 
 </string>
@@ -92,6 +95,12 @@ bmBrewery.y = topLeftY + 200;
 
 bmPub.x = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
 bmPub.y = topLeftY + 200;
+
+bmBakery.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
+bmBakery.y = topLeftY + 400;
+
+bmCannedFoods.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
+bmCannedFoods.y = topLeftY + 400;
 </string>
           </argument>
         </arguments>
