@@ -28,14 +28,8 @@
             <string>topLeftX = obj_buildBusinessMenu.topLeftX;
 topLeftY = obj_buildBusinessMenu.topLeftY;
 
-bmIronMine = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 120,obj_bmIronMine);
-
-//Tabs
-bmTabGovSubbed = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .33),topLeftY + 16,obj_bmTabGovSubbed);
-bmTabGovSubbed.visible = false;
-
-bmTabGovOwned = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .66),topLeftY + 16,obj_bmTabGovOwned);
-bmTabGovOwned.visible = false;
+bmIronMine = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_bmIronMine);
+bmMachineToolsFactory = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 200,obj_bmMachineToolsFactory);
 
 //bmBrewery = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 120,obj_bmBrewery);
 //bmPub = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .75),topLeftY + 120,obj_bmPub);
@@ -62,8 +56,7 @@ bmTabGovOwned.visible = false;
           <argument>
             <kind>1</kind>
             <string>with(bmIronMine) instance_destroy();
-if(bmTabGovSubbed != noone) with(bmTabGovSubbed) instance_destroy();
-if(bmTabGovOwned != noone) with(bmTabGovOwned) instance_destroy();
+with(bmMachineToolsFactory) instance_destroy();
 
 //with(bmBrewery) instance_destroy();
 //with(bmPub) instance_destroy();
@@ -98,28 +91,8 @@ topLeftY = obj_buildBusinessMenu.topLeftY;
 bmIronMine.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
 bmIronMine.y = topLeftY + 200;
 
-//Only govsubbed
-if(bmTabGovSubbed != noone &amp;&amp; bmTabGovOwned == noone){
-    bmTabGovSubbed.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
-    bmTabGovSubbed.y = topLeftY + 100;
-}
-
-if(bmTabGovSubbed != noone &amp;&amp; bmTabGovOwned != noone){
-    bmTabGovSubbed.x = topLeftX + (sprite_get_width(spr_buildMenu) * .33);
-    bmTabGovSubbed.y = topLeftY + 100;
-    
-    bmTabGovOwned.x = topLeftX + (sprite_get_width(spr_buildMenu) * .66);
-    bmTabGovOwned.y = topLeftY + 100;
-}
-
-bmTabGovSubbed.visible = true;
-bmTabGovOwned.visible = true;
-
-//bmBrewery.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
-//bmBrewery.y = topLeftY + 200;
-
-//bmPub.x = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
-//bmPub.y = topLeftY + 200;
+bmMachineToolsFactory.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
+bmMachineToolsFactory.y = topLeftY + 200;
 </string>
           </argument>
         </arguments>

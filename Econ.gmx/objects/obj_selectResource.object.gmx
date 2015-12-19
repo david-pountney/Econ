@@ -30,6 +30,7 @@ topLeftY = obj_buildBusinessMenu.topLeftY;
 
 bmWheat = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_bmWheat);
 bmIron = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 200,obj_bmIron);
+bmOil = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .75),topLeftY + 200,obj_bmOil);
 </string>
           </argument>
         </arguments>
@@ -54,6 +55,7 @@ bmIron = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLe
             <kind>1</kind>
             <string>with(bmWheat) instance_destroy();
 with(bmIron) instance_destroy();
+with(bmOil) instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -80,10 +82,13 @@ with(bmIron) instance_destroy();
 topLeftY = obj_buildBusinessMenu.topLeftY;
 
 bmWheat.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
-bmWheat.y = topLeftY;
+bmWheat.y = topLeftY + 200;
 
 bmIron.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
 bmIron.y = topLeftY + 200;
+
+bmOil.x = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
+bmOil.y = topLeftY + 200;
 </string>
           </argument>
         </arguments>
