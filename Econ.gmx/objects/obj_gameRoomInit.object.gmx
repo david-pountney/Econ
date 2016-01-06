@@ -78,6 +78,8 @@ global.breadQuality = 1;
 global.cannedFoodsQuality = 1;
 global.machineToolsQuality = 1;
 global.firearmsQuality = 1;
+global.steelQuality = 1;
+global.automobileQuality = 1;
 
 //Costs
 global.buyLandCost = 100;
@@ -95,6 +97,8 @@ ds_map_add(global.resourceQuality,"bread", global.breadQuality);
 ds_map_add(global.resourceQuality,"cannedFoods", global.cannedFoodsQuality);
 ds_map_add(global.resourceQuality,"machineTools", global.machineToolsQuality);
 ds_map_add(global.resourceQuality,"firearms", global.firearmsQuality);
+ds_map_add(global.resourceQuality,"steel", global.steelQuality);
+ds_map_add(global.resourceQuality,"automobile", global.automobileQuality);
 
 
 </string>

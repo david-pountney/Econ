@@ -129,6 +129,8 @@ else if(selectedResource == obj_bmIron)
     selectBusiness = instance_create(x,y,obj_bmIronTree);
 else if(selectedResource == obj_bmOil)
     selectBusiness = instance_create(x,y,obj_bmOilTree);
+else if(selectedResource == obj_bmSteel)
+    selectBusiness = instance_create(x,y,obj_bmSteelTree);
 </string>
           </argument>
         </arguments>

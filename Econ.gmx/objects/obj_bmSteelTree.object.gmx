@@ -28,14 +28,8 @@
             <string>topLeftX = obj_buildBusinessMenu.topLeftX;
 topLeftY = obj_buildBusinessMenu.topLeftY;
 
-bmIronMine = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_bmIronMine);
-bmMachineToolsFactory = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 200,obj_bmMachineToolsFactory);
-bmFirearmsFactory = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .75),topLeftY + 200,obj_bmFirearmsFactory);
-bmGunShop = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 400,obj_bmGunShop);
-bmSteelFactory = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 400,obj_bmSteelFactory);
-
-//bmBrewery = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 120,obj_bmBrewery);
-//bmPub = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .75),topLeftY + 120,obj_bmPub);
+bmAutomobileFactory = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .25),topLeftY + 200,obj_bmAutomobileFactory);
+bmCarDealership = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .5),topLeftY + 400,obj_bmCarDealership);
 </string>
           </argument>
         </arguments>
@@ -58,12 +52,8 @@ bmSteelFactory = instance_create(topLeftX + (sprite_get_width(spr_buildMenu) * .
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with(bmIronMine) instance_destroy();
-with(bmMachineToolsFactory) instance_destroy();
-with(bmFirearmsFactory) instance_destroy();
-with(bmGunShop) instance_destroy();
-with(bmSteelFactory) instance_destroy();
-
+            <string>with(bmAutomobileFactory) instance_destroy();
+with(bmCarDealership) instance_destroy();
 
 
 </string>
@@ -91,20 +81,11 @@ with(bmSteelFactory) instance_destroy();
             <string>topLeftX = obj_buildBusinessMenu.topLeftX;
 topLeftY = obj_buildBusinessMenu.topLeftY;
 
-bmIronMine.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
-bmIronMine.y = topLeftY + 200;
+bmAutomobileFactory.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
+bmAutomobileFactory.y = topLeftY + 200;
 
-bmMachineToolsFactory.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
-bmMachineToolsFactory.y = topLeftY + 200;
-
-bmFirearmsFactory.x = topLeftX + (sprite_get_width(spr_buildMenu) * .75);
-bmFirearmsFactory.y = topLeftY + 200;
-
-bmGunShop.x = topLeftX + (sprite_get_width(spr_buildMenu) * .25);
-bmGunShop.y = topLeftY + 400;
-
-bmSteelFactory.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
-bmSteelFactory.y = topLeftY + 400;
+bmCarDealership.x = topLeftX + (sprite_get_width(spr_buildMenu) * .5);
+bmCarDealership.y = topLeftY + 200;
 </string>
           </argument>
         </arguments>

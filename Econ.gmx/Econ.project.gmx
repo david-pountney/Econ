@@ -148,8 +148,12 @@
         <object>objects\obj_cannedFoods</object>
         <object>objects\obj_machineToolsFactory</object>
         <object>objects\obj_firearmsFactory</object>
+        <object>objects\obj_steelFactory</object>
+        <object>objects\obj_automobileFactory</object>
         <object>objects\obj_pub</object>
         <object>objects\obj_bakery</object>
+        <object>objects\obj_gunShop</object>
+        <object>objects\obj_carDealership</object>
       </objects>
       <object>objects\obj_cashSymbol</object>
       <object>objects\obj_backgroundPanel</object>
@@ -160,15 +164,20 @@
           <object>objects\obj_bmWheat</object>
           <object>objects\obj_bmIron</object>
           <object>objects\obj_bmOil</object>
+          <object>objects\obj_bmSteel</object>
         </objects>
         <objects name="selectBusiness">
           <object>objects\obj_bmFarm</object>
           <object>objects\obj_bmBrewery</object>
           <object>objects\obj_bmPub</object>
           <object>objects\obj_bmBakery</object>
+          <object>objects\obj_bmGunShop</object>
+          <object>objects\obj_bmCarDealership</object>
           <object>objects\obj_bmCannedFoods</object>
           <object>objects\obj_bmMachineToolsFactory</object>
           <object>objects\obj_bmFirearmsFactory</object>
+          <object>objects\obj_bmSteelFactory</object>
+          <object>objects\obj_bmAutomobileFactory</object>
           <object>objects\obj_bmIronMine</object>
           <object>objects\obj_bmOilRig</object>
           <objects name="selectBusinessTabs">
@@ -178,6 +187,7 @@
           </objects>
           <objects name="trees">
             <object>objects\obj_bmIronTree</object>
+            <object>objects\obj_bmSteelTree</object>
             <object>objects\obj_bmWheatTree</object>
             <object>objects\obj_bmOilTree</object>
           </objects>
