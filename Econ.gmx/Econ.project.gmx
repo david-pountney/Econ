@@ -41,6 +41,7 @@
     <sprite>sprites\spr_riflemenUnit</sprite>
     <sprite>sprites\spr_cursor</sprite>
     <sprite>sprites\spr_targetUnit</sprite>
+    <sprite>sprites\spr_primaryResourcePanel</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -234,6 +235,9 @@
         <object>objects\obj_militaryBase</object>
         <object>objects\obj_baseMarker</object>
         <object>objects\obj_barracks</object>
+      </objects>
+      <objects name="primaryResourcePanel">
+        <object>objects\obj_primaryResourcePanel</object>
       </objects>
     </objects>
     <objects name="multiplayerLobby">
