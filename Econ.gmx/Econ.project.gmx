@@ -42,6 +42,9 @@
     <sprite>sprites\spr_cursor</sprite>
     <sprite>sprites\spr_targetUnit</sprite>
     <sprite>sprites\spr_primaryResourcePanel</sprite>
+    <sprite>sprites\spr_wheatIcon</sprite>
+    <sprite>sprites\spr_ironIcon</sprite>
+    <sprite>sprites\spr_oilIcon</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -52,10 +55,7 @@
     </scripts>
     <script>scripts\scr_getDistance.gml</script>
     <script>scripts\scr_getClosestObj.gml</script>
-    <script>scripts\scr_getSupplier.gml</script>
     <script>scripts\scr_arrayFunctions.gml</script>
-    <script>scripts\scr_buyFromSupplier.gml</script>
-    <script>scripts\scr_sellToCustomers.gml</script>
     <script>scripts\scr_influenceMap.gml</script>
     <script>scripts\scr_setGovernment.gml</script>
     <scripts name="colorScripts">
@@ -64,7 +64,6 @@
       <script>scripts\scr_colorGovernments.gml</script>
       <script>scripts\scr_colorBusinessWealth.gml</script>
     </scripts>
-    <script>scripts\scr_transaction.gml</script>
     <script>scripts\scr_checkForAdjacentLand.gml</script>
     <scripts name="techs">
       <script>scripts\scr_increaseProductQuality.gml</script>
@@ -86,6 +85,13 @@
     <scripts name="utility">
       <script>scripts\trace.gml</script>
     </scripts>
+    <scripts name="business">
+      <script>scripts\scr_sellToCustomers.gml</script>
+      <script>scripts\scr_buyFromSupplier.gml</script>
+      <script>scripts\scr_getSupplier.gml</script>
+      <script>scripts\scr_produce.gml</script>
+      <script>scripts\scr_transaction.gml</script>
+    </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shd_default.shader</shader>
@@ -100,9 +106,9 @@
       <object>objects\obj_server</object>
       <object>objects\obj_client</object>
     </objects>
-    <object>objects\obj_control</object>
     <objects name="gameRoom">
       <object>objects\obj_gameRoomInit</object>
+      <object>objects\obj_control</object>
       <object>objects\obj_grid</object>
       <objects name="governments">
         <object>objects\obj_gov</object>
@@ -237,6 +243,7 @@
         <object>objects\obj_barracks</object>
       </objects>
       <objects name="primaryResourcePanel">
+        <object>objects\obj_playerResources</object>
         <object>objects\obj_primaryResourcePanel</object>
       </objects>
     </objects>

@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_business</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,25 +25,43 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>x = (view_xview[0]);
+y = (view_yview[0] + (view_hport[0] * .5));
 
-color = c_blue;
+panel = instance_create(x,y,obj_primaryResourcePanel);
 
-picture = spr_breweryPic;
+resourceAmount = ds_map_create();
+var objIns = instance_find(obj_wheat,0);
+ds_map_add(resourceAmount, objIns, 0);
+var objIns = instance_find(obj_iron,0);
+ds_map_add(resourceAmount, objIns, 0);
+var objIns = instance_find(obj_oil,0);
+ds_map_add(resourceAmount, objIns, 0);
 
-pstType = "secondary";
-
-monthlyCost = 50;
-
-resourceRequired = instance_find(obj_iron,0);
-producePerDay = 2;
-
-productProduced = instance_find(obj_machineTools,0);
-
-productMaxAmount = 10;
-
-resourceMaxAmount = 10;
-
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>x = (view_xview[0]);
+y = (view_yview[0] + (view_hport[0] * .5));
 </string>
           </argument>
         </arguments>
@@ -61,8 +79,5 @@ resourceMaxAmount = 10;
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints>
-    <point>0,0</point>
-    <point>16,16</point>
-  </PhysicsShapePoints>
+  <PhysicsShapePoints/>
 </object>

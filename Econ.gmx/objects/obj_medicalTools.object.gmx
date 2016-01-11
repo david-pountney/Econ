@@ -28,7 +28,8 @@
             <string>event_inherited();
 
 name = "medicalTools";
-value = 40;
+startingValue = 40;
+value = startingValue;
 displayName = "Medical Tools";
 </string>
           </argument>

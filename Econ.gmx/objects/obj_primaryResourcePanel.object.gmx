@@ -8,6 +8,31 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>wheatAmount = 0;
+ironAmount = 0;
+oilAmount = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -27,6 +52,52 @@
             <kind>1</kind>
             <string>x = (view_xview[0]);
 y = (view_yview[0] + (view_hport[0] * .5));
+
+//New day
+if(global.gamerTimer == 0){
+    wheatAmount = obj_wheat.playerAmount;
+    ironAmount = obj_iron.playerAmount;
+    oilAmount = obj_oil.playerAmount;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="73">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+draw_set_font(fnt_menu);
+
+//Draw wheat
+draw_sprite_ext(spr_wheatIcon,-1,x,y,1,1,0,c_white,1);
+draw_text_colour(x + 18, y, wheatAmount, c_black, c_black, c_black, c_black, 1);
+draw_text_colour(x + 45, y, "(" + string(obj_wheat.playerAmountIncrease) + ")", c_black, c_black, c_black, c_black, 1);
+//Draw iron
+draw_sprite_ext(spr_ironIcon,-1,x,y + 16,1,1,0,c_white,1);
+draw_text_colour(x + 18, y + 16, ironAmount, c_black, c_black, c_black, c_black, 1);
+draw_text_colour(x + 45, y + 16, "(" + string(obj_iron.playerAmountIncrease) + ")", c_black, c_black, c_black, c_black, 1);
+//Draw oil
+draw_sprite_ext(spr_oilIcon,-1,x,y + 32,1,1,0,c_white,1);
+draw_text_colour(x + 18, y + 32, oilAmount, c_black, c_black, c_black, c_black, 1);
+draw_text_colour(x + 45, y + 32, "(" + string(obj_oil.playerAmountIncrease) + ")", c_black, c_black, c_black, c_black, 1);
+
+draw_set_font(fnt_normal);
 </string>
           </argument>
         </arguments>

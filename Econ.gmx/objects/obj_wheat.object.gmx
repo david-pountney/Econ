@@ -27,9 +27,11 @@
             <kind>1</kind>
             <string>event_inherited();
 
-value = 4;
+startingValue = 4;
+value = startingValue;
 name = "wheat";
 displayName = "Wheat";
+playerAmountIncrease = 1;
 </string>
           </argument>
         </arguments>

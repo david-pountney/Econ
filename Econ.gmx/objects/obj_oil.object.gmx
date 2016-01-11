@@ -28,8 +28,10 @@
             <string>event_inherited();
 
 name = "oil";
-value = 20;
+startingValue = 20;
+value = startingValue;
 displayName = "Oil";
+playerAmountIncrease = 1;
 </string>
           </argument>
         </arguments>

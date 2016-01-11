@@ -28,7 +28,8 @@
             <string>event_inherited();
 
 name = "machineTools";
-value = 40;
+startingValue = 40;
+value = startingValue;
 displayName = "Machine Tools";
 </string>
           </argument>

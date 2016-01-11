@@ -28,7 +28,8 @@
             <string>event_inherited();
 
 name = "firearms";
-value = 40;
+startingValue = 40;
+value = startingValue;
 displayName = "Firearms";
 </string>
           </argument>

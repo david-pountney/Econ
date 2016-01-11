@@ -26,9 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>///Set up variables
-value = 0;
+startingValue = 0;
+value = startingValue;
 name = "";
 displayName = "";
+
+//Player stats
+playerAmount = 0;
+playerAmountIncrease = 0;
+
+//Store how many buildings are extracting this reosurce - supply and demand
+buildingsProducingResource = 0;
+buildingsNeedingResource = 0;
 
 //Used for purchasing goods
 amountOfGoodNeeded = 0;

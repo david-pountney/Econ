@@ -149,6 +149,9 @@ supplying[0] = noone;
 supplying[1] = noone;
 supplying[2] = noone;
 
+//Clear stock from players resources
+productProduced.playerAmount -= productStock;
+
 //Clear self from pathfindinggrid
 mp_grid_clear_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
 </string>
@@ -176,6 +179,11 @@ mp_grid_clear_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
             <string>///Build the business
 if(((global.day - dayStartedBuilding) / (dayBuilt - dayStartedBuilding) * 100) &gt;= 100){
     built = true;
+    
+    //Note the effect on supply and demand
+    productProduced.buildingsProducingResource++;
+    if(resourceRequired != noone)
+        resourceRequired.buildingsNeedingResource++;
 }
 </string>
           </argument>
@@ -215,7 +223,8 @@ if(((global.day - dayStartedBuilding) / (dayBuilt - dayStartedBuilding) * 100) &
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Check for any menu
+            <string>///Open business menu
+//Check for any menu
 if(obj_menuController.menu) exit;
 
 obj_menuController.businessStatsMenuOpen = true;
@@ -245,24 +254,26 @@ obj_menuController.selectedBusiness = id;
             <string>///Produce
 var landsResourceAmount = ds_map_find_value(land.resource,productProduced.name);
 
-if(pstType == "primary"){
-    if(landsResourceAmount &gt; 0){
-        if(productStock &lt; productMaxAmount)
-            productStock += producePerDay;
-    }
-}
-
-if(pstType == "secondary"){
-    if(resourceStock &gt;= resourceConsumedPerDay){
-        if(productStock &lt;= productMaxAmount - producePerDay){
-            productStock += producePerDay;
-            resourceStock -= resourceConsumedPerDay;
+if(built){
+    if(pstType == "primary"){
+        if(landsResourceAmount &gt; 0){
+            if(productStock &lt; productMaxAmount)
+                scr_produce(id);
         }
     }
-}
-
-if(pstType == "tertiary"){
-    script_execute(scr_sellToCustomers,id,land);
+    
+    if(pstType == "secondary"){
+        if(resourceStock &gt;= resourceConsumedPerDay){
+            if(productStock &lt;= productMaxAmount - producePerDay){
+                productStock += producePerDay;
+                resourceStock -= resourceConsumedPerDay;
+            }
+        }
+    }
+    
+    if(pstType == "tertiary"){
+        script_execute(scr_sellToCustomers,id,land);
+    }
 }
 </string>
           </argument>

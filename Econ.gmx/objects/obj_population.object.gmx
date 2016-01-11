@@ -27,7 +27,8 @@
             <kind>1</kind>
             <string>event_inherited();
 
-value = 10;
+startingValue = 10;
+value = startingValue;
 name = "pop";
 </string>
           </argument>

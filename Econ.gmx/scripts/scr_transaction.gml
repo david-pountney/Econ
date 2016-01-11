@@ -52,20 +52,21 @@ if(supplier.productStock > 0){
     
     if(amountToBuy > maxAmountSupplierHas) amountToBuy = maxAmountSupplierHas;
     
-    //show_message("Amount to buy " + string(amountToBuy));
-    
     //Transaction
     buyer.resourceStock += amountToBuy;
     
     //Make buyer pay import tax
     if(outsideNation){
-        buyer.cash -= (productCost * amountToBuy) + importTaxAmount;
+        buyer.government.cash -= (productCost * amountToBuy) + importTaxAmount;
         supplier.government.cash += importTaxAmount;
     }     
-    else buyer.cash -= (productCost * amountToBuy);
+    else buyer.government.cash -= (productCost * amountToBuy);
     
-    //show_message("Supplier product stock " + string(supplier.productStock));
+    
+    
+
     supplier.productStock -= amountToBuy;
-    supplier.cash += (productCost * amountToBuy);
+    supplier.productProduced.playerAmount -= amountToBuy;
+    supplier.government.cash += (productCost * amountToBuy);
     
 }

@@ -81,6 +81,15 @@ global.firearmsQuality = 1;
 global.steelQuality = 1;
 global.automobileQuality = 1;
 
+//Played resources
+global.playResources = ds_map_create();
+ds_map_add(global.playResources,"wheat", global.wheatQuality);
+
+
+global.playerOwnedWheatAmount = 0;
+global.playerOwnedIronAmount = 0;
+global.playerOwnedOilAmount = 0;
+
 //Costs
 global.buyLandCost = 100;
 
@@ -151,6 +160,18 @@ if(global.day % 30 == 0){
                 business[i].highestCash = business[i].cash;
         }
     }
+    
+    with(obj_good){
+        if(buildingsProducingResource &gt; buildingsNeedingResource){
+            value -= 1;
+        }
+        if(buildingsProducingResource &lt; buildingsNeedingResource){
+            value += 1;
+        }
+            
+        value = clamp(value,startingValue * .22, startingValue * 5);
+        value = clamp(value,1, startingValue * 5);
+    }
 }
 </string>
           </argument>
@@ -187,6 +208,7 @@ if(global.gamerTimer &gt; global.gameFrameCount){
     {
         business[i] = instance_find(obj_business,i);
         with(business[i]){
+            //Start the business cycle
             event_perform(ev_other,ev_user0);
             supplierDoneOnce = false;
         }

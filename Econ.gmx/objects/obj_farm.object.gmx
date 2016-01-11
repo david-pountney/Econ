@@ -39,7 +39,6 @@ productMaxAmount = 40;
 pstType = "primary";
 
 monthlyCost = 25;
-
 </string>
           </argument>
         </arguments>

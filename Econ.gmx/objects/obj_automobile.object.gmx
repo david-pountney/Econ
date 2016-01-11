@@ -28,7 +28,8 @@
             <string>event_inherited();
 
 name = "automobile";
-value = 40;
+startingValue = 40;
+value = startingValue;
 displayName = "Automobile";
 </string>
           </argument>
