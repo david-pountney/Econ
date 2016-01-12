@@ -136,10 +136,13 @@ switch( msgid ) {//Case statements go here...
         }
         
         if(unit != noone){
-            trace(unit.x);
-            trace(unit.y);
-            trace(unitFinalX);
-            trace(unitFinalY);
+            //About move so clear cell
+            mp_grid_clear_cell(global.pathfindingGrid, floor(unit.x/32), floor(unit.y/32));
+        
+            unit.moving = true;
+            unit.pathHaulted = false;
+            unit.path = path_add();
+            
             unit.foundPath = scr_definePath(unit.x,unit.y, (floor(unitFinalX/32) * 32 + 16), (floor(unitFinalY/32) * 32 + 16), unit.path, unit);
     
             if(unit.foundPath){
