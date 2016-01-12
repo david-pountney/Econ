@@ -120,6 +120,7 @@ switch( msgid ) {//Case statements go here...
         var unitX = buffer_read( buffer , buffer_u16 );
         var unitY = buffer_read( buffer , buffer_u16 );
         government = buffer_read( buffer , buffer_u32 );
+        var guid = buffer_read( buffer , buffer_string );
     
         buffer_seek( Buffer , buffer_seek_start , 0 );
         buffer_write( Buffer , buffer_string , "rUNITADD" );
@@ -128,6 +129,7 @@ switch( msgid ) {//Case statements go here...
         buffer_write( Buffer , buffer_u16 , unitX );
         buffer_write( Buffer , buffer_u16 , unitY );
         buffer_write( Buffer , buffer_u32 , government );
+        buffer_write( Buffer , buffer_string , guid );
         
         for (i=0; i<ds_list_size(obj_server.SocketList); i++) { 
             var currentSocket = ds_list_find_value(obj_server.SocketList, i);
@@ -163,14 +165,14 @@ switch( msgid ) {//Case statements go here...
         break;
         
     case "sMOVEUNIT":
-        var unit = buffer_read( buffer , buffer_u32 );
+        var unit_guid = buffer_read( buffer , buffer_string );
         var unitFinalX = buffer_read( buffer , buffer_u16 );
         var unitFinalY = buffer_read( buffer , buffer_u16 );
     
         buffer_seek( Buffer , buffer_seek_start , 0 );
         buffer_write( Buffer , buffer_string , "rMOVEUNIT" );
         
-        buffer_write( Buffer , buffer_u32 , unit );
+        buffer_write( Buffer , buffer_string , unit_guid );
         buffer_write( Buffer , buffer_u16 , unitFinalX );
         buffer_write( Buffer , buffer_u16 , unitFinalY );
         

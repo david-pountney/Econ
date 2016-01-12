@@ -48,7 +48,12 @@ y=floor(y/32)*32 + 16;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>  ///Set up pathfinding
+            <string>///Set up unit variables
+
+//guid
+guid = scr_getGUID();
+
+//Pathfinding
 selected = false;
 drawPath = false;
 pathHaulted = false;

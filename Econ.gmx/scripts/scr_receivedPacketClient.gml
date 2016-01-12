@@ -101,10 +101,12 @@ switch( msgid ) {//Case statements go here...
         var unitObj = buffer_read( buffer , buffer_u32 );
         var unitX = buffer_read( buffer , buffer_u16 );
         var unitY= buffer_read( buffer , buffer_u16 );
-        government = buffer_read( buffer , buffer_u32 );    
+        government = buffer_read( buffer , buffer_u32 ); 
+        var guid = buffer_read( buffer , buffer_string ); 
         
         unit = instance_create(unitX,unitY, unitObj);
         unit.government = government;
+        unit.guid = guid;
         
         break;
         
@@ -120,21 +122,35 @@ switch( msgid ) {//Case statements go here...
         break;
         
     case "rMOVEUNIT":
-        var unit = buffer_read( buffer , buffer_u32 );
+        var unit_guid = buffer_read( buffer , buffer_string );
         var unitFinalX = buffer_read( buffer , buffer_u16 );
         var unitFinalY = buffer_read( buffer , buffer_u16 );
         
-        unit.foundPath = scr_definePath(unit.x,unit.y, (floor(unitFinalX/32) * 32 + 16), (floor(unitFinalY/32) * 32 + 16), unit.path, unit);
-
-        if(unit.foundPath){
-            unit.x = floor(unit.x/32) * 32 + 16;
-            unit.y = floor(unit.y/32) * 32 + 16;
-            unit.drawPath = true;
-            
-            with(unit)  path_start(path,3,0,1);
-        }
-        else with(unit) mp_grid_add_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
+        var unit = noone;
         
+        for(var i = 0; i < instance_number(obj_unit); ++i){
+            if(instance_find(obj_unit,i).guid == unit_guid){
+                unit = instance_find(obj_unit,i);
+                break;
+            }
+        }
+        
+        if(unit != noone){
+            trace(unit.x);
+            trace(unit.y);
+            trace(unitFinalX);
+            trace(unitFinalY);
+            unit.foundPath = scr_definePath(unit.x,unit.y, (floor(unitFinalX/32) * 32 + 16), (floor(unitFinalY/32) * 32 + 16), unit.path, unit);
+    
+            if(unit.foundPath){
+                unit.x = floor(unit.x/32) * 32 + 16;
+                unit.y = floor(unit.y/32) * 32 + 16;
+                unit.drawPath = true;
+                
+                with(unit)  path_start(path,3,0,1);
+            }
+            else with(unit) mp_grid_add_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
+        }
         break;
         
     default:

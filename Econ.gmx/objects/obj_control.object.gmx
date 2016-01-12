@@ -25,14 +25,31 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Set up variables
-selectedBusinessObj = noone;
-selectedBusinessIns = noone;
+            <string>var snap_x = (obj_mouse.x/32) * 32;
+var snap_y = (obj_mouse.y/32) * 32;
 
-selectedBaseIns = noone;
-selectedBaseObj = noone;
+var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand));
+//show_message(string(cell));
 
-mask_index = spr_rect;
+if(cell != noone){
+    if(instance_position(cell.x,cell.y,obj_solid) == noone){
+        var unit = instance_create(cell.x, cell.y, obj_riflemenUnit);
+        unit.government = global.myGov;
+        
+        //Multiplayer send message
+        buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
+        buffer_write( global.client.Buffer , buffer_string , "sUNITADD" );
+        buffer_write( global.client.Buffer , buffer_u32 , unit.object_index );
+        buffer_write( global.client.Buffer , buffer_u16 , unit.x );
+        buffer_write( global.client.Buffer , buffer_u16 , unit.y );
+        buffer_write( global.client.Buffer , buffer_u32 , global.myGov );
+        buffer_write( global.client.Buffer , buffer_string , unit.guid );
+    
+        result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
+    
+        scr_recalculatePaths();
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -165,6 +182,7 @@ if(cell != noone){
         buffer_write( global.client.Buffer , buffer_u16 , unit.x );
         buffer_write( global.client.Buffer , buffer_u16 , unit.y );
         buffer_write( global.client.Buffer , buffer_u32 , global.myGov );
+        buffer_write( global.client.Buffer , buffer_string , unit.guid );
     
         result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
     
@@ -263,7 +281,7 @@ for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
         //Multiplayer send message
         buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
         buffer_write( global.client.Buffer , buffer_string , "sMOVEUNIT" );
-        buffer_write( global.client.Buffer , buffer_u32 , unit[i] );
+        buffer_write( global.client.Buffer , buffer_string , unit[i].guid );
         buffer_write( global.client.Buffer , buffer_u16 , arrayOfPositions[currentPos].x );
         buffer_write( global.client.Buffer , buffer_u16 , arrayOfPositions[currentPos].y );
     
@@ -434,7 +452,31 @@ selectedBusinessIns.selectedBusinessObj = selectedBusinessObj;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>script_execute(scr_colorResource,"oil",global.oilColor);
+            <string>var snap_x = (obj_mouse.x/32) * 32;
+var snap_y = (obj_mouse.y/32) * 32;
+
+var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand));
+//show_message(string(cell));
+
+if(cell != noone){
+    if(instance_position(cell.x,cell.y,obj_solid) == noone){
+        var unit = instance_create(cell.x, cell.y, obj_riflemenUnit);
+        unit.government = global.myGov;
+        
+        //Multiplayer send message
+        buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
+        buffer_write( global.client.Buffer , buffer_string , "sUNITADD" );
+        buffer_write( global.client.Buffer , buffer_u32 , unit.object_index );
+        buffer_write( global.client.Buffer , buffer_u16 , unit.x );
+        buffer_write( global.client.Buffer , buffer_u16 , unit.y );
+        buffer_write( global.client.Buffer , buffer_u32 , global.myGov );
+        buffer_write( global.client.Buffer , buffer_string , unit.guid );
+    
+        result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
+    
+        scr_recalculatePaths();
+    }
+}
 </string>
           </argument>
         </arguments>

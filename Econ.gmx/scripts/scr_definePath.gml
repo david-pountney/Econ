@@ -5,6 +5,9 @@ var fy = argument3;
 var path = argument4;
 var unit = argument5;
 
+if(path == noone) path = path_add();
+
+trace(path);
 if(!mp_grid_path(global.pathfindingGrid, path, sx,sy,fx,fy,false)){
     show_message("No path");
     return false;
