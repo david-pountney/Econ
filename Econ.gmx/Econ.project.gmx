@@ -162,6 +162,10 @@
         <object>objects\obj_gunShop</object>
         <object>objects\obj_carDealership</object>
       </objects>
+      <objects name="units">
+        <object>objects\obj_unit</object>
+        <object>objects\obj_riflemenUnit</object>
+      </objects>
       <object>objects\obj_cashSymbol</object>
       <object>objects\obj_backgroundPanel</object>
       <objects name="buildBusinessMenu">
@@ -254,8 +258,6 @@
     </objects>
     <object>objects\obj_gameInit</object>
     <object>objects\obj_menuController</object>
-    <object>objects\obj_unit</object>
-    <object>objects\obj_riflemenUnit</object>
     <object>objects\obj_mouse</object>
     <object>objects\obj_solid</object>
   </objects>

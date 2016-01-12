@@ -68,7 +68,7 @@ endY = 0;
 xPlusGridSize = x;
 xMinusGridSize = x;
 
-government = false;
+government = noone;
 
 yPlusGridSize = y + 32;
 yMinusGridSize = y - 32;

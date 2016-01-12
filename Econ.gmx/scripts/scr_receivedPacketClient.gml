@@ -104,6 +104,36 @@ switch( msgid ) {//Case statements go here...
         government = buffer_read( buffer , buffer_u32 );    
         
         unit = instance_create(unitX,unitY, unitObj);
+        unit.government = government;
+        
+        break;
+        
+    case "rBUILTBARRACKS":
+        var barracksObj = buffer_read( buffer , buffer_u32 );
+        var barracksX = buffer_read( buffer , buffer_u16 );
+        var barracksY= buffer_read( buffer , buffer_u16 );
+        government = buffer_read( buffer , buffer_u32 );    
+        
+        var barracks = instance_create(barracksX,barracksY, barracksObj);
+        barracks.government = government;
+        
+        break;
+        
+    case "rMOVEUNIT":
+        var unit = buffer_read( buffer , buffer_u32 );
+        var unitFinalX = buffer_read( buffer , buffer_u16 );
+        var unitFinalY = buffer_read( buffer , buffer_u16 );
+        
+        unit.foundPath = scr_definePath(unit.x,unit.y, (floor(unitFinalX/32) * 32 + 16), (floor(unitFinalY/32) * 32 + 16), unit.path, unit);
+
+        if(unit.foundPath){
+            unit.x = floor(unit.x/32) * 32 + 16;
+            unit.y = floor(unit.y/32) * 32 + 16;
+            unit.drawPath = true;
+            
+            with(unit)  path_start(path,3,0,1);
+        }
+        else with(unit) mp_grid_add_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
         
         break;
         

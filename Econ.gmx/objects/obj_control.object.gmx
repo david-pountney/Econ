@@ -193,7 +193,8 @@ if(cell != noone){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var snap_x = (mouse_x/32) * 32;
+            <string>///Move units
+var snap_x = (mouse_x/32) * 32;
 var snap_y = (mouse_y/32) * 32 ;
 
 var underUnit = instance_position(snap_x,snap_y,obj_unit);
@@ -258,6 +259,15 @@ for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
             with(unit[i])  path_start(path,3,0,1);
         }
         else with(unit[i]) mp_grid_add_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
+        
+        //Multiplayer send message
+        buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
+        buffer_write( global.client.Buffer , buffer_string , "sMOVEUNIT" );
+        buffer_write( global.client.Buffer , buffer_u32 , unit[i] );
+        buffer_write( global.client.Buffer , buffer_u16 , arrayOfPositions[currentPos].x );
+        buffer_write( global.client.Buffer , buffer_u16 , arrayOfPositions[currentPos].y );
+    
+        result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
         
         currentPos++;
    }

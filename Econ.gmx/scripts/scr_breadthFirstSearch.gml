@@ -1,8 +1,13 @@
 var root = argument0;
 
+if(root == noone)
+    return noone;
+
 if(!position_meeting(root.x, root.y, obj_solid))
     return root;
 
+
+    
 var currentNode;
 var currentNeighbourNode;
 

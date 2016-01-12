@@ -64,6 +64,9 @@ dayBuilt = global.day + 20;
 //Built
 built = false;
 
+//Government
+government = noone;
+
 //Add to grid
 mp_grid_add_cell(global.pathfindingGrid,floor(x/32), floor(y/32));
 </string>

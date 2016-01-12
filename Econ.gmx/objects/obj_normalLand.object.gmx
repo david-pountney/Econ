@@ -69,8 +69,9 @@ government = noone;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(government == global.myGov)
-    draw_rectangle_colour(x,y, x + sprite_get_width(spr_rect),y + sprite_get_height(spr_rect),global.myGov.color,global.myGov.color,global.myGov.color,global.myGov.color,true);
+            <string>///Draw government color outline
+if(government != noone)
+    draw_rectangle_colour(x,y, x + sprite_get_width(spr_rect),y + sprite_get_height(spr_rect),government.color,government.color,government.color,government.color,true);
 </string>
           </argument>
         </arguments>

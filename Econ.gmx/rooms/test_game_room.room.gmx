@@ -58,7 +58,6 @@
     <instance objName="obj_normalLand" x="864" y="608" name="inst_0FCD7356" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalLand" x="832" y="640" name="inst_7F55A4C0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wheat" x="96" y="0" name="inst_8868AC11" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="128" y="0" name="inst_5F32D8E4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalLand" x="960" y="640" name="inst_8C5398FE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalLand" x="896" y="608" name="inst_6AE87C70" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalLand" x="928" y="640" name="inst_34483767" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -490,7 +489,6 @@
     <instance objName="obj_normalLand" x="1216" y="608" name="inst_159A32C1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_populationLand" x="1248" y="608" name="inst_00F72354" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_gov2" x="1248" y="608" name="inst_42680738" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="224" y="0" name="inst_9886617C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_riflemenSquad" x="256" y="0" name="inst_18630F30" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalLand" x="640" y="608" name="inst_F6A8A779" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_normalLand" x="704" y="704" name="inst_08C9FD8B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

@@ -139,6 +139,50 @@ switch( msgid ) {//Case statements go here...
 
         break;
         
+    case "sBUILTBARRACKS":
+        var barracksObj = buffer_read( buffer , buffer_u32 );
+        var barracksX = buffer_read( buffer , buffer_u16 );
+        var barracksY = buffer_read( buffer , buffer_u16 );
+        government = buffer_read( buffer , buffer_u32 );
+    
+        buffer_seek( Buffer , buffer_seek_start , 0 );
+        buffer_write( Buffer , buffer_string , "rBUILTBARRACKS" );
+        
+        buffer_write( Buffer , buffer_u32 , barracksObj );
+        buffer_write( Buffer , buffer_u16 , barracksX );
+        buffer_write( Buffer , buffer_u16 , barracksY );
+        buffer_write( Buffer , buffer_u32 , government );
+        
+        for (i=0; i<ds_list_size(obj_server.SocketList); i++) { 
+            var currentSocket = ds_list_find_value(obj_server.SocketList, i);
+            
+            if(currentSocket != socket)
+                network_send_packet(currentSocket, Buffer, buffer_tell( Buffer )); 
+        }
+
+        break;
+        
+    case "sMOVEUNIT":
+        var unit = buffer_read( buffer , buffer_u32 );
+        var unitFinalX = buffer_read( buffer , buffer_u16 );
+        var unitFinalY = buffer_read( buffer , buffer_u16 );
+    
+        buffer_seek( Buffer , buffer_seek_start , 0 );
+        buffer_write( Buffer , buffer_string , "rMOVEUNIT" );
+        
+        buffer_write( Buffer , buffer_u32 , unit );
+        buffer_write( Buffer , buffer_u16 , unitFinalX );
+        buffer_write( Buffer , buffer_u16 , unitFinalY );
+        
+        for (i=0; i<ds_list_size(obj_server.SocketList); i++) { 
+            var currentSocket = ds_list_find_value(obj_server.SocketList, i);
+            
+            if(currentSocket != socket)
+                network_send_packet(currentSocket, Buffer, buffer_tell( Buffer )); 
+        }
+
+        break;
+        
     default:
         break;
 } 

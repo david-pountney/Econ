@@ -113,16 +113,16 @@ if(base == noone){
     if(land.government == global.myGov){
         newIns = instance_create(mouse_x,mouse_y,selectedBaseObj);
              
-        /*       
+        //Multiplayer send message
         buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
-        buffer_write( global.client.Buffer , buffer_string , "sADDBUS" );
-        buffer_write( global.client.Buffer , buffer_u16 , land.x );
-        buffer_write( global.client.Buffer , buffer_u16 , land.y );
-        buffer_write( global.client.Buffer , buffer_u32 , selectedBaseObj );
-        buffer_write( global.client.Buffer , buffer_u16 , ds_map_find_value(global.resourceQuality,newIns.productProduced.name ));
-        
+        buffer_write( global.client.Buffer , buffer_string , "sBUILTBARRACKS" );
+        buffer_write( global.client.Buffer , buffer_u32 , newIns.object_index );
+        buffer_write( global.client.Buffer , buffer_u16 , newIns.x );
+        buffer_write( global.client.Buffer , buffer_u16 , newIns.y );
+        buffer_write( global.client.Buffer , buffer_u32 , global.myGov );
+    
         result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
-        */
+    
         
         instance_destroy();
     }
