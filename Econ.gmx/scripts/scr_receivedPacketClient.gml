@@ -122,38 +122,58 @@ switch( msgid ) {//Case statements go here...
         break;
         
     case "rMOVEUNIT":
-        var unit_guid = buffer_read( buffer , buffer_string );
-        var unitFinalX = buffer_read( buffer , buffer_u16 );
-        var unitFinalY = buffer_read( buffer , buffer_u16 );
+        var amountOfUnits = buffer_read( buffer , buffer_u8 );
+    
+        //trace("amount of units  " + string(amountOfUnits));
         
-        var unit = noone;
+        var arrayOfUnits = ds_list_create();
         
-        for(var i = 0; i < instance_number(obj_unit); ++i){
-            if(instance_find(obj_unit,i).guid == unit_guid){
-                unit = instance_find(obj_unit,i);
-                break;
+        for(var i = 0; i < amountOfUnits; ++i){
+            var unit_guid = buffer_read( buffer , buffer_string );
+            //trace("id " + unit_guid);
+            var unitFinalX = buffer_read( buffer , buffer_u16 );
+            var unitFinalY = buffer_read( buffer , buffer_u16 );
+            
+            var unit = noone;
+        
+            for(var j = 0; j < instance_number(obj_unit); ++j){
+                if(instance_find(obj_unit,j).guid == unit_guid){
+                    unit = instance_find(obj_unit,j);
+                    unit.endX = unitFinalX;
+                    unit.endY = unitFinalY;
+                    ds_list_add(arrayOfUnits,unit);
+                    
+                    break;
+                }
+            }
+        
+            if(unit != noone){
+                //About move so clear cell
+                mp_grid_clear_cell(global.pathfindingGrid, floor(unit.x/32), floor(unit.y/32));
+            
+                unit.moving = true;
+                unit.pathHaulted = false;
+                unit.path = path_add();
+                
+                
             }
         }
         
-        if(unit != noone){
-            //About move so clear cell
-            mp_grid_clear_cell(global.pathfindingGrid, floor(unit.x/32), floor(unit.y/32));
-        
-            unit.moving = true;
-            unit.pathHaulted = false;
-            unit.path = path_add();
+        for(var i = 0; i < ds_list_size(arrayOfUnits); ++i){
+            var unit = ds_list_find_value(arrayOfUnits, i);
             
-            unit.foundPath = scr_definePath(unit.x,unit.y, (floor(unitFinalX/32) * 32 + 16), (floor(unitFinalY/32) * 32 + 16), unit.path, unit);
-    
+            unit.foundPath = scr_definePath(unit.x,unit.y, (floor(unit.endX/32) * 32 + 16), (floor(unit.endY/32) * 32 + 16), unit.path, unit);
+            
             if(unit.foundPath){
                 unit.x = floor(unit.x/32) * 32 + 16;
                 unit.y = floor(unit.y/32) * 32 + 16;
                 unit.drawPath = true;
-                
+                    
                 with(unit)  path_start(path,3,0,1);
             }
             else with(unit) mp_grid_add_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
         }
+        
         break;
         
     default:

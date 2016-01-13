@@ -220,7 +220,7 @@ var underUnit = instance_position(snap_x,snap_y,obj_unit);
 //A unit is underneath mouse
 if(underUnit != noone){
     //Amount of units selected is more than 0
-    if(global.amountOfUnitsSelected &gt; 0){
+    if(global.amountOfUnitsSelected &gt; 0){ 
         show_message("over unit");
         if(underUnit.government == global.myGov){
             exit;
@@ -230,6 +230,8 @@ if(underUnit != noone){
     }
         
 }
+
+var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand));
 
 arrayOfPositions[0] = instance_position(snap_x,snap_y,obj_normalLand);
 arrayOfPositions[1] = instance_position(snap_x + 32,snap_y,obj_normalLand);
@@ -251,6 +253,22 @@ for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
 }
 
 var currentPos = 0;
+var arrayOfUnits = ds_list_create();
+
+for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
+{
+   unit[i] = instance_find(obj_unit,i);
+   if(unit[i].selected){
+        ds_list_add(arrayOfUnits, unit[i]);
+        //var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand));
+   }
+}
+
+//Multiplayer send message
+buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
+buffer_write( global.client.Buffer , buffer_string , "sMOVEUNIT" );
+//trace("array size " + string(ds_list_size(arrayOfUnits)));
+buffer_write( global.client.Buffer , buffer_u8 , ds_list_size(arrayOfUnits) );
 
 for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
 {
@@ -266,8 +284,10 @@ for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
             currentPos++;
             continue;
         }
+        
+        var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand));
             
-        unit[i].foundPath = scr_definePath(unit[i].x,unit[i].y, (floor(arrayOfPositions[currentPos].x/32) * 32 + 16), (floor(arrayOfPositions[currentPos].y/32) * 32 + 16), unit[i].path, unit[i]);
+        unit[i].foundPath = scr_definePath(unit[i].x,unit[i].y, (floor(cell.x/32) * 32 + 16), (floor(cell.y/32) * 32 + 16), unit[i].path, unit[i]);
 
         if(unit[i].foundPath){
             unit[i].x = floor(unit[i].x/32) * 32 + 16;
@@ -278,18 +298,16 @@ for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
         }
         else with(unit[i]) mp_grid_add_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
         
-        //Multiplayer send message
-        buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
-        buffer_write( global.client.Buffer , buffer_string , "sMOVEUNIT" );
         buffer_write( global.client.Buffer , buffer_string , unit[i].guid );
         buffer_write( global.client.Buffer , buffer_u16 , arrayOfPositions[currentPos].x );
         buffer_write( global.client.Buffer , buffer_u16 , arrayOfPositions[currentPos].y );
-    
-        result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
         
         currentPos++;
    }
 }
+
+result = network_send_packet( global.client.Socket , global.client.Buffer , buffer_tell( global.client.Buffer ) );
+
 
 </string>
           </argument>
