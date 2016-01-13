@@ -171,7 +171,7 @@ obj_menuController.selectedBase = id;
           <argument>
             <kind>1</kind>
             <string>///Make unit
-var unitCell = scr_breadthFirstSearch(instance_position(obj_barracks.x, obj_barracks.y,obj_normalLand) );
+var unitCell = scr_breadthFirstSearch(instance_position(obj_barracks.x, obj_barracks.y,obj_normalLand), true );
     //show_message("unitCell X: " + string(unitCell.x));
 if(unitCell != noone){
     //show_message(string(unitCell));

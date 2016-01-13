@@ -28,7 +28,7 @@
             <string>var snap_x = (obj_mouse.x/32) * 32;
 var snap_y = (obj_mouse.y/32) * 32;
 
-var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand));
+var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand), true);
 //show_message(string(cell));
 
 if(cell != noone){
@@ -167,7 +167,7 @@ if(cell != noone){
             <string>var snap_x = (obj_mouse.x/32) * 32;
 var snap_y = (obj_mouse.y/32) * 32;
 
-var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand));
+var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand), true);
 //show_message(string(cell));
 
 if(cell != noone){
@@ -231,8 +231,6 @@ if(underUnit != noone){
         
 }
 
-var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand));
-
 arrayOfPositions[0] = instance_position(snap_x,snap_y,obj_normalLand);
 arrayOfPositions[1] = instance_position(snap_x + 32,snap_y,obj_normalLand);
 arrayOfPositions[2] = instance_position(snap_x + 32,snap_y + 32,obj_normalLand);
@@ -264,6 +262,8 @@ for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
    }
 }
 
+scr_test(instance_position(snap_x, snap_y, obj_normalLand), false, arrayOfUnits );
+
 //Multiplayer send message
 buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
 buffer_write( global.client.Buffer , buffer_string , "sMOVEUNIT" );
@@ -285,9 +285,9 @@ for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
             continue;
         }
         
-        var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand));
+
             
-        unit[i].foundPath = scr_definePath(unit[i].x,unit[i].y, (floor(cell.x/32) * 32 + 16), (floor(cell.y/32) * 32 + 16), unit[i].path, unit[i]);
+        unit[i].foundPath = scr_definePath(unit[i].x,unit[i].y, (floor(unit[i].endX/32) * 32 + 16), (floor(unit[i].endY/32) * 32 + 16), unit[i].path, unit[i]);
 
         if(unit[i].foundPath){
             unit[i].x = floor(unit[i].x/32) * 32 + 16;
@@ -473,7 +473,7 @@ selectedBusinessIns.selectedBusinessObj = selectedBusinessObj;
             <string>var snap_x = (obj_mouse.x/32) * 32;
 var snap_y = (obj_mouse.y/32) * 32;
 
-var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand));
+var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand), false);
 //show_message(string(cell));
 
 if(cell != noone){

@@ -1,4 +1,5 @@
 var root = argument0;
+var onlyMyGov = argument1;
 
 //if you didn't give a valid tile, get out
 if(root == noone)
@@ -14,6 +15,9 @@ var listOfNodes = ds_list_create();
 var listOfNeighbours = ds_list_create();
 
 ds_list_add(listOfNodes,root);
+
+//Store occupied nodes
+var listOfOccupiedNodes = ds_list_create();
 
 var count = 0;
 while(ds_list_size(listOfNodes) != 0){
@@ -45,11 +49,15 @@ while(ds_list_size(listOfNodes) != 0){
         currentNeighbourNode = ds_list_find_value(listOfNeighbours, i);
         if(currentNeighbourNode == noone)
             show_message("whoops..");
-            
-        if(currentNeighbourNode.government != global.myGov) continue;
+          
+        if(onlyMyGov)  
+            if(currentNeighbourNode.government != global.myGov) continue;
         
         if(!position_meeting(currentNeighbourNode.x, currentNeighbourNode.y, obj_solid)){
-            return currentNeighbourNode;
+            if(ds_list_find_index(listOfOccupiedNodes, currentNeighbourNode) == -1){
+                ds_list_add(listOfOccupiedNodes, currentNeighbourNode);
+                return currentNeighbourNode;
+            }
         }
         
         ds_list_add(listOfNodes,currentNeighbourNode);

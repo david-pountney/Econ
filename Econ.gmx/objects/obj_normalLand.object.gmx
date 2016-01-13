@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>color = global.defaultLandColor;
+            <string>///Set up variables
+color = global.defaultLandColor;
 drawOutline = false;
 
 enteredView = true;
@@ -33,7 +34,8 @@ enteredView = true;
 x2 = x + sprite_get_width(spr_rect);
 y2 = y + sprite_get_height(spr_rect);
 
-//resource["pop"] = 0;
+//Used for scr_breadthFirstSearch
+occupied = false;
 
 resource = ds_map_create();
 ds_map_add(resource,"pop", 0);
