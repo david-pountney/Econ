@@ -231,16 +231,6 @@ if(underUnit != noone){
         
 }
 
-arrayOfPositions[0] = instance_position(snap_x,snap_y,obj_normalLand);
-arrayOfPositions[1] = instance_position(snap_x + 32,snap_y,obj_normalLand);
-arrayOfPositions[2] = instance_position(snap_x + 32,snap_y + 32,obj_normalLand);
-arrayOfPositions[3] = instance_position(snap_x,snap_y + 32,obj_normalLand);
-arrayOfPositions[4] = instance_position(snap_x - 32,snap_y + 32,obj_normalLand);
-arrayOfPositions[5] = instance_position(snap_x - 32,snap_y,obj_normalLand);
-arrayOfPositions[6] = instance_position(snap_x - 32,snap_y - 32,obj_normalLand);
-arrayOfPositions[7] = instance_position(snap_x,snap_y - 32,obj_normalLand);
-arrayOfPositions[8] = instance_position(snap_x + 32,snap_y - 32,obj_normalLand);
-
 for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
 {
    unit[i] = instance_find(obj_unit,i);
@@ -258,35 +248,27 @@ for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
    unit[i] = instance_find(obj_unit,i);
    if(unit[i].selected){
         ds_list_add(arrayOfUnits, unit[i]);
-        //var cell = scr_breadthFirstSearch(instance_position(snap_x, snap_y, obj_normalLand));
    }
 }
 
-scr_test(instance_position(snap_x, snap_y, obj_normalLand), false, arrayOfUnits );
+//Calculate end positions for the units
+scr_bfsUnits(instance_position(snap_x, snap_y, obj_normalLand), false, arrayOfUnits );
 
 //Multiplayer send message
 buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
 buffer_write( global.client.Buffer , buffer_string , "sMOVEUNIT" );
-//trace("array size " + string(ds_list_size(arrayOfUnits)));
 buffer_write( global.client.Buffer , buffer_u8 , ds_list_size(arrayOfUnits) );
+buffer_write( global.client.Buffer , buffer_u16 , snap_x );
+buffer_write( global.client.Buffer , buffer_u16 , snap_y );
 
-for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
+for (var i = 0; i &lt; ds_list_size(arrayOfUnits); i += 1)
 {
-   unit[i] = instance_find(obj_unit,i);
+   unit[i] = ds_list_find_value(arrayOfUnits,i);
    if(unit[i].selected){
         unit[i].moving = true;
         unit[i].pathHaulted = false;
         unit[i].path = path_add();
         
-        if(!arrayOfPositions[currentPos]) continue;
-        
-        if(instance_position(arrayOfPositions[currentPos].x, arrayOfPositions[currentPos].y, obj_unit)){
-            currentPos++;
-            continue;
-        }
-        
-
-            
         unit[i].foundPath = scr_definePath(unit[i].x,unit[i].y, (floor(unit[i].endX/32) * 32 + 16), (floor(unit[i].endY/32) * 32 + 16), unit[i].path, unit[i]);
 
         if(unit[i].foundPath){
@@ -299,8 +281,8 @@ for (var i = 0; i &lt; instance_number(obj_unit); i += 1)
         else with(unit[i]) mp_grid_add_cell(global.pathfindingGrid, floor(x/32), floor(y/32));
         
         buffer_write( global.client.Buffer , buffer_string , unit[i].guid );
-        buffer_write( global.client.Buffer , buffer_u16 , arrayOfPositions[currentPos].x );
-        buffer_write( global.client.Buffer , buffer_u16 , arrayOfPositions[currentPos].y );
+        //buffer_write( global.client.Buffer , buffer_u16 , arrayOfPositions[currentPos].x );
+        //buffer_write( global.client.Buffer , buffer_u16 , arrayOfPositions[currentPos].y );
         
         currentPos++;
    }

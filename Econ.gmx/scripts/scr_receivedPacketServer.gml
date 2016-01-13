@@ -175,25 +175,13 @@ switch( msgid ) {//Case statements go here...
         
         for(var i = 0; i < amountOfUnits; ++i){
             var unit_guid = buffer_read( buffer , buffer_string );
-            var unitX = buffer_read( buffer , buffer_u16 );
-            var unitY = buffer_read( buffer , buffer_u16 );
-            
-            //trace(unit_guid);
+            var cellX = buffer_read( buffer , buffer_u16 );
+            var cellY = buffer_read( buffer , buffer_u16 );
             
             buffer_write( Buffer , buffer_string ,  unit_guid);
-            buffer_write( Buffer , buffer_u16 , unitX);
-            buffer_write( Buffer , buffer_u16 , unitY);
+            buffer_write( Buffer , buffer_u16 ,  cellX);
+            buffer_write( Buffer , buffer_u16 ,  cellY);
         }
-        
-        //var unit_guid = buffer_read( buffer , buffer_string );
-        //var unitFinalX = buffer_read( buffer , buffer_u16 );
-        //var unitFinalY = buffer_read( buffer , buffer_u16 );
-    
-
-        
-        //buffer_write( Buffer , buffer_string , unit_guid );
-        //buffer_write( Buffer , buffer_u16 , unitFinalX );
-        //buffer_write( Buffer , buffer_u16 , unitFinalY );
         
         for (i=0; i<ds_list_size(obj_server.SocketList); i++) { 
             var currentSocket = ds_list_find_value(obj_server.SocketList, i);

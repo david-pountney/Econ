@@ -123,30 +123,27 @@ switch( msgid ) {//Case statements go here...
         
     case "rMOVEUNIT":
         var amountOfUnits = buffer_read( buffer , buffer_u8 );
-    
-        //trace("amount of units  " + string(amountOfUnits));
+        var cellX = buffer_read( buffer , buffer_u16 );
+        var cellY = buffer_read( buffer , buffer_u16 );
         
         var arrayOfUnits = ds_list_create();
         
         for(var i = 0; i < amountOfUnits; ++i){
             var unit_guid = buffer_read( buffer , buffer_string );
-            //trace("id " + unit_guid);
-            var unitFinalX = buffer_read( buffer , buffer_u16 );
-            var unitFinalY = buffer_read( buffer , buffer_u16 );
             
             var unit = noone;
         
+            //Find the unit
             for(var j = 0; j < instance_number(obj_unit); ++j){
                 if(instance_find(obj_unit,j).guid == unit_guid){
                     unit = instance_find(obj_unit,j);
-                    unit.endX = unitFinalX;
-                    unit.endY = unitFinalY;
                     ds_list_add(arrayOfUnits,unit);
                     
                     break;
                 }
             }
-        
+            
+            //if we found the unit
             if(unit != noone){
                 //About move so clear cell
                 mp_grid_clear_cell(global.pathfindingGrid, floor(unit.x/32), floor(unit.y/32));
@@ -158,6 +155,9 @@ switch( msgid ) {//Case statements go here...
                 
             }
         }
+        
+        //Calculate end positions for the units
+        scr_bfsUnits(instance_position(cellX, cellY, obj_normalLand), false, arrayOfUnits );
         
         for(var i = 0; i < ds_list_size(arrayOfUnits); ++i){
             var unit = ds_list_find_value(arrayOfUnits, i);
