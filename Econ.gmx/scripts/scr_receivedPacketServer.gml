@@ -166,8 +166,6 @@ switch( msgid ) {//Case statements go here...
         
     case "sMOVEUNIT":
         var amountOfUnits = buffer_read( buffer , buffer_u8 );
-    
-        //trace(amountOfUnits);
         
         buffer_seek( Buffer , buffer_seek_start , 0 );
         buffer_write( Buffer , buffer_string , "rMOVEUNIT" );
@@ -182,6 +180,24 @@ switch( msgid ) {//Case statements go here...
             buffer_write( Buffer , buffer_u16 ,  cellX);
             buffer_write( Buffer , buffer_u16 ,  cellY);
         }
+        
+        for (i=0; i<ds_list_size(obj_server.SocketList); i++) { 
+            var currentSocket = ds_list_find_value(obj_server.SocketList, i);
+            
+            if(currentSocket != socket)
+                network_send_packet(currentSocket, Buffer, buffer_tell( Buffer )); 
+        }
+
+        break;
+        
+    case "sATTACKUNIT":
+        var unit_guid = buffer_read( buffer , buffer_string );
+        var damage = buffer_read( buffer , buffer_u8 );
+        
+        buffer_seek( Buffer , buffer_seek_start , 0 );
+        buffer_write( Buffer , buffer_string , "rATTACKUNIT" );
+        buffer_write( Buffer , buffer_string , unit_guid );
+        buffer_write( Buffer , buffer_u8 , damage );
         
         for (i=0; i<ds_list_size(obj_server.SocketList); i++) { 
             var currentSocket = ds_list_find_value(obj_server.SocketList, i);

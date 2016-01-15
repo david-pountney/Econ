@@ -176,6 +176,20 @@ switch( msgid ) {//Case statements go here...
         
         break;
         
+    case "rATTACKUNIT":
+        var unit_guid = buffer_read( buffer , buffer_string );
+        var damage = buffer_read( buffer , buffer_u8 );
+        
+        //Find the unit
+        for(var i = 0; i < instance_number(obj_unit); ++i){
+            if(instance_find(obj_unit,i).guid == unit_guid){
+                unit = instance_find(obj_unit,i);
+                unit.hp -= damage;
+                unit.justHit = true;
+                break;
+            }
+        }
+        
     default:
         break;
 } 

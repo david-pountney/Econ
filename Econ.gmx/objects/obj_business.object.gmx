@@ -405,9 +405,7 @@ if(cash &lt; 0)    instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//draw_self();
-//draw_rectangle_colour(x,y, x + sprite_get_width(sprite0),y + sprite_get_height(sprite0),color,color,color,color,false);
-draw_circle_colour(x + 16,y + 16,12,color,color,false);
+            <string>draw_circle_colour(x + 16,y + 16,12,color,color,false);
 
 if(debug_mode){
     draw_set_font(fnt_debug);

@@ -78,7 +78,7 @@
     <scripts name="path">
       <script>scripts\scr_definePath.gml</script>
       <script>scripts\scr_recalculatePaths.gml</script>
-      <script>scripts\scr_moveToAttack.gml</script>
+      <script>scripts\scr_bfsUnits.gml</script>
     </scripts>
     <script>scripts\scr_breadthFirstSearch.gml</script>
     <script>scripts\scr_updateMapTileColor.gml</script>
@@ -93,7 +93,9 @@
       <script>scripts\scr_transaction.gml</script>
     </scripts>
     <script>scripts\scr_getGUID.gml</script>
-    <script>scripts\scr_bfsUnits.gml</script>
+    <scripts name="unit">
+      <script>scripts\scr_attack.gml</script>
+    </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shd_default.shader</shader>
@@ -112,6 +114,7 @@
       <object>objects\obj_gameRoomInit</object>
       <object>objects\obj_control</object>
       <object>objects\obj_grid</object>
+      <object>objects\obj_solid</object>
       <objects name="governments">
         <object>objects\obj_gov</object>
         <object>objects\obj_gov1</object>
@@ -261,7 +264,6 @@
     <object>objects\obj_gameInit</object>
     <object>objects\obj_menuController</object>
     <object>objects\obj_mouse</object>
-    <object>objects\obj_solid</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\mutliplayer_lobby</room>

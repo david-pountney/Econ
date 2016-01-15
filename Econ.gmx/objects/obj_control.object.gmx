@@ -174,7 +174,7 @@ if(cell != noone){
     if(instance_position(cell.x,cell.y,obj_solid) == noone){
         var unit = instance_create(cell.x, cell.y, obj_riflemenUnit);
         unit.government = global.myGov;
-        
+                trace("government " + string(global.myGov));
         //Multiplayer send message
         buffer_seek( global.client.Buffer , buffer_seek_start , 0 );
         buffer_write( global.client.Buffer , buffer_string , "sUNITADD" );
