@@ -35,6 +35,9 @@ global.gameStart = true;
 //Delta time
 global.deltaTime = 0;
 
+//Time
+global.currentTime = 0;
+
 //Governments
 global.myGov = noone;
 
@@ -173,6 +176,28 @@ if(global.day % 30 == 0){
         value = clamp(value,1, startingValue * 5);
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Increase time
+global.currentTime ++;
 </string>
           </argument>
         </arguments>

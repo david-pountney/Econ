@@ -321,9 +321,50 @@ if(!supplierDoneOnce &amp;&amp; pstType != "primary" &amp;&amp; (global.day % 30
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Buy from supplier
+            <string>if(global.day == 30)
+    trace(global.currentTime);
+
+///Calculate each business profit
 if(global.day % 30 == 0){
-     script_execute(scr_buyFromSupplier,supplier,id);
+    
+    for (var i = 0; i &lt; instance_number(obj_business); i += 1)
+    {
+        business[i] = instance_find(obj_business,i);
+        
+        if(!business[i].built) continue;
+        
+        if(business[i].cashSymbol == noone){
+            //Made money
+            if(business[i].monthlyStartingCash &lt; business[i].cash){
+                symbol = instance_create(business[i].x,business[i].y - 64,obj_cashSymbol);
+                symbol.spriteToDraw = spr_greenDollar; 
+                symbol.business = business[i];
+            }
+            //Lost money
+            else{
+                symbol = instance_create(business[i].x,business[i].y - 64,obj_cashSymbol,);
+                symbol.spriteToDraw = spr_redDollar; 
+                symbol.business = business[i];
+            }
+            business[i].monthlyStartingCash = business[i].cash;
+            business[i].cashSymbol = symbol;
+            
+            if(business[i].cash &gt; business[i].highestCash)
+                business[i].highestCash = business[i].cash;
+        }
+    }
+    
+    with(obj_good){
+        if(buildingsProducingResource &gt; buildingsNeedingResource){
+            value -= 1;
+        }
+        if(buildingsProducingResource &lt; buildingsNeedingResource){
+            value += 1;
+        }
+            
+        value = clamp(value,startingValue * .22, startingValue * 5);
+        value = clamp(value,1, startingValue * 5);
+    }
 }
 </string>
           </argument>
@@ -381,8 +422,51 @@ if(global.day % 30 == 0){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Check if bankrupt
-if(cash &lt; 0)    instance_destroy();
+            <string>if(global.day == 30)
+    trace(global.currentTime);
+
+///Calculate each business profit
+if(global.day % 30 == 0){
+    
+    for (var i = 0; i &lt; instance_number(obj_business); i += 1)
+    {
+        business[i] = instance_find(obj_business,i);
+        
+        if(!business[i].built) continue;
+        
+        if(business[i].cashSymbol == noone){
+            //Made money
+            if(business[i].monthlyStartingCash &lt; business[i].cash){
+                symbol = instance_create(business[i].x,business[i].y - 64,obj_cashSymbol);
+                symbol.spriteToDraw = spr_greenDollar; 
+                symbol.business = business[i];
+            }
+            //Lost money
+            else{
+                symbol = instance_create(business[i].x,business[i].y - 64,obj_cashSymbol,);
+                symbol.spriteToDraw = spr_redDollar; 
+                symbol.business = business[i];
+            }
+            business[i].monthlyStartingCash = business[i].cash;
+            business[i].cashSymbol = symbol;
+            
+            if(business[i].cash &gt; business[i].highestCash)
+                business[i].highestCash = business[i].cash;
+        }
+    }
+    
+    with(obj_good){
+        if(buildingsProducingResource &gt; buildingsNeedingResource){
+            value -= 1;
+        }
+        if(buildingsProducingResource &lt; buildingsNeedingResource){
+            value += 1;
+        }
+            
+        value = clamp(value,startingValue * .22, startingValue * 5);
+        value = clamp(value,1, startingValue * 5);
+    }
+}
 </string>
           </argument>
         </arguments>
